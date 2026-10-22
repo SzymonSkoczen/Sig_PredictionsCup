@@ -93,6 +93,8 @@ def test_paper_cycle_enters_then_exits_on_convergence(tmp_path):
     assert abs(bot.ledger.realized_since(0) - 200 * (0.595 - 0.52)) < 1e-6
     report = bot.report()
     assert "PAPER" in report and "Trades last 2h (2)" in report and "totalPnl=12.5" in report
+    assert "price gaps: 1 markets reached ≥0.04" in report and "Texas Senate [R] +0.080" in report
+    assert "depth at best price: median" in report
 
 
 def test_kill_switch_blocks_entries_but_alerts_once(tmp_path):

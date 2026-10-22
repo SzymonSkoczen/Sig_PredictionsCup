@@ -33,6 +33,15 @@ class Health:
     ref_errors: dict[str, int] = field(default_factory=dict)
 
 
+@dataclass
+class Opportunities:
+    """What the market offered during this run, traded or not: the raw material for tuning."""
+    best_edge: dict[str, float] = field(default_factory=dict)  # exchange -> best gap seen
+    best_arb: dict[str, float] = field(default_factory=dict)   # race -> best Σ YES bids − 1
+    top_depth: list[float] = field(default_factory=list)       # shares at the best level, per book read
+    priced_cycles: int = 0
+
+
 def _utc_day(ts: float) -> str:
     return datetime.fromtimestamp(ts, timezone.utc).strftime("%Y-%m-%d")
 
@@ -61,6 +70,7 @@ class Bot:
         self.prices: dict[str, tuple[float | None, float | None]] = {}
         self.positions: dict[tuple[str, str], float] = {}
         self.health = Health(started=clock())
+        self.opps = Opportunities()
         self.races: list[Race] = []
         self.mode_note = "live" if live else "paper"
         self._last_races = 0.0
@@ -156,6 +166,7 @@ class Bot:
 
         ids = list(dict.fromkeys(list(self.map) + [e for r in self.races for e in r.exchange_ids]))
         self.prices = self.api.prices(ids) if ids else {}
+        self.track_opportunities()
         books_left = s.max_books_per_cycle
         pending = self.ledger.pending_exchanges()
 
@@ -170,7 +181,7 @@ class Bot:
             if plan_exit(h, fair, Book.top(h.exchange_id, bid, ask), now, **kw) is None:
                 continue
             books_left -= 1
-            o = plan_exit(h, fair, self.api.book(h.exchange_id), now, **kw)
+            o = plan_exit(h, fair, self.book(h.exchange_id), now, **kw)
             if o:
                 self.execute(o)
                 pending.add(o.exchange_id)
@@ -190,6 +201,46 @@ class Bot:
         self.health.cycles += 1
         self.health.last_ok = self.clock()
         self.health.consecutive_errors = 0
+
+    def book(self, eid: str) -> Book:
+        b = self.api.book(eid)
+        best = (b.asks[:1] or b.bids[:1])
+        if best:
+            self.opps.top_depth.append(best[0].qty)
+        return b
+
+    def track_opportunities(self) -> None:
+        o = self.opps
+        o.priced_cycles += 1
+        for edge, eid, _ in self.gaps():
+            if edge > o.best_edge.get(eid, -1.0):
+                o.best_edge[eid] = edge
+        for r in self.races:
+            e = screen_buy(r, self.prices)
+            if e is not None and e > o.best_arb.get(r.key, -1.0):
+                o.best_arb[r.key] = e
+
+    def opportunity_lines(self) -> list[str]:
+        s, o = self.s, self.opps
+        edges = sorted(o.best_edge.values(), reverse=True)
+        n_hit = sum(1 for e in edges if e >= s.min_edge)
+        n_near = sum(1 for e in edges if s.min_edge / 2 <= e < s.min_edge)
+        lines = [f"\nOpportunities this run ({o.priced_cycles} priced cycles):",
+                 f"  price gaps: {n_hit} markets reached ≥{s.min_edge:g}, {n_near} more reached "
+                 f"≥{s.min_edge / 2:g} (near misses), of {len(edges)} with a fair value"]
+        best = sorted(o.best_edge.items(), key=lambda kv: -kv[1])[:3]
+        if best:
+            lines.append("  best gaps: " + ", ".join(f"{self.labels.get(e, e)[:30]} {v:+.3f}" for e, v in best))
+        arbs = sorted(o.best_arb.items(), key=lambda kv: -kv[1])
+        n_arb = sum(1 for _, v in arbs if v >= s.arb_min_profit)
+        if arbs:
+            lines.append(f"  arb: {n_arb} races reached ≥{s.arb_min_profit:g}; best: "
+                         + ", ".join(f"{k[:25]} {v:+.3f}" for k, v in arbs[:3]))
+        if o.top_depth:
+            d = sorted(o.top_depth)
+            lines.append(f"  depth at best price: median {d[len(d) // 2]:,.0f} shares, "
+                         f"max {d[-1]:,.0f} ({len(d)} books read)")
+        return lines
 
     def gaps(self) -> list[tuple[float, str, str]]:
         """(edge, exchange_id, side) for every priced market, best first."""
@@ -222,7 +273,7 @@ class Bot:
             if room <= 0:
                 continue
             books_left -= 1
-            o = plan_entry(eid, self.fair(eid), self.api.book(eid), min_edge=s.min_edge,
+            o = plan_entry(eid, self.fair(eid), self.book(eid), min_edge=s.min_edge,
                            depth_fraction=s.depth_fraction, max_cost=room,
                            kelly_fraction=s.kelly_fraction, bankroll=s.bankroll)
             if o:
@@ -251,7 +302,7 @@ class Bot:
                 self.ledger.put(key, since)
                 unwind = now - since > s.arb_repair_minutes * 60
                 books_left -= race.k
-                books = {e: self.api.book(e) for e in ids}
+                books = {e: self.book(e) for e in ids}
                 orders = plan_repair(race, held, books, slippage=s.arb_repair_slippage, unwind=unwind)
                 if unwind:
                     self.alert_once(key, f"{race.key}: basket uneven for {s.arb_repair_minutes:g} min, "
@@ -269,7 +320,7 @@ class Bot:
                 top = screen_sell(race, self.prices)
                 if top is not None and top >= bar:
                     books_left -= race.k
-                    o = plan_sell(race, {e: self.api.book(e) for e in ids}, sets_held=sets, bar=bar)
+                    o = plan_sell(race, {e: self.book(e) for e in ids}, sets_held=sets, bar=bar)
                     if o:
                         self.execute_basket(o)
                         pending.update(ids)
@@ -281,7 +332,7 @@ class Bot:
             if edge is None or edge < s.arb_min_profit or room < 1:
                 continue
             books_left -= race.k
-            o = plan_buy(race, {e: self.api.book(e) for e in ids}, min_profit=s.arb_min_profit,
+            o = plan_buy(race, {e: self.book(e) for e in ids}, min_profit=s.arb_min_profit,
                          max_sets=min(s.arb_max_sets, room), depth_fraction=s.arb_depth_fraction)
             if o:
                 self.execute_basket(o)
@@ -406,6 +457,7 @@ class Bot:
         if near:
             lines.append("Closest arb races (Σ YES bids − 1; trades at ≥ "
                          f"{s.arb_min_profit:g}): " + ", ".join(f"{k} {e:+.3f}" for e, k in near))
+        lines += self.opportunity_lines()
         lines.append("\nLargest gaps now (edge = fair − price to buy):")
         for edge, eid, side in self.gaps()[:5]:
             lines.append(f"  {self.labels.get(eid, eid)[:40]:40} buy {side.upper():3} edge {edge:+.3f}")
