@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.egg-info/
+data/*.db
+data/*.db-*
+data/market_map.csv
+data/suggested_map.csv
+data/sig_markets.csv
+data/heartbeat
+logs/
+KILL
+.pytest_cache/

@@ -1,0 +1,169 @@
+import json
+
+import httpx
+
+from sigcup.bot import Bot
+from sigcup.config import Settings
+from sigcup.ledger import Ledger
+from sigcup.references import KalshiFeed, PolymarketFeed, RefQuote
+from sigcup.sig_api import Book, Level, Position, SigApi, RateLimiter
+from sigcup.strategy import Order
+
+
+class FakeApi:
+    def __init__(self):
+        self.prices_ = {"e1": (0.50, 0.52)}
+        self.book_ = Book("e1", [Level(0.50, 100)], [Level(0.52, 400)])
+        self.positions_ = []
+        self.sent = []
+        self.reads = self.writes = RateLimiter(60)
+        self.error_count = 0
+
+    def prices(self, ids):
+        return {i: self.prices_[i] for i in ids if i in self.prices_}
+
+    def book(self, eid):
+        return self.book_
+
+    def positions(self):
+        return self.positions_
+
+    def place_order(self, *a):
+        self.sent.append(a)
+        return {"ok": True}
+
+    def pnl(self):
+        return {"totalPnl": 12.5}
+
+
+class FakeFeed:
+    def __init__(self, quotes):
+        self.q = quotes
+
+    def quotes(self, refs):
+        return {r: self.q[r] for r in refs if r in self.q}
+
+
+class FakeNotifier:
+    channels = []
+
+    def __init__(self):
+        self.sent = []
+
+    def send(self, title, body):
+        self.sent.append((title, body))
+        return []
+
+
+def make_bot(tmp_path, live=False, fair=(0.59, 0.61)):
+    m = tmp_path / "map.csv"
+    m.write_text("sig_exchange_id,label,source,ref,invert,weight,enabled\n"
+                 "e1,Texas Senate [R],kalshi,KX-R,0,1,1\n"
+                 "e2,Ignored,kalshi,KX-D,0,1,0\n")
+    s = Settings(map_path=str(m), db_path=str(tmp_path / "db.sqlite"), kill_switch=str(tmp_path / "KILL"))
+    clock = [1_000_000.0]
+    kalshi = FakeFeed({"KX-R": RefQuote("kalshi", "KX-R", *fair, clock[0])})
+    bot = Bot(s, FakeApi(), kalshi, FakeFeed({}), Ledger(s.db_path, "live" if live else "paper"),
+              FakeNotifier(), live=live, clock=lambda: clock[0])
+    return bot, clock
+
+
+def test_paper_cycle_enters_then_exits_on_convergence(tmp_path):
+    bot, clock = make_bot(tmp_path)
+    assert list(bot.map) == ["e1"]  # disabled row ignored
+    bot.cycle()
+    [h] = bot.ledger.holdings()
+    assert (h.side, h.avg_cost) == ("yes", 0.52) and h.qty == 200  # half the level
+    # SIG converges up to the reference
+    bot.api.prices_["e1"] = (0.595, 0.60)
+    bot.api.book_ = Book("e1", [Level(0.595, 1000)], [Level(0.60, 1000)])
+    clock[0] += 60
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.59, 0.61, clock[0])
+    bot._last_ref = 0
+    bot.cycle()
+    assert bot.ledger.holdings() == []
+    assert abs(bot.ledger.realized_since(0) - 200 * (0.595 - 0.52)) < 1e-6
+    report = bot.report()
+    assert "PAPER" in report and "Trades last 2h (2)" in report and "totalPnl=12.5" in report
+
+
+def test_kill_switch_blocks_entries_but_alerts_once(tmp_path):
+    bot, _ = make_bot(tmp_path)
+    (tmp_path / "KILL").write_text("x")
+    bot.cycle()
+    bot.cycle()
+    assert bot.ledger.holdings() == []
+    assert len([t for t, _ in bot.notifier.sent if "alert" in t]) == 1
+
+
+def test_no_trade_without_fresh_reference(tmp_path):
+    bot, clock = make_bot(tmp_path)
+    clock[0] += 10_000  # quote is now stale
+    bot.kalshi.q = {}
+    bot.cycle()
+    assert bot.ledger.holdings() == []
+
+
+def test_live_order_reconciled_from_positions(tmp_path):
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.cycle()
+    [(eid, side, action, qty, price, ttl)] = bot.api.sent
+    assert (eid, side, action, qty, price) == ("e1", "yes", "buy", 200, 0.52)
+    assert bot.ledger.holdings() == []  # not until confirmed
+    # Order partially filled on the exchange
+    bot.api.positions_ = [Position("e1", "m1", "Texas", "yes", 150, 0.52, 0)]
+    clock[0] += ttl + 5
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.59, 0.61, clock[0])
+    bot.api.prices_["e1"] = (0.50, 0.58)  # edge gone, no new entry
+    bot.cycle()
+    [h] = bot.ledger.holdings()
+    assert h.qty == 150
+
+
+def test_ledger_ignores_manual_position_changes_without_pending(tmp_path):
+    led = Ledger(":memory:")
+    assert led.reconcile({("e1", "yes"): 500}, now=1e9) == []
+    assert led.holdings() == []
+    led.record_fill(Order("e1", "yes", "buy", 10, 0.4, 0.5, "t"), 10, "x")
+    led.record_fill(Order("e1", "yes", "sell", 999, 0.5, 0.5, "t"), 999, "x")  # can't sell more than held
+    assert abs(led.realized_since(0) - 1.0) < 1e-9
+
+
+def test_sig_api_order_body_and_retry():
+    calls = []
+
+    def handler(req: httpx.Request):
+        calls.append(req)
+        if req.url.path.endswith("/tournaments/cup"):
+            return httpx.Response(200, json={"id": 42})
+        if len([c for c in calls if c.method == "POST"]) == 1:
+            return httpx.Response(502, json={"error": {"code": "ORDER_STATUS_UNKNOWN", "message": "?"}})
+        return httpx.Response(200, json={"data": {"id": 7}})
+
+    api = SigApi("k", "https://x/api/v1", "cup", transport=httpx.MockTransport(handler), sleep=lambda s: None)
+    api.place_order("e1", "no", "buy", 10, 0.3333, ttl_seconds=15)
+    posts = [c for c in calls if c.method == "POST"]
+    assert len(posts) == 2
+    b1, b2 = (json.loads(p.content) for p in posts)
+    assert b1 == b2  # same idempotency key on retry
+    assert b1["tournamentId"] == "42" and b1["price"] == 0.33 and b1["side"] == "no"
+    assert posts[0].headers["Authorization"] == "Bearer k"
+
+
+def test_kalshi_and_polymarket_parsing():
+    def handler(req: httpx.Request):
+        if req.url.host == "k":
+            return httpx.Response(200, json={"markets": [
+                {"ticker": "A", "status": "active", "yes_bid_dollars": "0.4100", "yes_ask_dollars": "0.4300"},
+                {"ticker": "B", "status": "active", "yes_bid": 0, "yes_ask": 12}]})
+        if req.url.host == "g":
+            return httpx.Response(200, json=[{"outcomes": '["Yes","No"]', "clobTokenIds": '["111","222"]'}])
+        return httpx.Response(200, json=[{"asset_id": "222", "bids": [{"price": "0.30", "size": "5"},
+                                                                       {"price": "0.35", "size": "9"}],
+                                          "asks": [{"price": "0.40", "size": "1"}]}])
+
+    t = httpx.MockTransport(handler)
+    k = KalshiFeed("https://k", transport=t, sleep=lambda s: None).quotes(["A", "B"])
+    assert (k["A"].bid, k["A"].ask) == (0.41, 0.43) and (k["B"].bid, k["B"].ask) == (None, 0.12)
+    p = PolymarketFeed("https://g", "https://c", transport=t, sleep=lambda s: None).quotes(["slug:No"])
+    assert (p["slug:No"].bid, p["slug:No"].ask) == (0.35, 0.40)

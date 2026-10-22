@@ -1,0 +1,192 @@
+"""Command line: `sigcup <command>`. Run `sigcup -h` for the list."""
+from __future__ import annotations
+
+import argparse
+import csv
+import difflib
+import logging
+import re
+import signal
+import sys
+from pathlib import Path
+
+from .bot import Bot
+from .config import Settings
+from .ledger import Ledger
+from .notify import Notifier
+from .pricing import write_map
+from .references import KalshiFeed, PolymarketFeed
+from .sig_api import SigApi
+
+
+def build(s: Settings, live: bool) -> Bot:
+    if not s.sig_api_key or not s.sig_tournament_slug:
+        sys.exit("Set SIG_API_KEY and SIG_TOURNAMENT_SLUG in .env first (see .env.example).")
+    api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    return Bot(s, api, KalshiFeed(s.kalshi_base_url), PolymarketFeed(s.polymarket_gamma_url, s.polymarket_clob_url),
+               Ledger(s.db_path, "live" if live else "paper"), Notifier(s), live=live)
+
+
+def cmd_check(s: Settings, args) -> None:
+    api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    print("account:", api.account())
+    for t in api.tournaments():
+        print(f"  tournament slug={t.get('slug')} id={t.get('id')} name={t.get('name') or t.get('title')}")
+    if s.sig_tournament_slug:
+        print("tournament id:", api.tournament_id)
+        print("markets:", len(api.markets()))
+    print("notification channels:", Notifier(s).channels or "none configured")
+
+
+def cmd_markets(s: Settings, args) -> None:
+    """Dump every SIG exchange to CSV: the starting point for the market map."""
+    api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    rows = []
+    for m in api.markets():
+        for e in m.exchanges:
+            label = f"{m.title} [{e.option}]" if e.option else m.title
+            rows.append({"sig_exchange_id": e.id, "market_id": m.id, "label": label, "status": m.status,
+                         "settlement_date": m.settlement_date or ""})
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0]) if rows else ["sig_exchange_id"])
+        w.writeheader()
+        w.writerows(rows)
+    print(f"wrote {len(rows)} exchanges to {out}")
+
+
+def _tokens(text: str) -> set[str]:
+    stop = {"the", "will", "win", "of", "in", "a", "2026", "election", "race", "who", "be", "to", "for", "and"}
+    return {w for w in re.findall(r"[a-z]+", text.lower()) if w not in stop and len(w) > 1}
+
+
+def _score(a: str, b: str) -> float:
+    ta, tb = _tokens(a), _tokens(b)
+    if not ta or not tb:
+        return 0.0
+    jac = len(ta & tb) / len(ta | tb)
+    return 0.7 * jac + 0.3 * difflib.SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
+
+def cmd_suggest_map(s: Settings, args) -> None:
+    """Fuzzy-match SIG exchanges to Kalshi/Polymarket markets. Every row is written with
+    enabled=0: check each one by hand (same race, same outcome, invert?) before enabling."""
+    api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    sig = [(e.id, f"{m.title} [{e.option}]" if e.option else m.title)
+           for m in api.markets() for e in m.exchanges]
+    print(f"{len(sig)} SIG exchanges; loading Kalshi events…")
+    kalshi = KalshiFeed(s.kalshi_base_url).open_election_markets()
+    poly = PolymarketFeed(s.polymarket_gamma_url, s.polymarket_clob_url)
+    rows = []
+    for eid, label in sig:
+        best_k = sorted(kalshi, key=lambda k: -_score(label, k["title"]))[:args.per_source]
+        for k in best_k:
+            if _score(label, k["title"]) >= args.min_score:
+                rows.append({"sig_exchange_id": eid, "label": label, "source": "kalshi", "ref": k["ticker"],
+                             "invert": "0", "weight": "1", "enabled": "0",
+                             "note": f"{_score(label, k['title']):.2f} {k['title']}"})
+        try:
+            cands = poly.search(re.sub(r"\[.*?\]", "", label).strip())
+        except Exception as e:
+            print(f"polymarket search failed for {label}: {e}")
+            cands = []
+        for c in sorted(cands, key=lambda c: -_score(label, c["title"]))[:args.per_source]:
+            if _score(label, c["title"]) >= args.min_score:
+                rows.append({"sig_exchange_id": eid, "label": label, "source": "polymarket", "ref": c["ref"],
+                             "invert": "0", "weight": "1", "enabled": "0",
+                             "note": f"{_score(label, c['title']):.2f} {c['title']}"})
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["sig_exchange_id", "label", "source", "ref", "invert", "weight",
+                                          "enabled", "note"])
+        w.writeheader()
+        w.writerows(rows)
+    print(f"wrote {len(rows)} suggestions to {out}. Review them, set enabled=1 on correct rows, "
+          f"delete the 'note' column if you like, and save as {s.map_path}.")
+
+
+def cmd_scan(s: Settings, args) -> None:
+    bot = build(s, live=False)
+    bot.refresh_refs()
+    bot.compute_fairs()
+    bot.prices = bot.api.prices(list(bot.map)) if bot.map else {}
+    print(f"{'market':45} {'SIG bid/ask':>13} {'fair':>6} {'edge':>7}  note")
+    for eid, (fair, why) in sorted(bot.fairs.items(), key=lambda kv: bot.labels[kv[0]]):
+        bid, ask = bot.prices.get(eid, (None, None))
+        ba = f"{bid if bid is not None else '-'}/{ask if ask is not None else '-'}"
+        if fair is None:
+            print(f"{bot.labels[eid][:45]:45} {ba:>13} {'-':>6} {'-':>7}  {why}")
+            continue
+        edges = [fair.p - ask if ask is not None else None, bid - fair.p if bid is not None else None]
+        edge = max([e for e in edges if e is not None], default=0.0)
+        flag = "  <-- TRADE" if edge >= s.min_edge else ""
+        print(f"{bot.labels[eid][:45]:45} {ba:>13} {fair.p:6.3f} {edge:+7.3f}  {fair.detail}{flag}")
+
+
+def cmd_run(s: Settings, args) -> None:
+    live = args.live and s.live
+    if args.live and not s.live:
+        sys.exit("--live also needs MODE=live in .env (two switches on purpose).")
+    if s.live and not args.live:
+        print("MODE=live but --live not given: running in PAPER mode.")
+    bot = build(s, live=live)
+    signal.signal(signal.SIGTERM, _stop)  # systemd/docker stop -> clean shutdown (cancels live orders)
+    bot.run()
+
+
+def _stop(signum, frame) -> None:
+    raise KeyboardInterrupt
+
+
+def cmd_report(s: Settings, args) -> None:
+    bot = build(s, live=s.live)
+    bot.refresh_refs()
+    bot.compute_fairs()
+    bot.prices = bot.api.prices(list(bot.map)) if bot.map else {}
+    if args.send:
+        bot.send_report()
+    else:
+        print(bot.report())
+
+
+def cmd_kill(s: Settings, args) -> None:
+    Path(s.kill_switch).write_text("stop new entries\n")
+    print(f"created {s.kill_switch}: the running bot stops opening trades (exits continue).")
+
+
+def cmd_resume(s: Settings, args) -> None:
+    Path(s.kill_switch).unlink(missing_ok=True)
+    print(f"removed {s.kill_switch}: entries allowed again.")
+
+
+def main(argv: list[str] | None = None) -> None:
+    p = argparse.ArgumentParser(prog="sigcup", description=__doc__)
+    p.add_argument("--env", default=".env", help="path to the .env file")
+    p.add_argument("-v", "--verbose", action="store_true")
+    sub = p.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("check", help="verify API key, list tournaments and notification channels")
+    m = sub.add_parser("markets", help="dump all SIG exchanges to CSV")
+    m.add_argument("--out", default="data/sig_markets.csv")
+    sm = sub.add_parser("suggest-map", help="fuzzy-match SIG markets to Kalshi/Polymarket (for review)")
+    sm.add_argument("--out", default="data/suggested_map.csv")
+    sm.add_argument("--per-source", type=int, default=2)
+    sm.add_argument("--min-score", type=float, default=0.25)
+    sub.add_parser("scan", help="print SIG vs reference prices once; never trades")
+    r = sub.add_parser("run", help="run the bot (paper unless --live and MODE=live)")
+    r.add_argument("--live", action="store_true")
+    rep = sub.add_parser("report", help="print (or --send) the status report now")
+    rep.add_argument("--send", action="store_true")
+    sub.add_parser("kill", help="pause new entries (creates the kill-switch file)")
+    sub.add_parser("resume", help="remove the kill-switch file")
+    args = p.parse_args(argv)
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    s = Settings.from_env(args.env)
+    globals()[f"cmd_{args.cmd.replace('-', '_')}"](s, args)
+
+
+if __name__ == "__main__":
+    main()
