@@ -1,0 +1,21 @@
+# systemd unit: copy to /etc/systemd/system/sigcup.service, edit User/WorkingDirectory, then
+#   sudo systemctl daemon-reload && sudo systemctl enable --now sigcup
+#   journalctl -u sigcup -f        # live logs
+# For live trading change ExecStart to: .../sigcup run --live   (and MODE=live in .env)
+[Unit]
+Description=Predictions Cup convergence bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sigcup
+WorkingDirectory=/opt/Sig_PredictionsCup
+ExecStart=/opt/Sig_PredictionsCup/.venv/bin/sigcup run
+Restart=always
+RestartSec=20
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

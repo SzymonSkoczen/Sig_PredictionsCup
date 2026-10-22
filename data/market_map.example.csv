@@ -1,0 +1,5 @@
+sig_exchange_id,label,source,ref,invert,weight,enabled
+REPLACE_WITH_SIG_EXCHANGE_ID,Texas Senate [Republican],kalshi,KXSENATETX-26-R,0,1,1
+REPLACE_WITH_SIG_EXCHANGE_ID,Texas Senate [Republican],polymarket,texas-senate-election-winner:Republican,0,1,1
+REPLACE_WITH_SIG_EXCHANGE_ID_2,Alaska Senate [Republican],kalshi,KXSENATEAK-26-SULL+KXSENATEAK-26-OTHERR,0,1,0
+REPLACE_WITH_SIG_EXCHANGE_ID_3,House control [Democratic],kalshi,CONTROLH-2026-R,1,1,0
