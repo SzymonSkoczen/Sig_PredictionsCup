@@ -209,3 +209,21 @@ def test_review_digest(tmp_path):
     assert "ERROR x2: KeyError: 'bestBid'" in txt
     assert "filled 50/200" in txt and "filled 200/200" not in txt
     assert "LOSS: X yes sell 10 @0.400 (stop) -1" in txt
+
+
+def test_other_opportunities_section(tmp_path):
+    from sigcup.sig_api import Exchange, Market
+    bot, clock = make_bot(tmp_path)
+    bot.api.markets_ = [Market("m1", "Will the Democratic Party win the Ohio Senate?", "open", None, [Exchange("d", None)]),
+                        Market("m2", "Will the Republican Party win the Ohio Senate?", "open", None, [Exchange("r", None)])]
+    bot.api.prices_.update({"d": (0.30, 0.45), "r": (0.50, 0.52)})
+    bot.cycle()
+    clock[0] += 60
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.65, 0.67, clock[0])
+    bot._last_ref = 0
+    bot.cycle()
+    txt = "\n".join(bot.other_opportunity_lines())
+    assert "wide spreads" in txt and "Ohio Senate [Democratic] 0.150" in txt
+    assert "Ohio Senate +0.030" in txt          # 1 - (0.45 + 0.52)
+    assert "Texas Senate [R] ref +0.060" in txt  # fair 0.60 -> 0.66
+    assert "2 Cup markets have no Kalshi/Polymarket mapping" in txt

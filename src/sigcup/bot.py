@@ -40,6 +40,13 @@ class Opportunities:
     best_arb: dict[str, float] = field(default_factory=dict)   # race -> best Σ YES bids − 1
     top_depth: list[float] = field(default_factory=list)       # shares at the best level, per book read
     priced_cycles: int = 0
+    # Beyond the two strategies: things worth a human look
+    widest: dict[str, float] = field(default_factory=dict)     # exchange -> widest bid/ask spread seen
+    empty: set[str] = field(default_factory=set)               # exchanges seen with no bid or no ask
+    yes_basket: dict[str, float] = field(default_factory=dict) # two-party race -> best 1 − Σ YES asks
+    disagree: dict[str, float] = field(default_factory=dict)   # exchange -> Kalshi vs Polymarket gap
+    first: dict[str, tuple[float, float | None]] = field(default_factory=dict)  # eid -> (fair, Cup mid)
+    last: dict[str, tuple[float, float | None]] = field(default_factory=dict)
 
 
 def _utc_day(ts: float) -> str:
@@ -219,6 +226,23 @@ class Bot:
             e = screen_buy(r, self.prices)
             if e is not None and e > o.best_arb.get(r.key, -1.0):
                 o.best_arb[r.key] = e
+            asks = [self.prices.get(x, (None, None))[1] for x in r.exchange_ids]
+            if r.k == 2 and all(a is not None for a in asks):
+                o.yes_basket[r.key] = max(o.yes_basket.get(r.key, -1.0), 1 - sum(asks))
+        for eid, (bid, ask) in self.prices.items():
+            if bid is None or ask is None:
+                o.empty.add(eid)
+            else:
+                o.widest[eid] = max(o.widest.get(eid, 0.0), ask - bid)
+            fair = self.fair(eid)
+            if fair is not None:
+                mid = None if bid is None or ask is None else (bid + ask) / 2
+                o.first.setdefault(eid, (fair, mid))
+                o.last[eid] = (fair, mid)
+        for eid, (f, why) in self.fairs.items():
+            if f is None and why.startswith("references disagree by "):
+                d = float(why.rsplit(" ", 1)[1])
+                o.disagree[eid] = max(o.disagree.get(eid, 0.0), d)
 
     def opportunity_lines(self) -> list[str]:
         s, o = self.s, self.opps
@@ -240,7 +264,40 @@ class Bot:
             d = sorted(o.top_depth)
             lines.append(f"  depth at best price: median {d[len(d) // 2]:,.0f} shares, "
                          f"max {d[-1]:,.0f} ({len(d)} books read)")
-        return lines
+        return lines + self.other_opportunity_lines()
+
+    def other_opportunity_lines(self) -> list[str]:
+        """Not traded by the bot; candidates for new strategies or manual trades."""
+        o, name = self.opps, lambda e: self.labels.get(e, e)[:30]
+        out = ["\nOther opportunities (not traded, for review):"]
+        wide = sorted(((v, e) for e, v in o.widest.items() if v >= 0.08), reverse=True)
+        if wide:
+            out.append(f"  wide spreads ≥0.08 ({len(wide)} markets; resting quotes could earn the spread): "
+                       + ", ".join(f"{name(e)} {v:.3f}" for v, e in wide[:4]))
+        if o.empty:
+            out.append(f"  one-sided/empty books: {len(o.empty)} markets (first quote sets the price): "
+                       + ", ".join(name(e) for e in sorted(o.empty)[:4]))
+        yb = sorted(((v, k) for k, v in o.yes_basket.items() if v > 0), reverse=True)
+        if yb:
+            out.append("  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): "
+                       + ", ".join(f"{k[:25]} +{v:.3f}" for v, k in yb[:4]))
+        moves = []
+        for e, (f0, m0) in o.first.items():
+            f1, m1 = o.last[e]
+            if abs(f1 - f0) >= 0.03:
+                follow = "" if m0 is None or m1 is None else f", Cup {m1 - m0:+.3f}"
+                moves.append((abs(f1 - f0), f"{name(e)} ref {f1 - f0:+.3f}{follow}"))
+        if moves:
+            out.append("  reference moved ≥3 pts this run (news?): " + "; ".join(m for _, m in sorted(moves, reverse=True)[:4]))
+        if o.disagree:
+            out.append("  Kalshi vs Polymarket disagree (skipped; one is stale or mis-mapped): "
+                       + ", ".join(f"{name(e)} {v:.3f}" for e, v in sorted(o.disagree.items(), key=lambda kv: -kv[1])[:4]))
+        unmapped = [e for r in self.races for e in r.exchange_ids if e not in self.map]
+        if unmapped:
+            out.append(f"  {len(unmapped)} Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)")
+        if len(out) == 1:
+            out.append("  none")
+        return out
 
     def gaps(self) -> list[tuple[float, str, str]]:
         """(edge, exchange_id, side) for every priced market, best first."""

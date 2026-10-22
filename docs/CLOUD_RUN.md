@@ -82,8 +82,9 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - Then run `git pull --rebase origin claude/quirky-darwin-u0tfmx && git push -u origin claude/quirky-darwin-u0tfmx`.
    - If the push fails because of the network, retry up to 4 times with backoff.
 
-8. **Final message, the notification.** At most 12 lines. Base it on this run's
-   `state/last_report.txt` (including its "Opportunities this run" section), the step 3 review,
+8. **Final message, the notification.** At most 14 lines. Base it on this run's
+   `state/last_report.txt` (including its "Opportunities this run" and "Other opportunities" sections),
+   the step 3 review,
    and the last few entries of `state/notifications.md`, so you can spot trends across runs.
    Use exactly this layout, and put any line that needs the owner's attention first:
 
@@ -93,6 +94,7 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    ✅ Went well: <1–2 concrete points with numbers, e.g. "3/3 gap trades converged, +86">
    ❌ Went wrong: <1–2 concrete points with numbers, or "nothing">
    💡 Improve (strategy, needs your OK): <1–2 suggestions, each tied to evidence>
+   🔎 Opportunities: <1–2 promising things in the market the bot isn't trading, with numbers>
    🔧 Fixed: <bugs fixed this run, or omit the line>
    ```
 
@@ -104,6 +106,19 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - Arb near misses → `ARB_MIN_PROFIT`.
    - Positions stuck until timeout → `EXIT_BAND` or `MAX_HOLD_HOURS`.
    - Two runs isn't enough to show a trend. Say "too early to tell" rather than guess.
+
+   For 🔎, pick the most promising item or items from "Other opportunities". Say what it would
+   take to exploit each one:
+   - Wide spreads or empty books → a market-making strategy (resting quotes).
+   - Σ YES asks < 1 in a two-party race → a YES basket. It only pays if no third party wins, so
+     name the risk.
+   - The reference moved but the Cup didn't follow → a news lag, worth a faster poll or mapping
+     that race.
+   - Kalshi and Polymarket disagree → check whether the mapping is wrong.
+   - Unmapped markets → map them to widen gap trading.
+
+   Note when the same opportunity keeps appearing across runs (see `state/notifications.md`). That
+   is the strongest case for building it.
 
    Never apply a suggestion yourself.
 
