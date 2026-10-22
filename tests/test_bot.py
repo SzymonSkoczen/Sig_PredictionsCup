@@ -191,3 +191,19 @@ def test_decide_live_gates(tmp_path):
     Ledger(ledger_path(s, False)).put("paper_cycles", 30)
     assert decide_live(s, True, after) == (True, "live")
     assert ledger_path(s, True).name == "s-live.db"
+
+
+def test_review_digest(tmp_path):
+    from sigcup.cli import ledger_path, review_text
+    s = Settings(db_path=str(tmp_path / "s.db"))
+    led = Ledger(ledger_path(s, False))
+    led.event("ERROR", "KeyError: 'bestBid'")
+    led.event("ERROR", "KeyError: 'bestBid'")
+    led.event("INFO", "buy no Texas [D]: filled 50/200")
+    led.event("INFO", "buy no Texas [R]: filled 200/200")
+    led.record_fill(Order("e1", "yes", "buy", 10, 0.5, 0.6, "edge"), 10, "X")
+    led.record_fill(Order("e1", "yes", "sell", 10, 0.4, 0.4, "stop"), 10, "X")
+    txt = review_text(s, 3)
+    assert "ERROR x2: KeyError: 'bestBid'" in txt
+    assert "filled 50/200" in txt and "filled 200/200" not in txt
+    assert "LOSS: X yes sell 10 @0.400 (stop) -1" in txt

@@ -177,6 +177,52 @@ def cmd_report(s: Settings, args) -> None:
         print(bot.report())
 
 
+def review_text(s: Settings, hours: float, now: float | None = None) -> str:
+    """Plain-text digest of what went wrong recently, read by the next scheduled run."""
+    import time
+    from collections import Counter
+    now = now or time.time()
+    since = now - hours * 3600
+    out = [f"Review of the last {hours:g}h"]
+    for live in (False, True):
+        path = ledger_path(s, live)
+        if not path.exists():
+            continue
+        led = Ledger(path)
+        mode = "LIVE" if live else "PAPER"
+        rows = led.db.execute("SELECT level, msg FROM events WHERE ts >= ?", (since,)).fetchall()
+        errors = Counter(m[:160] for lvl, m in rows if lvl == "ERROR")
+        alerts = [m for lvl, m in rows if lvl == "ALERT"]
+        partial = [m for lvl, m in rows if lvl == "INFO" and "filled" in m and not _fully_filled(m)]
+        fills = led.fills_since(since)
+        losers = [f for f in fills if f[4] == "sell" and f[9] < 0]
+        stuck = led.db.execute("SELECT strategy, label, action, qty FROM pending WHERE expires < ?",
+                               (now - 120,)).fetchall()
+        arb = {h.exchange_id: h.qty for h in led.holdings("arb")}
+        out.append(f"\n[{mode}] {len(fills)} fills, {sum(1 for lvl, _ in rows if lvl == 'TRADE')} orders, "
+                   f"{sum(errors.values())} errors, {len(alerts)} alerts, {len(partial)} partial/unfilled orders, "
+                   f"{len(losers)} losing exits, {len(stuck)} stuck pending orders, "
+                   f"paper_cycles={led.get('paper_cycles', '0')}")
+        out += [f"  ERROR x{n}: {m}" for m, n in errors.most_common(10)]
+        out += [f"  ALERT: {m[:160]}" for m in alerts[-10:]]
+        out += [f"  PARTIAL: {m[:160]}" for m in partial[-10:]]
+        out += [f"  LOSS: {f[2]} {f[3]} {f[4]} {f[5]:g} @{f[6]:.3f} ({f[8]}) {f[9]:+.0f}" for f in losers[-10:]]
+        out += [f"  STUCK: {r}" for r in stuck]
+        if arb:
+            out.append(f"  arb legs held: {len(arb)}")
+    return "\n".join(out)
+
+
+def _fully_filled(note: str) -> bool:
+    import re as _re
+    m = _re.search(r"filled ([\d.]+)/(\d+)", note)
+    return bool(m) and float(m.group(1)) >= float(m.group(2))
+
+
+def cmd_review(s: Settings, args) -> None:
+    print(review_text(s, args.hours))
+
+
 def cmd_kill(s: Settings, args) -> None:
     Path(s.kill_switch).write_text("stop new entries\n")
     print(f"created {s.kill_switch}: the running bot stops opening trades (exits continue).")
@@ -206,6 +252,8 @@ def main(argv: list[str] | None = None) -> None:
     r.add_argument("--report-file", default="", help="write the final report here on exit")
     rep = sub.add_parser("report", help="print (or --send) the status report now")
     rep.add_argument("--send", action="store_true")
+    rv = sub.add_parser("review", help="digest of recent errors, partial fills, losses (no API calls)")
+    rv.add_argument("--hours", type=float, default=3)
     sub.add_parser("kill", help="pause new entries (creates the kill-switch file)")
     sub.add_parser("resume", help="remove the kill-switch file")
     args = p.parse_args(argv)
