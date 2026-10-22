@@ -38,13 +38,38 @@ markets as the best estimate of the true probability:
    - On shutdown it cancels all its open orders.
    - The bot only sells positions **it** bought (tracked in `data/sigcup.db`). Your manual trades are left alone.
 
+## Strategy 2: risk-free NO baskets (`src/sigcup/arb.py`, on by default)
+
+Each race is listed as one market per party, for example "Will the Democratic Party win the Texas
+Senate?" and "Will the Republican Party win the Texas Senate?". At most one of them can resolve
+YES. So buying **NO on every party** pays at least k−1 per set, whoever wins.
+
+- **Buying.** When a race's YES bids sum to more than 1 + `ARB_MIN_PROFIT`, the bot buys NO on every
+  leg in one atomic multi-leg order. The profit is locked in at that point.
+- **Selling.** The bot sells the basket back when that beats holding to settlement, or when the sale
+  beats the basket's cost by `ARB_EXIT_PROFIT`. Selling early frees the SUSQies for the next basket.
+- **Uneven fills.** If the legs fill unevenly, the bot buys the missing legs at break-even plus
+  `ARB_REPAIR_SLIPPAGE` at most. If that doesn't work within `ARB_REPAIR_MINUTES`, it sells the
+  extra legs instead.
+- **No setup.** The arbitrage needs no market map. It finds races from the market titles.
+
+The two strategies keep separate books. An exchange is only ever held by one of them at a time.
+
+## Unattended cloud runs
+
+`docs/CLOUD_RUN.md` describes the scheduled Claude Code session. It fires every 2 hours, trades
+for about 100 minutes, commits the ledger to `state/`, and pushes a summary to your phone.
+
+`state/cloud.env` keeps the bot in paper mode until `LIVE_FROM`. After that it goes live, but only
+if the paper run completed at least `PAPER_MIN_CYCLES` healthy cycles.
+
 ## Setup
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e '.[dev]'
 cp .env.example .env            # then fill it in (see below)
-pytest                          # 19 offline tests
+pytest                          # offline tests
 ```
 
 On the Predictions Cup site:

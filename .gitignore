@@ -11,3 +11,5 @@ data/heartbeat
 logs/
 KILL
 .pytest_cache/
+state/heartbeat
+state/*.log

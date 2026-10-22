@@ -48,11 +48,25 @@ class Settings:
     bankroll: float = 100_000.0
     max_order_cost: float = 2_500.0
     max_market_cost: float = 6_000.0
-    max_total_cost: float = 60_000.0
+    max_total_cost: float = 40_000.0
     cash_reserve: float = 10_000.0
     depth_fraction: float = 0.5
     order_ttl_seconds: int = 15
     max_books_per_cycle: int = 6
+
+    arb_enabled: bool = True
+    arb_min_profit: float = 0.01
+    arb_exit_profit: float = 0.01
+    arb_max_sets: int = 2_000
+    arb_max_capital: float = 50_000.0
+    arb_depth_fraction: float = 0.5
+    arb_repair_slippage: float = 0.02
+    arb_repair_minutes: float = 10.0
+    races_refresh_minutes: float = 30.0
+
+    # Paper until this moment (ISO 8601 with offset), then live if the paper run was healthy
+    live_from: str = ""
+    paper_min_cycles: int = 30
 
     exit_band: float = 0.01
     stop_loss: float = 0.08
@@ -83,7 +97,10 @@ class Settings:
             if raw is None or raw == "":
                 continue
             kind = type(f.default)
-            kwargs[f.name] = kind(raw) if kind is not str else raw
+            if kind is bool:
+                kwargs[f.name] = raw.strip().lower() in ("1", "true", "yes", "on")
+            else:
+                kwargs[f.name] = kind(raw) if kind is not str else raw
         return cls(**kwargs)
 
     @property

@@ -15,15 +15,23 @@ class FakeApi:
         self.prices_ = {"e1": (0.50, 0.52)}
         self.book_ = Book("e1", [Level(0.50, 100)], [Level(0.52, 400)])
         self.positions_ = []
+        self.markets_ = []
         self.sent = []
         self.reads = self.writes = RateLimiter(60)
         self.error_count = 0
+
+    def markets(self):
+        return self.markets_
+
+    def place_multi_leg(self, legs, ttl):
+        self.sent.append(("multi", legs))
+        return [{"id": i} for i in range(len(legs))]
 
     def prices(self, ids):
         return {i: self.prices_[i] for i in ids if i in self.prices_}
 
     def book(self, eid):
-        return self.book_
+        return self.books_.get(eid, self.book_) if hasattr(self, "books_") else self.book_
 
     def positions(self):
         return self.positions_
@@ -167,3 +175,19 @@ def test_kalshi_and_polymarket_parsing():
     assert (k["A"].bid, k["A"].ask) == (0.41, 0.43) and (k["B"].bid, k["B"].ask) == (None, 0.12)
     p = PolymarketFeed("https://g", "https://c", transport=t, sleep=lambda s: None).quotes(["slug:No"])
     assert (p["slug:No"].bid, p["slug:No"].ask) == (0.35, 0.40)
+
+
+def test_decide_live_gates(tmp_path):
+    from datetime import datetime, timezone
+    from sigcup.cli import decide_live, ledger_path
+    s = Settings(mode="live", db_path=str(tmp_path / "s.db"), live_from="2026-10-23T00:00:00+01:00",
+                 paper_min_cycles=30)
+    before = datetime(2026, 10, 22, 20, tzinfo=timezone.utc)
+    after = datetime(2026, 10, 23, 1, tzinfo=timezone.utc)
+    assert decide_live(s, True, before)[0] is False
+    assert decide_live(s, False, after)[0] is False
+    live, why = decide_live(s, True, after)
+    assert live is False and "0/30" in why  # no paper history yet
+    Ledger(ledger_path(s, False)).put("paper_cycles", 30)
+    assert decide_live(s, True, after) == (True, "live")
+    assert ledger_path(s, True).name == "s-live.db"

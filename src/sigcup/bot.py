@@ -8,13 +8,15 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
+from .arb import Race, exit_bar, group_races, plan_buy, plan_repair, plan_sell, screen_buy, screen_sell
+from .arb import BasketOrder
 from .config import Settings
 from .ledger import Ledger
 from .notify import Notifier
 from .pricing import Fair, RefLeg, fair_value, load_map
 from .references import KalshiFeed, PolymarketFeed, RefQuote
 from .sig_api import Book, SigApi
-from .strategy import Order, plan_entry, plan_exit, side_fair
+from .strategy import Holding, Order, plan_entry, plan_exit, side_fair
 
 log = logging.getLogger(__name__)
 
@@ -59,6 +61,9 @@ class Bot:
         self.prices: dict[str, tuple[float | None, float | None]] = {}
         self.positions: dict[tuple[str, str], float] = {}
         self.health = Health(started=clock())
+        self.races: list[Race] = []
+        self.mode_note = "live" if live else "paper"
+        self._last_races = 0.0
         self._last_ref = 0.0
         self._alerted: set[str] = set()
 
@@ -83,6 +88,16 @@ class Bot:
             self.health.ref_quotes[name] = len(got)
         self._last_ref = self.clock()
 
+    def refresh_races(self) -> None:
+        if not self.s.arb_enabled or self.clock() - self._last_races < self.s.races_refresh_minutes * 60:
+            return
+        self.races = group_races(self.api.markets())
+        for r in self.races:
+            for eid in r.exchange_ids:
+                self.labels.setdefault(eid, r.label(eid))
+        self._last_races = self.clock()
+        log.info("arb: %d races with 2+ party markets", len(self.races))
+
     def compute_fairs(self) -> None:
         now = self.clock()
         s = self.s
@@ -99,7 +114,7 @@ class Bot:
 
     def mark_to_market(self) -> float:
         total = 0.0
-        for h in self.ledger.holdings():
+        for h in self.ledger.holdings(None):
             bid, ask = self.prices.get(h.exchange_id, (None, None))
             mark = bid if h.side == "yes" else (None if ask is None else 1 - ask)
             if mark is not None:
@@ -131,6 +146,7 @@ class Bot:
         if now - self._last_ref >= s.ref_refresh_seconds:
             self.refresh_refs()
         self.compute_fairs()
+        self.refresh_races()
 
         if self.live:
             self.positions = {(p.exchange_id, p.side): p.qty for p in self.api.positions()}
@@ -138,7 +154,7 @@ class Bot:
                 self.ledger.event("INFO", note)
                 log.info(note)
 
-        ids = list(self.map)
+        ids = list(dict.fromkeys(list(self.map) + [e for r in self.races for e in r.exchange_ids]))
         self.prices = self.api.prices(ids) if ids else {}
         books_left = s.max_books_per_cycle
         pending = self.ledger.pending_exchanges()
@@ -164,8 +180,13 @@ class Bot:
             self.alert_once(f"blocked:{blocked}", f"New entries paused: {blocked}")
         else:
             self._alerted = {a for a in self._alerted if not a.startswith("blocked:")}
+        # Risk-free baskets get first call on the book budget; repairs/exits run even when blocked.
+        books_left = self.arb(pending, books_left, bool(blocked))
+        if not blocked:
             self.enter(pending, books_left)
 
+        if not self.live:
+            self.ledger.put("paper_cycles", int(self.ledger.get("paper_cycles", "0")) + 1)
         self.health.cycles += 1
         self.health.last_ok = self.clock()
         self.health.consecutive_errors = 0
@@ -189,11 +210,12 @@ class Bot:
         cost = self.ledger.cost_by_exchange()
         total = sum(cost.values())
         held = {(h.exchange_id, h.side) for h in self.ledger.holdings()}
+        arb_held = {h.exchange_id for h in self.ledger.holdings("arb")}
         for edge, eid, side in self.gaps():
             if edge < s.min_edge or books_left <= 0:
                 break
             other = "no" if side == "yes" else "yes"
-            if eid in pending or (eid, other) in held:
+            if eid in pending or (eid, other) in held or eid in arb_held:
                 continue
             room = min(s.max_order_cost, s.max_market_cost - cost.get(eid, 0.0),
                        min(s.max_total_cost, s.bankroll - s.cash_reserve) - total)
@@ -209,19 +231,100 @@ class Bot:
                 total += o.cost
                 cost[eid] = cost.get(eid, 0.0) + o.cost
 
-    def execute(self, o: Order) -> None:
+    def arb(self, pending: set[str], books_left: int, blocked: bool) -> int:
+        """Repair uneven baskets, sell baskets worth more now than at settlement or cost,
+        and buy new NO baskets when a race's YES bids sum above 1 + ARB_MIN_PROFIT."""
+        s, now = self.s, self.clock()
+        if not s.arb_enabled:
+            return books_left
+        held = {h.exchange_id: h for h in self.ledger.holdings("arb")}
+        conv_busy = {h.exchange_id for h in self.ledger.holdings("conv")}
+        capital = sum(h.qty * h.avg_cost for h in held.values())
+        for race in self.races:
+            ids = race.exchange_ids
+            if any(e in pending for e in ids) or books_left < race.k:
+                continue
+            qtys = [held[e].qty if e in held else 0.0 for e in ids]
+            key = f"unhedged:{race.key}"
+            if max(qtys) - min(qtys) >= 1:
+                since = float(self.ledger.get(key) or 0) or now
+                self.ledger.put(key, since)
+                unwind = now - since > s.arb_repair_minutes * 60
+                books_left -= race.k
+                books = {e: self.api.book(e) for e in ids}
+                orders = plan_repair(race, held, books, slippage=s.arb_repair_slippage, unwind=unwind)
+                if unwind:
+                    self.alert_once(key, f"{race.key}: basket uneven for {s.arb_repair_minutes:g} min, "
+                                         f"selling the excess legs")
+                for o in orders:
+                    self.execute(o, "arb")
+                    pending.add(o.exchange_id)
+                continue
+            if self.ledger.get(key):
+                self.ledger.put(key, "")
+                self._alerted.discard(key)
+            sets = int(min(qtys))
+            if sets >= 1:
+                bar = exit_bar(race, sum(held[e].avg_cost for e in ids), s.arb_min_profit, s.arb_exit_profit)
+                top = screen_sell(race, self.prices)
+                if top is not None and top >= bar:
+                    books_left -= race.k
+                    o = plan_sell(race, {e: self.api.book(e) for e in ids}, sets_held=sets, bar=bar)
+                    if o:
+                        self.execute_basket(o)
+                        pending.update(ids)
+                        continue
+            if blocked or any(e in conv_busy for e in ids):
+                continue
+            edge = screen_buy(race, self.prices)
+            room = int((s.arb_max_capital - capital) / max(race.k - 1, 1))
+            if edge is None or edge < s.arb_min_profit or room < 1:
+                continue
+            books_left -= race.k
+            o = plan_buy(race, {e: self.api.book(e) for e in ids}, min_profit=s.arb_min_profit,
+                         max_sets=min(s.arb_max_sets, room), depth_fraction=s.arb_depth_fraction)
+            if o:
+                self.execute_basket(o)
+                pending.update(ids)
+                capital += o.sets * o.per_set
+        return books_left
+
+    def execute_basket(self, b: BasketOrder) -> None:
+        legs = b.leg_orders()
+        k = b.race.k
+        what = (f"{b.action.upper()} NO basket {b.race.key} x{b.sets} @ {b.per_set:.3f}/set "
+                + (f"(locks {k - 1 - b.per_set:+.3f}/set)" if b.action == "buy" else ""))
+        if not self.live:
+            for leg in legs:  # paper fills at the average price walked
+                self.ledger.record_fill(Order(leg.exchange_id, "no", leg.action, leg.qty, leg.fair, leg.fair,
+                                              leg.reason), leg.qty, self.labels.get(leg.exchange_id, ""),
+                                        self.clock(), "arb")
+            self.ledger.event("TRADE", f"[paper] {what}")
+            log.info("[paper] %s", what)
+            return
+        ttl = self.s.order_ttl_seconds
+        resp = self.api.place_multi_leg([{"exchangeId": l.exchange_id, "side": "no", "action": l.action,
+                                          "quantity": l.qty, "price": l.price} for l in legs], ttl)
+        for leg in legs:
+            self.ledger.add_pending(leg, self.labels.get(leg.exchange_id, ""),
+                                    self.positions.get((leg.exchange_id, "no"), 0.0), ttl,
+                                    json.dumps(resp, default=str)[:2000], self.clock(), "arb")
+        self.ledger.event("TRADE", f"[live] sent {what}")
+        log.info("[live] sent %s", what)
+
+    def execute(self, o: Order, strategy: str = "conv") -> None:
         label = self.labels.get(o.exchange_id, o.exchange_id)
         msg = (f"{o.action.upper()} {o.side.upper()} {o.qty} {label} @ {o.price:.3f} "
                f"(fair {o.fair:.3f}, {o.reason})")
         if not self.live:
-            realized = self.ledger.record_fill(o, o.qty, label, self.clock())
+            realized = self.ledger.record_fill(o, o.qty, label, self.clock(), strategy)
             self.ledger.event("TRADE", f"[paper] {msg}" + (f" realized {realized:+.0f}" if o.action == "sell" else ""))
             log.info("[paper] %s", msg)
             return
         before = self.positions.get((o.exchange_id, o.side), 0.0)
         ttl = self.s.order_ttl_seconds
         resp = self.api.place_order(o.exchange_id, o.side, o.action, o.qty, o.price, ttl)
-        self.ledger.add_pending(o, label, before, ttl, json.dumps(resp, default=str)[:2000], self.clock())
+        self.ledger.add_pending(o, label, before, ttl, json.dumps(resp, default=str)[:2000], self.clock(), strategy)
         self.ledger.event("TRADE", f"[live] sent {msg}")
         log.info("[live] sent %s", msg)
 
@@ -240,7 +343,8 @@ class Bot:
         up = int(now - h.started)
         healthy = h.last_ok and now - h.last_ok < max(120, 6 * s.poll_seconds)
         lines = [
-            f"Mode: {'LIVE' if self.live else 'PAPER'} | {datetime.fromtimestamp(now, timezone.utc):%Y-%m-%d %H:%M} UTC",
+            f"Mode: {'LIVE' if self.live else 'PAPER'} ({self.mode_note}) | "
+            f"{datetime.fromtimestamp(now, timezone.utc):%Y-%m-%d %H:%M} UTC",
             f"Health: {'OK' if healthy else 'DEGRADED'} | up {up // 3600}h{up % 3600 // 60:02d}m | "
             f"cycles {h.cycles} | last good cycle {_ago(now, h.last_ok)} | consecutive errors {h.consecutive_errors}",
             f"SIG API: reads {self.api.reads.used}/{self.api.reads.per_minute}/min, "
@@ -257,6 +361,7 @@ class Bot:
         blocked = self.entries_blocked()
         lines.append(f"Entries: {'PAUSED — ' + blocked if blocked else 'active'}")
 
+        lines.append(f"Arb: {len(self.races)} races watched" if s.arb_enabled else "Arb: off")
         realized_window = self.ledger.realized_since(since)
         lines.append(f"Bot P&L: realized {realized_window:+,.0f} (last {s.report_interval_hours:g}h), "
                      f"{self.ledger.realized_since(_midnight(now)):+,.0f} today, "
@@ -282,10 +387,25 @@ class Bot:
                          f"held {_ago(now, hd.opened_at).replace(' ago', '')}")
         fills = self.ledger.fills_since(since)
         lines.append(f"\nTrades last {s.report_interval_hours:g}h ({len(fills)}):")
-        for ts, label, side, action, qty, price, fair, reason, realized in fills[-20:]:
+        for ts, strat, label, side, action, qty, price, fair, reason, realized in fills[-25:]:
             r = f" P&L {realized:+.0f}" if action == "sell" else ""
-            lines.append(f"  {datetime.fromtimestamp(ts, timezone.utc):%H:%M} {action.upper()} {side.upper()} "
-                         f"{qty:g} {label[:35]} @{price:.3f} fair {fair:.3f} ({reason}){r}")
+            lines.append(f"  {datetime.fromtimestamp(ts, timezone.utc):%H:%M} {strat} {action.upper()} {side.upper()} "
+                         f"{qty:g} {label[:35]} @{price:.3f} ({reason}){r}")
+        arb_held = {h.exchange_id: h for h in self.ledger.holdings("arb")}
+        baskets = [r for r in self.races if any(e in arb_held for e in r.exchange_ids)]
+        lines.append(f"\nArb baskets held ({len(baskets)}):")
+        for r in baskets:
+            q = [arb_held[e].qty if e in arb_held else 0 for e in r.exchange_ids]
+            cost = sum(arb_held[e].avg_cost for e in r.exchange_ids if e in arb_held)
+            now_val = screen_sell(r, self.prices)
+            even = "" if max(q) - min(q) < 1 else f" UNEVEN {q}"
+            lines.append(f"  {r.key[:40]:40} {min(q):>6.0f} sets cost {cost:.3f} pays ≥{r.k - 1} "
+                         f"sell-now {_p(now_val)}{even}")
+        near = sorted(((screen_buy(r, self.prices), r.key) for r in self.races
+                       if screen_buy(r, self.prices) is not None), reverse=True)[:3]
+        if near:
+            lines.append("Closest arb races (Σ YES bids − 1; trades at ≥ "
+                         f"{s.arb_min_profit:g}): " + ", ".join(f"{k} {e:+.3f}" for e, k in near))
         lines.append("\nLargest gaps now (edge = fair − price to buy):")
         for edge, eid, side in self.gaps()[:5]:
             lines.append(f"  {self.labels.get(eid, eid)[:40]:40} buy {side.upper():3} edge {edge:+.3f}")
@@ -301,15 +421,18 @@ class Bot:
 
     # ---- main loop ----
 
-    def run(self) -> None:
+    def run(self, minutes: float = 0, report_file: str = "") -> None:
+        """Loop until stopped, or for `minutes` (scheduled runs), then write the final report."""
         s = self.s
-        self.notifier.send("🤖 SIG Cup bot started",
-                           f"Mode {'LIVE' if self.live else 'PAPER'}, {len(self.map)} mapped markets, "
-                           f"reports every {s.report_interval_hours:g}h, channels: {', '.join(self.notifier.channels) or 'log only'}")
+        deadline = self.clock() + minutes * 60 if minutes else None
+        if deadline is None:
+            self.notifier.send("🤖 SIG Cup bot started",
+                               f"Mode {'LIVE' if self.live else 'PAPER'}, {len(self.map)} mapped markets, "
+                               f"reports every {s.report_interval_hours:g}h, channels: {', '.join(self.notifier.channels) or 'log only'}")
         if not self.map:
             log.warning("market map %s has no enabled rows: nothing to trade", s.map_path)
         try:
-            while True:
+            while deadline is None or self.clock() < deadline:
                 try:
                     self.cycle()
                     delay = s.poll_seconds
@@ -322,6 +445,8 @@ class Bot:
                     if h.consecutive_errors == 5:
                         self.notifier.send("⚠️ SIG Cup bot failing", f"5 cycles in a row failed. Last: {h.last_error}")
                     delay = min(s.poll_seconds * 2 ** min(h.consecutive_errors, 5), 300)
+                    if deadline is not None:
+                        delay = max(0.0, min(delay, deadline - self.clock()))
                 Path(s.db_path).with_name("heartbeat").write_text(str(int(self.clock())))
                 if self.clock() - float(self.ledger.get("last_report", "0")) >= s.report_interval_hours * 3600:
                     try:
@@ -337,7 +462,12 @@ class Bot:
                     self.api.cancel_all()
                 except Exception as e:
                     log.error("cancel-all on shutdown failed: %s", e)
-            self.notifier.send("🛑 SIG Cup bot stopped", self.report())
+            final = self.report()
+            if report_file:
+                Path(report_file).parent.mkdir(parents=True, exist_ok=True)
+                Path(report_file).write_text(final + "\n")
+            if deadline is None:
+                self.notifier.send("🛑 SIG Cup bot stopped", final)
 
 
 def _p(x: float | None) -> str:

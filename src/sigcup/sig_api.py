@@ -271,6 +271,32 @@ class SigApi:
         }
         return self.post("/orders", body)
 
+    def place_multi_leg(self, legs: list[dict[str, Any]], ttl_seconds: int = 15) -> list[dict[str, Any]]:
+        """Up to 10 limit orders placed atomically (all or none). Placement is atomic, fills are
+        not: a leg that no longer crosses rests until it expires.
+        legs: [{"exchangeId", "side", "action", "quantity", "price"}]."""
+        if not 1 <= len(legs) <= 10:
+            raise ValueError("multi-leg orders take 1-10 legs")
+        exp = (datetime.now(timezone.utc) + timedelta(seconds=ttl_seconds)).isoformat(timespec="milliseconds")
+        body_legs = [{"exchangeId": str(l["exchangeId"]), "side": l["side"], "action": l["action"],
+                      "quantity": int(l["quantity"]), "price": round_to_tick(l["price"], l["action"]),
+                      "tournamentId": self.tournament_id, "expirationDate": exp.replace("+00:00", "Z")}
+                     for l in legs]
+        r = self.post("/orders/multi-leg", {"idempotencyKey": str(uuid.uuid4()), "legs": body_legs})
+        return [x.get("data") or {} for x in sorted(r.get("results", []), key=lambda x: x.get("index", 0))]
+
+    def pick_tournament(self) -> str:
+        """Use SIG_TOURNAMENT_SLUG, or else the only open tournament (preferring the Cup)."""
+        if self.slug:
+            return self.slug
+        ts = [t for t in self.tournaments() if str(t.get("status", "active")).lower() in ("active", "open", "live")]
+        ts.sort(key=lambda t: "cup" not in str(t.get("name") or t.get("title") or "").lower())
+        if not ts:
+            raise ApiError(0, "NO_TOURNAMENT", "no open tournament: set SIG_TOURNAMENT_SLUG")
+        self.slug = str(ts[0].get("slug") or ts[0].get("id"))
+        log.info("using tournament %s", self.slug)
+        return self.slug
+
     def cancel_all(self) -> Any:
         return self.post("/orders/cancel-all", {"tournamentId": self.tournament_id})
 

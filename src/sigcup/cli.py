@@ -8,6 +8,7 @@ import logging
 import re
 import signal
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .bot import Bot
@@ -19,21 +20,46 @@ from .references import KalshiFeed, PolymarketFeed
 from .sig_api import SigApi
 
 
+def ledger_path(s: Settings, live: bool) -> Path:
+    """Paper and live keep separate ledgers, so paper positions are never "sold" for real."""
+    p = Path(s.db_path)
+    return p.with_name(f"{p.stem}-{'live' if live else 'paper'}{p.suffix or '.db'}")
+
+
+def decide_live(s: Settings, want_live: bool, now: datetime | None = None) -> tuple[bool, str]:
+    """Live only with --live, MODE=live, after LIVE_FROM, and after a healthy paper run."""
+    now = now or datetime.now(timezone.utc)
+    if not want_live:
+        return False, "paper (no --live flag)"
+    if not s.live:
+        return False, "paper (MODE is not live)"
+    if s.live_from:
+        start = datetime.fromisoformat(s.live_from)
+        if now < start:
+            return False, f"paper until {start.isoformat()}"
+    cycles = int(Ledger(ledger_path(s, False)).get("paper_cycles", "0"))
+    if cycles < s.paper_min_cycles:
+        return False, f"paper: live blocked, only {cycles}/{s.paper_min_cycles} healthy paper cycles so far"
+    return True, "live"
+
+
 def build(s: Settings, live: bool) -> Bot:
-    if not s.sig_api_key or not s.sig_tournament_slug:
-        sys.exit("Set SIG_API_KEY and SIG_TOURNAMENT_SLUG in .env first (see .env.example).")
+    if not s.sig_api_key:
+        sys.exit("Set SIG_API_KEY (environment variable or .env; see .env.example).")
     api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    api.pick_tournament()
     return Bot(s, api, KalshiFeed(s.kalshi_base_url), PolymarketFeed(s.polymarket_gamma_url, s.polymarket_clob_url),
-               Ledger(s.db_path, "live" if live else "paper"), Notifier(s), live=live)
+               Ledger(ledger_path(s, live), "live" if live else "paper"), Notifier(s), live=live)
 
 
 def cmd_check(s: Settings, args) -> None:
     api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
     print("account:", api.account())
+    api.pick_tournament()
     for t in api.tournaments():
         print(f"  tournament slug={t.get('slug')} id={t.get('id')} name={t.get('name') or t.get('title')}")
-    if s.sig_tournament_slug:
-        print("tournament id:", api.tournament_id)
+    if api.slug:
+        print("tournament:", api.slug, "id:", api.tournament_id)
         print("markets:", len(api.markets()))
     print("notification channels:", Notifier(s).channels or "none configured")
 
@@ -41,6 +67,7 @@ def cmd_check(s: Settings, args) -> None:
 def cmd_markets(s: Settings, args) -> None:
     """Dump every SIG exchange to CSV: the starting point for the market map."""
     api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    api.pick_tournament()
     rows = []
     for m in api.markets():
         for e in m.exchanges:
@@ -73,6 +100,7 @@ def cmd_suggest_map(s: Settings, args) -> None:
     """Fuzzy-match SIG exchanges to Kalshi/Polymarket markets. Every row is written with
     enabled=0: check each one by hand (same race, same outcome, invert?) before enabling."""
     api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    api.pick_tournament()
     sig = [(e.id, f"{m.title} [{e.option}]" if e.option else m.title)
            for m in api.markets() for e in m.exchanges]
     print(f"{len(sig)} SIG exchanges; loading Kalshi events…")
@@ -126,14 +154,12 @@ def cmd_scan(s: Settings, args) -> None:
 
 
 def cmd_run(s: Settings, args) -> None:
-    live = args.live and s.live
-    if args.live and not s.live:
-        sys.exit("--live also needs MODE=live in .env (two switches on purpose).")
-    if s.live and not args.live:
-        print("MODE=live but --live not given: running in PAPER mode.")
+    live, why = decide_live(s, args.live)
+    logging.getLogger(__name__).info("mode: %s", why)
     bot = build(s, live=live)
+    bot.mode_note = why
     signal.signal(signal.SIGTERM, _stop)  # systemd/docker stop -> clean shutdown (cancels live orders)
-    bot.run()
+    bot.run(minutes=args.minutes, report_file=args.report_file)
 
 
 def _stop(signum, frame) -> None:
@@ -141,7 +167,7 @@ def _stop(signum, frame) -> None:
 
 
 def cmd_report(s: Settings, args) -> None:
-    bot = build(s, live=s.live)
+    bot = build(s, live=decide_live(s, s.live)[0])
     bot.refresh_refs()
     bot.compute_fairs()
     bot.prices = bot.api.prices(list(bot.map)) if bot.map else {}
@@ -176,6 +202,8 @@ def main(argv: list[str] | None = None) -> None:
     sub.add_parser("scan", help="print SIG vs reference prices once; never trades")
     r = sub.add_parser("run", help="run the bot (paper unless --live and MODE=live)")
     r.add_argument("--live", action="store_true")
+    r.add_argument("--minutes", type=float, default=0, help="stop after this long (0 = run forever)")
+    r.add_argument("--report-file", default="", help="write the final report here on exit")
     rep = sub.add_parser("report", help="print (or --send) the status report now")
     rep.add_argument("--send", action="store_true")
     sub.add_parser("kill", help="pause new entries (creates the kill-switch file)")
