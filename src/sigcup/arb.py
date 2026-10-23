@@ -95,15 +95,20 @@ def _walk(ladders: list[list[Level]], ok, max_sets: int,
         if take <= 0:
             break
         sets += take
-        for j, p in enumerate(prices):
+        for j, p in enumerate(prices):  # every leg is booked before any ladder can run out
             totals[j] += take * p
             limits[j] = p
             left[j] -= take
+        exhausted = False
+        for j in range(len(ladders)):
             if left[j] < 1:
                 idx[j] += 1
                 if idx[j] >= len(ladders[j]):
-                    return sets, tuple(limits), tuple(t / sets for t in totals)
-                left[j] = ladders[j][idx[j]].qty
+                    exhausted = True
+                else:
+                    left[j] = ladders[j][idx[j]].qty
+        if exhausted:
+            break
     if not sets:
         return None
     return sets, tuple(limits), tuple(t / sets for t in totals)
@@ -136,13 +141,14 @@ def plan_buy(race: Race, books: dict[str, Book], *, min_profit: float, max_sets:
     return BasketOrder(race, "buy", sets, limits, avg, f"arb +{payout - sum(avg):.3f}/set")
 
 
-def plan_sell(race: Race, books: dict[str, Book], *, sets_held: int, bar: float) -> BasketOrder | None:
+def plan_sell(race: Race, books: dict[str, Book], *, sets_held: int, bar: float,
+              reason: str = "arb exit") -> BasketOrder | None:
     r = _walk([books[e].sell_levels("no") for e in race.exchange_ids],
               lambda ps: sum(ps) >= bar - 1e-9, sets_held, 1.0)
     if not r:
         return None
     sets, limits, avg = r
-    return BasketOrder(race, "sell", sets, limits, avg, "arb exit")
+    return BasketOrder(race, "sell", sets, limits, avg, reason)
 
 
 def plan_repair(race: Race, held: dict[str, Holding], books: dict[str, Book], *,

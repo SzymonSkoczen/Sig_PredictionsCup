@@ -1,0 +1,40 @@
+2026-10-23 14:55:23,630 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-23 14:55:24,610 INFO sigcup.bot: sell no Alaska Senate [Democratic]: filled 11986/11986
+2026-10-23 14:55:24,613 INFO sigcup.bot: sell no Alaska Senate [Republican]: filled 11986/11986
+2026-10-23 14:55:24,615 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 2777/2777
+2026-10-23 14:55:29,849 INFO sigcup.bot: [live] sent SELL NO basket Alaska Senate x300 @ 0.970/set 
+2026-10-23 14:55:31,092 INFO sigcup.bot: [live] sent BUY YES 1521 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:55:41,959 INFO sigcup.bot: buy yes Mississippi Senate [Republican]: filled 3012/3012
+2026-10-23 14:55:41,962 INFO sigcup.bot: buy no Mississippi Senate [Democratic]: filled 3018/3018
+--
+2026-10-23 14:57:52,289 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-23 14:59:01,033 INFO sigcup.bot: [live] sent SELL NO basket Alaska Senate x984 @ 0.971/set 
+2026-10-23 14:59:17,357 INFO sigcup.bot: [live] sent BUY NO 1151 Mississippi Senate [Democratic] @ 0.830 (fair 0.904, edge 0.074)
+2026-10-23 14:59:29,171 INFO sigcup.bot: sell no Alaska Senate [Democratic]: filled 984/984
+2026-10-23 14:59:29,173 INFO sigcup.bot: sell no Alaska Senate [Republican]: filled 984/984
+2026-10-23 14:59:31,181 INFO sigcup.bot: [live] sent SELL NO basket Alaska Senate x300 @ 0.970/set 
+2026-10-23 14:59:44,750 INFO sigcup.bot: buy no Mississippi Senate [Democratic]: filled 1151/1151
+2026-10-23 14:59:49,105 INFO sigcup.bot: [live] sent BUY NO 350 Mississippi Senate [Democratic] @ 0.830 (fair 0.904, edge 0.074)
+--
+2026-10-23 15:01:05,481 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-23 15:03:19,313 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x5 @ 0.975/set 
+2026-10-23 15:03:34,121 INFO sigcup.bot: [live] sent BUY NO 5 Mississippi Senate [Democratic] @ 0.830 (fair 0.904, edge 0.074)
+2026-10-23 15:03:45,485 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 5/5
+2026-10-23 15:03:45,487 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 5/5
+2026-10-23 15:03:48,658 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x120 @ 0.975/set 
+2026-10-23 15:04:27,057 INFO sigcup.bot: buy no Mississippi Senate [Democratic]: filled 5/5
+2026-10-23 15:04:29,579 INFO sigcup.bot: [live] sent BUY NO 141 Mississippi Senate [Democratic] @ 0.830 (fair 0.904, edge 0.074)
+--
+2026-10-23 15:12:49,395 WARNING sigcup.sig_api: GET /exchanges/962/orderbook failed (0 TRANSPORT_ERROR: The read operation timed out), retrying in 1s
+2026-10-23 15:19:28,159 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-23 15:22:19,621 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 15:33:24,760 INFO sigcup.bot: [live] sent SELL NO basket Arizona Governor x3719 @ 0.975/set 
+2026-10-23 15:33:47,125 INFO sigcup.bot: [live] sent BUY NO 2588 Mississippi Senate [Democratic] @ 0.830 (fair 0.904, edge 0.089)
+2026-10-23 15:33:48,102 INFO sigcup.bot: [live] sent BUY YES 1776 Mississippi Senate [Republican] @ 0.825 (fair 0.903, edge 0.084)
+2026-10-23 15:33:58,980 INFO sigcup.bot: sell no Arizona Governor [Democratic]: filled 3719/3719
+2026-10-23 15:33:58,982 INFO sigcup.bot: sell no Arizona Governor [Republican]: filled 3719/3719
+2026-10-23 15:34:01,281 INFO sigcup.bot: [live] sent BUY NO 59 Tennessee Senate [Democratic] @ 0.885 (fair 0.962, edge 0.077)

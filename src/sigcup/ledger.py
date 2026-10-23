@@ -98,6 +98,14 @@ class Ledger:
         self.db.commit()
         return realized
 
+    def replace_holdings(self, rows: list[tuple[str, str, str, float, float, float]]) -> None:
+        """Overwrite all holdings with (strategy, exchange_id, side, qty, avg_cost, opened_at) and drop
+        pending orders: used at live start-up so the exchange is the source of truth."""
+        self.db.execute("DELETE FROM holdings")
+        self.db.execute("DELETE FROM pending")
+        self.db.executemany("INSERT INTO holdings VALUES (?, ?, ?, ?, ?, ?)", rows)
+        self.db.commit()
+
     # ---- pending live orders ----
 
     def add_pending(self, o: Order, label: str, pos_before: float, ttl: float, response: str,

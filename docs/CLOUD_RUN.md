@@ -52,8 +52,12 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
      it to `enabled=0`. Removing a bad mapping is a fix. Adding new rows is not.
    - Nothing to fix → move on. Don't refactor or tidy.
 
-4. **Market map (only if `state/market_map.csv` does not exist).**
-   - Run `sigcup --env state/cloud.env suggest-map --out state/suggested_map.csv`.
+4. **Market map (only if `state/market_map.csv` is missing or has no data rows).**
+   - Run `sigcup --env state/cloud.env build-map --out state/market_map.csv`. It does exact Kalshi
+     matching from the Cup's titles and takes about a minute. Commit the result and skip the rest
+     of this step.
+   - Use the older fuzzy route below only if `build-map` fails:
+     `sigcup --env state/cloud.env suggest-map --out state/suggested_map.csv`.
    - Read the suggestions and write `state/market_map.csv`, using the columns
      `sig_exchange_id,label,source,ref,invert,weight,enabled`.
    - Set `enabled=1` only on rows where you are confident the reference market resolves exactly like
@@ -82,16 +86,46 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - Then run `git pull --rebase origin claude/quirky-darwin-u0tfmx && git push -u origin claude/quirky-darwin-u0tfmx`.
    - If the push fails because of the network, retry up to 4 times with backoff.
 
-8. **Final message, the notification.** Keep it to at most 8 lines, built from `state/last_report.txt`:
-   - mode (PAPER or LIVE, and why);
-   - health;
-   - realized P&L for the window and all-time, plus open mark-to-market;
-   - the number of trades, and the largest one;
-   - arb baskets held, and any uneven basket;
-   - open convergence positions;
-   - any error or alert;
-   - `Fixed: ...` naming each bug fixed this run (one line), if any;
-   - `Suggestion: ...` with a strategy idea backed by the review numbers, if any (never applied
-     automatically).
+8. **Final message, the notification.** At most 14 lines. Base it on this run's
+   `state/last_report.txt` (including its "Opportunities this run" and "Other opportunities" sections),
+   the step 3 review,
+   and the last few entries of `state/notifications.md`, so you can spot trends across runs.
+   Use exactly this layout, and put any line that needs the owner's attention first:
 
-   Put anything that needs the owner's attention first.
+   ```
+   PAPER|LIVE (why) · health OK|DEGRADED · P&L run +X / all-time +Y · open MTM +Z
+   Trades: N (gap trades a, arb baskets b) · best: … · worst: …
+   ✅ Went well: <1–2 concrete points with numbers, e.g. "3/3 gap trades converged, +86">
+   ❌ Went wrong: <1–2 concrete points with numbers, or "nothing">
+   💡 Improve (strategy, needs your OK): <1–2 suggestions, each tied to evidence>
+   🔎 Opportunities: <1–2 promising things in the market the bot isn't trading, with numbers>
+   🔧 Fixed: <bugs fixed this run, or omit the line>
+   ```
+
+   Tie each strategy suggestion to evidence from the Opportunities numbers:
+   - Many near misses and no losses → consider lowering `MIN_EDGE`.
+   - Gaps reached but nothing filled → depth is the limit. Consider a higher `DEPTH_FRACTION` or
+     resting quotes.
+   - Gap trades hitting stops → raise `MIN_EDGE` or `STOP_LOSS`, or drop the noisy market.
+   - Arb near misses → `ARB_MIN_PROFIT`.
+   - Positions stuck until timeout → `EXIT_BAND` or `MAX_HOLD_HOURS`.
+   - Two runs isn't enough to show a trend. Say "too early to tell" rather than guess.
+
+   For 🔎, pick the most promising item or items from "Other opportunities". Say what it would
+   take to exploit each one:
+   - Wide spreads or empty books → a market-making strategy (resting quotes).
+   - Σ YES asks < 1 in a two-party race → a YES basket. It only pays if no third party wins, so
+     name the risk.
+   - The reference moved but the Cup didn't follow → a news lag, worth a faster poll or mapping
+     that race.
+   - Kalshi and Polymarket disagree → check whether the mapping is wrong.
+   - Unmapped markets → map them to widen gap trading.
+
+   Note when the same opportunity keeps appearing across runs (see `state/notifications.md`). That
+   is the strongest case for building it.
+
+   Never apply a suggestion yourself.
+
+   Before ending, append the notification to `state/notifications.md`, under a heading
+   `## <UTC time> run`, then commit and push (step 7 again if needed). That file becomes the running
+   history the owner, and the next run, can read.

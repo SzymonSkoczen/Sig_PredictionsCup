@@ -135,6 +135,28 @@ def cmd_suggest_map(s: Settings, args) -> None:
           f"delete the 'note' column if you like, and save as {s.map_path}.")
 
 
+def cmd_build_map(s: Settings, args) -> None:
+    """Exact Kalshi mapping from the Cup's structured titles (fast; see automap.py)."""
+    from .automap import build_rows
+    api = SigApi(s.sig_api_key, s.sig_base_url, s.sig_tournament_slug, s.read_budget, s.write_budget)
+    api.pick_tournament()
+    sig = [(m.exchanges[0].id, m.title) for m in api.markets() if len(m.exchanges) == 1]
+    prices = api.prices([e for e, _ in sig])
+    k = KalshiFeed(s.kalshi_base_url)
+
+    def events(series: str):
+        try:
+            return k._http.request("GET", "/events", params={"series_ticker": series, "status": "open",
+                                                             "with_nested_markets": "true"}).get("events") or []
+        except Exception as e:
+            print(f"kalshi {series}: {e}")
+            return []
+    rows, notes = build_rows(sig, events, prices)
+    write_map(args.out, rows)
+    print("\n".join(notes))
+    print(f"wrote {len(rows)} mapped markets to {args.out} ({len(notes)} skipped)")
+
+
 def cmd_scan(s: Settings, args) -> None:
     bot = build(s, live=False)
     bot.refresh_refs()
@@ -245,6 +267,8 @@ def main(argv: list[str] | None = None) -> None:
     sm.add_argument("--out", default="data/suggested_map.csv")
     sm.add_argument("--per-source", type=int, default=2)
     sm.add_argument("--min-score", type=float, default=0.25)
+    bm = sub.add_parser("build-map", help="exact Kalshi mapping from Cup titles (fast)")
+    bm.add_argument("--out", default="data/market_map.csv")
     sub.add_parser("scan", help="print SIG vs reference prices once; never trades")
     r = sub.add_parser("run", help="run the bot (paper unless --live and MODE=live)")
     r.add_argument("--live", action="store_true")

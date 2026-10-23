@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import math
 import logging
 import time
 from dataclasses import dataclass, field
@@ -15,7 +16,7 @@ from .ledger import Ledger
 from .notify import Notifier
 from .pricing import Fair, RefLeg, fair_value, load_map
 from .references import KalshiFeed, PolymarketFeed, RefQuote
-from .sig_api import Book, SigApi
+from .sig_api import ApiError, Book, SigApi
 from .strategy import Holding, Order, plan_entry, plan_exit, side_fair
 
 log = logging.getLogger(__name__)
@@ -31,6 +32,22 @@ class Health:
     ref_ok: dict[str, float] = field(default_factory=dict)
     ref_quotes: dict[str, int] = field(default_factory=dict)
     ref_errors: dict[str, int] = field(default_factory=dict)
+
+
+@dataclass
+class Opportunities:
+    """What the market offered during this run, traded or not: the raw material for tuning."""
+    best_edge: dict[str, float] = field(default_factory=dict)  # exchange -> best gap seen
+    best_arb: dict[str, float] = field(default_factory=dict)   # race -> best Σ YES bids − 1
+    top_depth: list[float] = field(default_factory=list)       # shares at the best level, per book read
+    priced_cycles: int = 0
+    # Beyond the two strategies: things worth a human look
+    widest: dict[str, float] = field(default_factory=dict)     # exchange -> widest bid/ask spread seen
+    empty: set[str] = field(default_factory=set)               # exchanges seen with no bid or no ask
+    yes_basket: dict[str, float] = field(default_factory=dict) # two-party race -> best 1 − Σ YES asks
+    disagree: dict[str, float] = field(default_factory=dict)   # exchange -> Kalshi vs Polymarket gap
+    first: dict[str, tuple[float, float | None]] = field(default_factory=dict)  # eid -> (fair, Cup mid)
+    last: dict[str, tuple[float, float | None]] = field(default_factory=dict)
 
 
 def _utc_day(ts: float) -> str:
@@ -61,8 +78,11 @@ class Bot:
         self.prices: dict[str, tuple[float | None, float | None]] = {}
         self.positions: dict[tuple[str, str], float] = {}
         self.health = Health(started=clock())
+        self.opps = Opportunities()
         self.races: list[Race] = []
         self.mode_note = "live" if live else "paper"
+        self.orders_disabled = ""
+        self.cash = s.bankroll
         self._last_races = 0.0
         self._last_ref = 0.0
         self._alerted: set[str] = set()
@@ -98,6 +118,42 @@ class Bot:
         self._last_races = self.clock()
         log.info("arb: %d races with 2+ party markets", len(self.races))
 
+    def resync_from_exchange(self) -> str:
+        """Live start-up: rebuild the ledger from the exchange's positions. Even NO holdings across
+        every leg of a race become arb baskets; anything else is a gap-trade holding."""
+        now = self.clock()
+        pos = {(p.exchange_id, p.side): p for p in self.api.positions() if p.qty >= 1}
+        # keep when each holding was opened, so hold-time exits survive the hourly restarts
+        opened = {(h.exchange_id, h.side): h.opened_at for h in self.ledger.holdings(None)}
+        since = lambda e, side: min(opened.get((e, side), now), now)
+        rows, used = [], {}
+        for r in self.races:
+            legs = [pos.get((e, "no")) for e in r.exchange_ids]
+            if all(legs):
+                sets = min(p.qty for p in legs)
+                for p in legs:
+                    rows.append(("arb", p.exchange_id, "no", sets, p.avg_cost, since(p.exchange_id, "no")))
+                    used[(p.exchange_id, "no")] = sets
+        for key, p in pos.items():
+            rest = p.qty - used.get(key, 0.0)
+            if rest >= 1:
+                rows.append(("conv", p.exchange_id, p.side, rest, p.avg_cost, since(p.exchange_id, p.side)))
+        self.ledger.replace_holdings(rows)
+        n_arb = len({r[1] for r in rows if r[0] == "arb"})
+        note = f"resynced from exchange: {n_arb} arb legs, {sum(1 for r in rows if r[0] == 'conv')} other positions"
+        self.ledger.event("INFO", note)
+        log.info(note)
+        return note
+
+    def free_cash(self) -> float:
+        """Uninvested SUSQies: the exchange's account value minus holdings (live), or the bankroll
+        minus the cost of what the ledger holds (paper)."""
+        if not self.live:
+            return self.s.bankroll - sum(h.qty * h.avg_cost for h in self.ledger.holdings(None))
+        p = self.api.pnl()
+        p = p.get("data", p) if isinstance(p, dict) else {}
+        return float(p.get("totalAccountValue", 0)) - float(p.get("totalHoldingsValue", 0))
+
     def compute_fairs(self) -> None:
         now = self.clock()
         s = self.s
@@ -131,6 +187,8 @@ class Bot:
         return self.ledger.realized_since(_midnight(now)) + mtm - float(self.ledger.get("mtm_day_start", "0"))
 
     def entries_blocked(self) -> str:
+        if self.orders_disabled:
+            return self.orders_disabled
         if Path(self.s.kill_switch).exists():
             return f"kill switch file '{self.s.kill_switch}' present"
         pnl = self.daily_pnl()
@@ -154,8 +212,10 @@ class Bot:
                 self.ledger.event("INFO", note)
                 log.info(note)
 
+        self.cash = self.free_cash()
         ids = list(dict.fromkeys(list(self.map) + [e for r in self.races for e in r.exchange_ids]))
         self.prices = self.api.prices(ids) if ids else {}
+        self.track_opportunities()
         books_left = s.max_books_per_cycle
         pending = self.ledger.pending_exchanges()
 
@@ -170,7 +230,7 @@ class Bot:
             if plan_exit(h, fair, Book.top(h.exchange_id, bid, ask), now, **kw) is None:
                 continue
             books_left -= 1
-            o = plan_exit(h, fair, self.api.book(h.exchange_id), now, **kw)
+            o = plan_exit(h, fair, self.book(h.exchange_id), now, **kw)
             if o:
                 self.execute(o)
                 pending.add(o.exchange_id)
@@ -190,6 +250,96 @@ class Bot:
         self.health.cycles += 1
         self.health.last_ok = self.clock()
         self.health.consecutive_errors = 0
+
+    def book(self, eid: str) -> Book:
+        b = self.api.book(eid)
+        best = (b.asks[:1] or b.bids[:1])
+        if best:
+            self.opps.top_depth.append(best[0].qty)
+        return b
+
+    def track_opportunities(self) -> None:
+        o = self.opps
+        o.priced_cycles += 1
+        for edge, eid, _ in self.gaps():
+            if edge > o.best_edge.get(eid, -1.0):
+                o.best_edge[eid] = edge
+        for r in self.races:
+            e = screen_buy(r, self.prices)
+            if e is not None and e > o.best_arb.get(r.key, -1.0):
+                o.best_arb[r.key] = e
+            asks = [self.prices.get(x, (None, None))[1] for x in r.exchange_ids]
+            if r.k == 2 and all(a is not None for a in asks):
+                o.yes_basket[r.key] = max(o.yes_basket.get(r.key, -1.0), 1 - sum(asks))
+        for eid, (bid, ask) in self.prices.items():
+            if bid is None or ask is None:
+                o.empty.add(eid)
+            else:
+                o.widest[eid] = max(o.widest.get(eid, 0.0), ask - bid)
+            fair = self.fair(eid)
+            if fair is not None:
+                mid = None if bid is None or ask is None else (bid + ask) / 2
+                o.first.setdefault(eid, (fair, mid))
+                o.last[eid] = (fair, mid)
+        for eid, (f, why) in self.fairs.items():
+            if f is None and why.startswith("references disagree by "):
+                d = float(why.rsplit(" ", 1)[1])
+                o.disagree[eid] = max(o.disagree.get(eid, 0.0), d)
+
+    def opportunity_lines(self) -> list[str]:
+        s, o = self.s, self.opps
+        edges = sorted(o.best_edge.values(), reverse=True)
+        n_hit = sum(1 for e in edges if e >= s.min_edge)
+        n_near = sum(1 for e in edges if s.min_edge / 2 <= e < s.min_edge)
+        lines = [f"\nOpportunities this run ({o.priced_cycles} priced cycles):",
+                 f"  price gaps: {n_hit} markets reached ≥{s.min_edge:g}, {n_near} more reached "
+                 f"≥{s.min_edge / 2:g} (near misses), of {len(edges)} with a fair value"]
+        best = sorted(o.best_edge.items(), key=lambda kv: -kv[1])[:3]
+        if best:
+            lines.append("  best gaps: " + ", ".join(f"{self.labels.get(e, e)[:30]} {v:+.3f}" for e, v in best))
+        arbs = sorted(o.best_arb.items(), key=lambda kv: -kv[1])
+        n_arb = sum(1 for _, v in arbs if v >= s.arb_min_profit)
+        if arbs:
+            lines.append(f"  arb: {n_arb} races reached ≥{s.arb_min_profit:g}; best: "
+                         + ", ".join(f"{k[:25]} {v:+.3f}" for k, v in arbs[:3]))
+        if o.top_depth:
+            d = sorted(o.top_depth)
+            lines.append(f"  depth at best price: median {d[len(d) // 2]:,.0f} shares, "
+                         f"max {d[-1]:,.0f} ({len(d)} books read)")
+        return lines + self.other_opportunity_lines()
+
+    def other_opportunity_lines(self) -> list[str]:
+        """Not traded by the bot; candidates for new strategies or manual trades."""
+        o, name = self.opps, lambda e: self.labels.get(e, e)[:30]
+        out = ["\nOther opportunities (not traded, for review):"]
+        wide = sorted(((v, e) for e, v in o.widest.items() if v >= 0.08), reverse=True)
+        if wide:
+            out.append(f"  wide spreads ≥0.08 ({len(wide)} markets; resting quotes could earn the spread): "
+                       + ", ".join(f"{name(e)} {v:.3f}" for v, e in wide[:4]))
+        if o.empty:
+            out.append(f"  one-sided/empty books: {len(o.empty)} markets (first quote sets the price): "
+                       + ", ".join(name(e) for e in sorted(o.empty)[:4]))
+        yb = sorted(((v, k) for k, v in o.yes_basket.items() if v > 0), reverse=True)
+        if yb:
+            out.append("  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): "
+                       + ", ".join(f"{k[:25]} +{v:.3f}" for v, k in yb[:4]))
+        moves = []
+        for e, (f0, m0) in o.first.items():
+            f1, m1 = o.last[e]
+            if abs(f1 - f0) >= 0.03:
+                follow = "" if m0 is None or m1 is None else f", Cup {m1 - m0:+.3f}"
+                moves.append((abs(f1 - f0), f"{name(e)} ref {f1 - f0:+.3f}{follow}"))
+        if moves:
+            out.append("  reference moved ≥3 pts this run (news?): " + "; ".join(m for _, m in sorted(moves, reverse=True)[:4]))
+        if o.disagree:
+            out.append("  Kalshi vs Polymarket disagree (skipped; one is stale or mis-mapped): "
+                       + ", ".join(f"{name(e)} {v:.3f}" for e, v in sorted(o.disagree.items(), key=lambda kv: -kv[1])[:4]))
+        unmapped = [e for r in self.races for e in r.exchange_ids if e not in self.map]
+        if unmapped:
+            out.append(f"  {len(unmapped)} Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)")
+        if len(out) == 1:
+            out.append("  none")
+        return out
 
     def gaps(self) -> list[tuple[float, str, str]]:
         """(edge, exchange_id, side) for every priced market, best first."""
@@ -218,29 +368,42 @@ class Bot:
             if eid in pending or (eid, other) in held or eid in arb_held:
                 continue
             room = min(s.max_order_cost, s.max_market_cost - cost.get(eid, 0.0),
-                       min(s.max_total_cost, s.bankroll - s.cash_reserve) - total)
+                       min(s.max_total_cost, s.bankroll - s.cash_reserve) - total,
+                       self.cash - s.cash_reserve)
             if room <= 0:
                 continue
             books_left -= 1
-            o = plan_entry(eid, self.fair(eid), self.api.book(eid), min_edge=s.min_edge,
+            o = plan_entry(eid, self.fair(eid), self.book(eid), min_edge=s.min_edge,
                            depth_fraction=s.depth_fraction, max_cost=room,
                            kelly_fraction=s.kelly_fraction, bankroll=s.bankroll)
             if o:
                 self.execute(o)
                 pending.add(eid)
                 total += o.cost
+                self.cash -= o.cost
                 cost[eid] = cost.get(eid, 0.0) + o.cost
 
     def arb(self, pending: set[str], books_left: int, blocked: bool) -> int:
-        """Repair uneven baskets, sell baskets worth more now than at settlement or cost,
-        and buy new NO baskets when a race's YES bids sum above 1 + ARB_MIN_PROFIT."""
+        """Short-term NO-basket trading: repair uneven baskets; sell baskets for a quick profit, when
+        held too long, or to free cash; buy new baskets when a race's YES bids sum above
+        1 + ARB_MIN_PROFIT, using only cash above ARB_CASH_FLOOR."""
         s, now = self.s, self.clock()
         if not s.arb_enabled:
             return books_left
         held = {h.exchange_id: h for h in self.ledger.holdings("arb")}
         conv_busy = {h.exchange_id for h in self.ledger.holdings("conv")}
         capital = sum(h.qty * h.avg_cost for h in held.values())
-        for race in self.races:
+        # SUSQies to free by selling baskets: over the arb budget, or cash below the floor
+        to_free = max(capital - s.arb_max_capital, s.arb_cash_floor - self.cash, 0.0) if s.arb_unwind_for_cash else 0.0
+
+        def exit_value(r: Race) -> float:  # sale proceeds minus cost per set; best exits first
+            v = screen_sell(r, self.prices)
+            if v is None or not all(e in held for e in r.exchange_ids):
+                return -9.0
+            return v - sum(held[e].avg_cost for e in r.exchange_ids)
+        races = sorted(self.races, key=lambda r: (not any(e in held for e in r.exchange_ids), -exit_value(r)))
+
+        for race in races:
             ids = race.exchange_ids
             if any(e in pending for e in ids) or books_left < race.k:
                 continue
@@ -251,7 +414,7 @@ class Bot:
                 self.ledger.put(key, since)
                 unwind = now - since > s.arb_repair_minutes * 60
                 books_left -= race.k
-                books = {e: self.api.book(e) for e in ids}
+                books = {e: self.book(e) for e in ids}
                 orders = plan_repair(race, held, books, slippage=s.arb_repair_slippage, unwind=unwind)
                 if unwind:
                     self.alert_once(key, f"{race.key}: basket uneven for {s.arb_repair_minutes:g} min, "
@@ -265,29 +428,55 @@ class Bot:
                 self._alerted.discard(key)
             sets = int(min(qtys))
             if sets >= 1:
-                bar = exit_bar(race, sum(held[e].avg_cost for e in ids), s.arb_min_profit, s.arb_exit_profit)
+                cost = sum(held[e].avg_cost for e in ids)
+                bar, max_sell, reason = exit_bar(race, cost, s.arb_min_profit, s.arb_exit_profit), sets, "arb take-profit"
+                opened = min(held[e].opened_at for e in ids)
+                if to_free > 0:
+                    bar, reason = min(bar, cost - s.arb_unwind_max_loss), "arb unwind (free cash)"
+                    max_sell = min(sets, math.ceil(to_free / max(cost, 0.01)))
+                elif s.arb_max_hold_hours and now - opened > s.arb_max_hold_hours * 3600:
+                    bar, reason = min(bar, cost - s.arb_unwind_max_loss), "arb timeout"
                 top = screen_sell(race, self.prices)
                 if top is not None and top >= bar:
                     books_left -= race.k
-                    o = plan_sell(race, {e: self.api.book(e) for e in ids}, sets_held=sets, bar=bar)
+                    o = plan_sell(race, {e: self.book(e) for e in ids}, sets_held=max_sell, bar=bar,
+                                  reason=reason)
                     if o:
                         self.execute_basket(o)
                         pending.update(ids)
+                        freed = o.sets * cost
+                        to_free, capital, self.cash = to_free - freed, capital - freed, self.cash + o.sets * o.per_set
                         continue
-            if blocked or any(e in conv_busy for e in ids):
+            if blocked or to_free > 0 or any(e in conv_busy for e in ids):
                 continue
             edge = screen_buy(race, self.prices)
-            room = int((s.arb_max_capital - capital) / max(race.k - 1, 1))
+            # ARB_MAX_SETS caps the sets held per race, not per order (paper re-bought one book to 18k)
+            budget = min(s.arb_max_capital - capital, self.cash - s.arb_cash_floor)
+            room = min(int(budget / max(race.k - 1, 1)), s.arb_max_sets - sets)
             if edge is None or edge < s.arb_min_profit or room < 1:
                 continue
             books_left -= race.k
-            o = plan_buy(race, {e: self.api.book(e) for e in ids}, min_profit=s.arb_min_profit,
+            o = plan_buy(race, {e: self.book(e) for e in ids}, min_profit=s.arb_min_profit,
                          max_sets=min(s.arb_max_sets, room), depth_fraction=s.arb_depth_fraction)
             if o:
                 self.execute_basket(o)
                 pending.update(ids)
                 capital += o.sets * o.per_set
+                self.cash -= o.sets * o.per_set
         return books_left
+
+    def send(self, what: str, place):
+        """Place an order; a rejection is logged instead of failing the whole cycle. A permission
+        error (e.g. a key without the `trade` scope) stops all order sending and alerts once."""
+        try:
+            return place()
+        except ApiError as e:
+            self.ledger.event("ERROR", f"order rejected: {what}: {e}"[:500])
+            log.error("order rejected: %s: %s", what, e)
+            if e.status in (401, 403):
+                self.orders_disabled = f"orders refused by the exchange ({e.code})"
+                self.alert_once("orders_disabled", f"Bot can't place orders: {e}")
+            return None
 
     def execute_basket(self, b: BasketOrder) -> None:
         legs = b.leg_orders()
@@ -303,8 +492,11 @@ class Bot:
             log.info("[paper] %s", what)
             return
         ttl = self.s.order_ttl_seconds
-        resp = self.api.place_multi_leg([{"exchangeId": l.exchange_id, "side": "no", "action": l.action,
-                                          "quantity": l.qty, "price": l.price} for l in legs], ttl)
+        resp = self.send(what, lambda: self.api.place_multi_leg(
+            [{"exchangeId": l.exchange_id, "side": "no", "action": l.action, "quantity": l.qty,
+              "price": l.price} for l in legs], ttl))
+        if resp is None:
+            return
         for leg in legs:
             self.ledger.add_pending(leg, self.labels.get(leg.exchange_id, ""),
                                     self.positions.get((leg.exchange_id, "no"), 0.0), ttl,
@@ -323,7 +515,9 @@ class Bot:
             return
         before = self.positions.get((o.exchange_id, o.side), 0.0)
         ttl = self.s.order_ttl_seconds
-        resp = self.api.place_order(o.exchange_id, o.side, o.action, o.qty, o.price, ttl)
+        resp = self.send(msg, lambda: self.api.place_order(o.exchange_id, o.side, o.action, o.qty, o.price, ttl))
+        if resp is None:
+            return
         self.ledger.add_pending(o, label, before, ttl, json.dumps(resp, default=str)[:2000], self.clock(), strategy)
         self.ledger.event("TRADE", f"[live] sent {msg}")
         log.info("[live] sent %s", msg)
@@ -406,6 +600,7 @@ class Bot:
         if near:
             lines.append("Closest arb races (Σ YES bids − 1; trades at ≥ "
                          f"{s.arb_min_profit:g}): " + ", ".join(f"{k} {e:+.3f}" for e, k in near))
+        lines += self.opportunity_lines()
         lines.append("\nLargest gaps now (edge = fair − price to buy):")
         for edge, eid, side in self.gaps()[:5]:
             lines.append(f"  {self.labels.get(eid, eid)[:40]:40} buy {side.upper():3} edge {edge:+.3f}")
@@ -431,6 +626,9 @@ class Bot:
                                f"reports every {s.report_interval_hours:g}h, channels: {', '.join(self.notifier.channels) or 'log only'}")
         if not self.map:
             log.warning("market map %s has no enabled rows: nothing to trade", s.map_path)
+        if self.live:
+            self.refresh_races()
+            self.resync_from_exchange()
         try:
             while deadline is None or self.clock() < deadline:
                 try:
