@@ -1,39 +1,45 @@
-Mode: LIVE (live) | 2026-10-23 09:37 UTC
-Health: DEGRADED | up 1h40m | cycles 0 | last good cycle never | consecutive errors 23
-SIG API: reads 0/70/min, writes 1/20/min, errors total 24
-Last error: ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-Markets: 0 mapped, 0 with a fair value
+Mode: LIVE (live) | 2026-10-23 11:36 UTC
+Health: OK | up 1h40m | cycles 387 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 40/70/min, writes 13/20/min, errors total 975
+kalshi: last ok 14s ago, 192 quotes, 3 failures
+Markets: 192 mapped, 191 with a fair value
 Entries: active
 Arb: 117 races watched
 Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM +0
-Account: periodEnd=2026-10-23T09:37:51.349Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
+Account: periodEnd=2026-10-23T11:36:38.145Z, unrealizedPnl=-549.62, totalAccountValue=99450.38, totalHoldingsValue=99450.3, totalCostBasis=99999.92, roi=-0.55
 
 Open positions (0):
 
 Trades last 2h (0):
 
 Arb baskets held (0):
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.075, Montana Senate +0.060, Nebraska Senate +0.040
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.080, Montana Senate +0.065, Nebraska Senate +0.045
 
-Opportunities this run (23 priced cycles):
-  price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
-  arb: 42 races reached ≥0.01; best: Rhode Island Governor +0.075, Montana Senate +0.060, Nebraska Senate +0.040
-  depth at best price: median 1,268 shares, max 7,263 (46 books read)
+Opportunities this run (387 priced cycles):
+  price gaps: 50 markets reached ≥0.04, 65 more reached ≥0.02 (near misses), of 191 with a fair value
+  best gaps: Rhode Island Senate [Republica +0.120, Rhode Island Senate [Democrati +0.116, Rhode Island Governor [Republi +0.097
+  arb: 51 races reached ≥0.01; best: Rhode Island Governor +0.090, Montana Senate +0.065, FL-20 House race +0.050
+  depth at best price: median 3,900 shares, max 66,600 (2322 books read)
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.040, New Hampshire Senate +0.025, Massachusetts Governor +0.020, Maine Governor +0.015
-  237 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Maine Governor +0.030, MN-05 House race +0.030, New Hampshire Senate +0.020, NH-01 House race +0.010
+  45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
+  Rhode Island Senate [Republican]         buy NO  edge +0.120
+  Rhode Island Senate [Democratic]         buy YES edge +0.116
+  Mississippi Senate [Democratic]          buy NO  edge +0.083
+  Rhode Island Governor [Republican]       buy NO  edge +0.081
+  Mississippi Senate [Republican]          buy YES edge +0.079
 
-Alerts/errors last 2h (23):
-  08:48 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  08:53 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  08:58 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:03 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:08 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:13 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:18 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:23 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:28 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  09:33 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+Alerts/errors last 2h (975):
+  11:35 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:35 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:35 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:35 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  11:36 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.

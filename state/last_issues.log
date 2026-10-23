@@ -1,266 +1,400 @@
-2026-10-23 07:57:50,632 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
-2026-10-23 07:57:52,244 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-23 07:57:54,088 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-  06:52 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  06:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:02 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:07 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:12 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:17 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:22 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:27 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:32 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  07:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-2026-10-23 07:58:16,362 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 07:58:58,375 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:00:20,522 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:03:03,187 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:08:05,338 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:13:07,275 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:18:09,138 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:23:10,978 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:28:14,513 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:33:16,387 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:38:18,198 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:43:20,221 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:48:22,043 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:53:23,839 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 08:58:27,458 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:03:29,301 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:08:31,112 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:13:33,051 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:18:35,019 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:23:37,061 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:28:40,728 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:33:42,593 ERROR sigcup.bot: cycle failed
-Traceback (most recent call last):
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
-    self.cycle()
-    ~~~~~~~~~~^^
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
-    books_left = self.arb(pending, books_left, bool(blocked))
-  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
-    self.execute_basket(o)
-    ~~~~~~~~~~~~~~~~~~~^^^
---
-2026-10-23 09:37:51,167 ERROR sigcup.bot: cancel-all on shutdown failed: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 11:03:18,766 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1477 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:19,617 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x400 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:20,818 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:33,101 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1327 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:34,018 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x475 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:34,935 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:48,033 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1477 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:48,872 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x475 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:03:49,624 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:01,950 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1477 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:02,730 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x475 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:03,544 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:18,454 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1180 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:19,301 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x715 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:20,110 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:32,833 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1358 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:33,548 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x715 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:34,324 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:47,303 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1358 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:48,051 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x769 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:04:48,791 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:00,963 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1208 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:01,836 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x639 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:02,730 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:15,514 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1565 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:16,364 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x638 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:17,260 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:29,679 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1565 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:30,644 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:31,503 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:46,654 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1415 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:47,386 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:05:48,175 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:01,487 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1565 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:02,387 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:03,200 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:23,655 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1415 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:24,378 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:25,204 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:38,828 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1625 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:39,734 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:40,491 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:53,407 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1625 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:54,223 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:06:55,147 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:07,866 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1475 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:08,665 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:09,407 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:22,137 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1475 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:22,953 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:23,726 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:35,923 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1475 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:36,773 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:37,627 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:50,308 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1625 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:51,151 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:07:52,023 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:04,279 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1625 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:05,114 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:05,882 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:19,276 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1475 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:20,199 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:20,963 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:33,281 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1625 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:34,287 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:35,347 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:48,249 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1685 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:49,076 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:08:49,930 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:02,416 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1535 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:03,157 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:03,870 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:16,653 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1117 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:17,487 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x397 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:18,379 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:30,728 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1685 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:31,551 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:32,269 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:45,479 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1535 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:46,340 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:47,400 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:09:59,483 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1685 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:00,392 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:01,289 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:14,742 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1685 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:15,709 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:16,565 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:28,966 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1535 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:29,925 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:30,777 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:43,619 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1685 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:44,434 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:45,085 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:57,408 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1745 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:58,184 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:10:59,223 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:18,145 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1595 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:18,840 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:19,736 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:32,379 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1667 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:33,193 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:33,927 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:46,594 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1667 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:47,673 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:11:48,650 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:01,081 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1517 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:01,787 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:02,772 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:15,660 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1667 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:16,451 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:17,167 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:29,749 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1667 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:30,466 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:31,272 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:43,911 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1577 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:44,730 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:45,561 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:58,010 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1727 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:58,996 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:12:59,802 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:12,586 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1727 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:13,337 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:14,115 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:26,497 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1577 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:27,345 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:28,086 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:40,729 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1577 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:41,623 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:42,423 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:54,865 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1727 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:55,635 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:13:56,492 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:09,110 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1727 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:09,797 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:10,459 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:22,844 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1727 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:23,648 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:24,401 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:49,564 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1637 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:50,426 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:14:51,210 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:03,374 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1637 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:04,115 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:04,871 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:30,032 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:30,789 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:31,557 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:43,832 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1637 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:44,576 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:45,446 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:58,101 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:58,898 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:15:59,627 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:11,873 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1219 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:12,822 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:13,779 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:26,866 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:27,604 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:28,411 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:40,622 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:41,364 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:42,290 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:55,010 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:55,761 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:16:56,816 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:09,003 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:09,751 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:10,578 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:25,455 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:26,236 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:27,011 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:39,393 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:40,156 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:41,078 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:53,721 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1762 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:54,506 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:17:55,236 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:07,355 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:08,064 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:08,798 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:23,810 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:24,496 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:25,248 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:37,549 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:38,323 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:39,134 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:51,752 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:52,493 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:18:53,404 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:05,791 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:06,669 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:07,431 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:22,242 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:23,111 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:23,942 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:36,227 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:37,108 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:37,876 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:50,549 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:51,363 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x307 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:19:52,092 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:04,575 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:05,589 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:06,629 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:19,840 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:20,751 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:21,575 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:33,704 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:34,533 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:35,430 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:48,325 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1697 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:49,162 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:20:49,899 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:02,402 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1847 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:03,410 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:04,202 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:19,380 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1907 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:20,167 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:21,206 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:33,712 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1757 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:34,457 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:35,304 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:54,590 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1907 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:55,513 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x307 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:21:56,540 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:08,970 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1339 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:09,745 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:10,463 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:23,051 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1757 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:23,884 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:24,800 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:37,233 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1907 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:38,283 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:39,114 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:58,213 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1907 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:58,992 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:22:59,877 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:12,313 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:13,114 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:13,915 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:26,717 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:27,533 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:28,343 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:40,836 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1817 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:41,629 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:42,763 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:57,534 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:58,458 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:23:59,261 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:11,557 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1817 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:12,417 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:13,317 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:29,990 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:30,891 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:31,666 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:44,026 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1817 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:45,017 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:24:45,917 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:00,844 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:01,697 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:02,465 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:14,952 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1967 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:15,814 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:16,522 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:29,497 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:30,297 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:31,095 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:43,557 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:44,417 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:45,234 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:58,196 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x1877 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:58,952 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:25:59,806 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:12,085 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:12,898 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:13,795 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:27,259 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:28,112 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:29,098 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:41,471 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:42,485 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:43,375 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:55,791 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 11:26:57,957 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:58,763 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:26:59,552 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:11,918 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:12,845 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:13,666 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:26,752 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:27,687 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:28,462 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:40,594 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:41,401 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:42,195 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:54,805 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:55,575 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:27:56,372 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:08,684 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:09,537 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:10,341 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:22,882 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:23,794 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:24,727 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:37,119 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:37,859 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:38,619 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:53,330 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:54,196 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:28:55,005 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:07,150 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:07,925 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:08,735 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:21,427 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:22,288 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:23,132 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:35,359 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:36,162 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:36,939 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.980/set (locks +0.020/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:51,818 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:52,522 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:29:53,264 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:05,410 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:06,362 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:07,263 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:20,113 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:20,926 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x307 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:21,655 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:34,071 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:34,900 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:35,682 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:48,399 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:49,093 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:30:49,793 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:02,156 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:03,105 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:03,938 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:16,606 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:17,583 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:18,413 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:30,606 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:31,419 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:32,213 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:44,724 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:45,447 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x492 @ 0.985/set (locks +0.015/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:46,215 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:58,902 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:31:59,686 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:00,497 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:17,383 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:18,142 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:18,899 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:31,206 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:32,050 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.988/set (locks +0.012/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:32,786 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:45,453 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:46,278 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:32:47,040 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:00,134 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:00,974 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:01,751 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:14,459 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:15,231 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:15,970 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:28,149 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:28,985 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:29,856 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:49,017 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:49,899 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:33:50,647 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:02,974 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:03,752 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:04,549 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:17,378 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:18,199 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.989/set (locks +0.011/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:18,959 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:31,418 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:32,356 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.990/set (locks +0.010/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:33,141 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:45,944 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:46,865 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:34:47,871 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:00,363 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:01,294 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:02,068 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:27,171 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:27,972 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:28,737 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:40,969 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:41,759 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:42,557 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:55,308 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:56,199 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:35:56,943 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:09,174 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:10,098 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:10,828 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:25,775 ERROR sigcup.bot: order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:26,592 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+2026-10-23 11:36:27,368 ERROR sigcup.bot: order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.

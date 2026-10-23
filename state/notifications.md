@@ -51,3 +51,12 @@ Trades: 0 (gap 0, arb 0). No uneven basket, no convergence positions.
 💡 Improve: arb edge ≥0.01 in 42 races (Rhode Island Gov +0.075, Montana Sen +0.060, median depth 1,268 shares); verified market map would enable gap trades. Not applied.
 🔎 Opportunities: NO-basket arb Rhode Island Gov +0.075, Montana Sen +0.060, Nebraska Sen +0.040; two-party YES<1: MN-05 +0.040, NH Sen +0.025, Mass Gov +0.020, Maine Gov +0.015 (third-party risk).
 🔧 Fixed: nothing (key permission issue, not a code bug).
+
+## 2026-10-23T11:37Z run
+🚨 LIVE, trading works (key scope fixed) but LEDGER MISMATCH: account is fully invested (cost basis ~99,999 across 19 NO-basket positions) while the bot's ledger shows 0 trades/positions; ~975 "Insufficient funds" rejections as it kept re-buying. Health OK · run P&L +0 (unrecorded) · account value 99,450 (MTM -550)
+Trades: ~170 arb baskets sent, all filled on the exchange, none recorded. Biggest: Arizona Gov x2000.
+✅ Went well: scope/auth fixed, 387 cycles, Kalshi map 192 mapped, no crashes.
+❌ Went wrong: Position parser read NO holdings (option YES, negative qty) as negative, so reconcile recorded 0 fills; buying power exhausted (arb ignored held sets).
+💡 Improve: cap per-race arb sets by exchange positions, not ledger only; arb edges were thin (+0.01–0.03/set) vs 2000-set size — consider lower ARB sizing. Not applied.
+🔎 Opportunities: gaps Rhode Island Sen R/D +0.12/+0.116, Mississippi Sen D +0.083 (not traded: funds gone); two-party YES<1: Maine Gov +0.03, MN-05 +0.03.
+🔧 Fixed: Position.from_api sign/side for NO holdings (+test). Existing 19 positions still absent from ledger.
