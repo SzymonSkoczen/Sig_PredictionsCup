@@ -15,7 +15,7 @@ from .ledger import Ledger
 from .notify import Notifier
 from .pricing import Fair, RefLeg, fair_value, load_map
 from .references import KalshiFeed, PolymarketFeed, RefQuote
-from .sig_api import Book, SigApi
+from .sig_api import ApiError, Book, SigApi
 from .strategy import Holding, Order, plan_entry, plan_exit, side_fair
 
 log = logging.getLogger(__name__)
@@ -80,6 +80,7 @@ class Bot:
         self.opps = Opportunities()
         self.races: list[Race] = []
         self.mode_note = "live" if live else "paper"
+        self.orders_disabled = ""
         self._last_races = 0.0
         self._last_ref = 0.0
         self._alerted: set[str] = set()
@@ -148,6 +149,8 @@ class Bot:
         return self.ledger.realized_since(_midnight(now)) + mtm - float(self.ledger.get("mtm_day_start", "0"))
 
     def entries_blocked(self) -> str:
+        if self.orders_disabled:
+            return self.orders_disabled
         if Path(self.s.kill_switch).exists():
             return f"kill switch file '{self.s.kill_switch}' present"
         pnl = self.daily_pnl()
@@ -385,7 +388,8 @@ class Bot:
             if blocked or any(e in conv_busy for e in ids):
                 continue
             edge = screen_buy(race, self.prices)
-            room = int((s.arb_max_capital - capital) / max(race.k - 1, 1))
+            # ARB_MAX_SETS caps the sets held per race, not per order (paper re-bought one book to 18k)
+            room = min(int((s.arb_max_capital - capital) / max(race.k - 1, 1)), s.arb_max_sets - sets)
             if edge is None or edge < s.arb_min_profit or room < 1:
                 continue
             books_left -= race.k
@@ -396,6 +400,19 @@ class Bot:
                 pending.update(ids)
                 capital += o.sets * o.per_set
         return books_left
+
+    def send(self, what: str, place):
+        """Place an order; a rejection is logged instead of failing the whole cycle. A permission
+        error (e.g. a key without the `trade` scope) stops all order sending and alerts once."""
+        try:
+            return place()
+        except ApiError as e:
+            self.ledger.event("ERROR", f"order rejected: {what}: {e}"[:500])
+            log.error("order rejected: %s: %s", what, e)
+            if e.status in (401, 403):
+                self.orders_disabled = f"orders refused by the exchange ({e.code})"
+                self.alert_once("orders_disabled", f"Bot can't place orders: {e}")
+            return None
 
     def execute_basket(self, b: BasketOrder) -> None:
         legs = b.leg_orders()
@@ -411,8 +428,11 @@ class Bot:
             log.info("[paper] %s", what)
             return
         ttl = self.s.order_ttl_seconds
-        resp = self.api.place_multi_leg([{"exchangeId": l.exchange_id, "side": "no", "action": l.action,
-                                          "quantity": l.qty, "price": l.price} for l in legs], ttl)
+        resp = self.send(what, lambda: self.api.place_multi_leg(
+            [{"exchangeId": l.exchange_id, "side": "no", "action": l.action, "quantity": l.qty,
+              "price": l.price} for l in legs], ttl))
+        if resp is None:
+            return
         for leg in legs:
             self.ledger.add_pending(leg, self.labels.get(leg.exchange_id, ""),
                                     self.positions.get((leg.exchange_id, "no"), 0.0), ttl,
@@ -431,7 +451,9 @@ class Bot:
             return
         before = self.positions.get((o.exchange_id, o.side), 0.0)
         ttl = self.s.order_ttl_seconds
-        resp = self.api.place_order(o.exchange_id, o.side, o.action, o.qty, o.price, ttl)
+        resp = self.send(msg, lambda: self.api.place_order(o.exchange_id, o.side, o.action, o.qty, o.price, ttl))
+        if resp is None:
+            return
         self.ledger.add_pending(o, label, before, ttl, json.dumps(resp, default=str)[:2000], self.clock(), strategy)
         self.ledger.event("TRADE", f"[live] sent {msg}")
         log.info("[live] sent %s", msg)

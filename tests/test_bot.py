@@ -227,3 +227,30 @@ def test_other_opportunities_section(tmp_path):
     assert "Ohio Senate +0.030" in txt          # 1 - (0.45 + 0.52)
     assert "Texas Senate [R] ref +0.060" in txt  # fair 0.60 -> 0.66
     assert "2 Cup markets have no Kalshi/Polymarket mapping" in txt
+
+
+def test_rejected_order_does_not_kill_cycle_and_scope_error_stops_orders(tmp_path):
+    from sigcup.sig_api import ApiError
+    bot, clock = make_bot(tmp_path, live=True)
+
+    def refuse(*a):
+        raise ApiError(403, "INSUFFICIENT_SCOPES", "Required: trade")
+    bot.api.place_order = refuse
+    bot.cycle()  # must not raise
+    assert bot.health.consecutive_errors == 0 and bot.health.cycles == 1
+    assert "INSUFFICIENT_SCOPES" in bot.entries_blocked()
+    assert bot.ledger.pending_exchanges() == set()
+    assert any("can't place orders" in b for _, b in bot.notifier.sent)
+
+
+def test_arb_sets_capped_per_race_across_cycles(tmp_path):
+    from test_arb import books, mkt
+    bot, clock = make_bot(tmp_path)
+    bot.map = {}
+    bot.s.arb_max_sets = 300
+    bot.api.markets_ = [mkt("d", "Democratic"), mkt("r", "Republican")]
+    bot.api.prices_ = {"d": (0.45, 0.47), "r": (0.60, 0.62)}
+    bot.api.books_ = books([(0.45, 400)], [(0.60, 400)], d_asks=[(0.47, 400)], r_asks=[(0.62, 400)])
+    for _ in range(5):  # paper books never deplete: must stop at the cap
+        bot.cycle()
+    assert {h.exchange_id: h.qty for h in bot.ledger.holdings("arb")} == {"d": 300, "r": 300}

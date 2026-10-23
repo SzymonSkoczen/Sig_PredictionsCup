@@ -64,3 +64,12 @@ def test_bot_paper_arb_cycle(tmp_path):
     assert held == {"d": 200, "r": 200}  # half the shown depth
     assert bot.ledger.holdings("conv") == []
     assert "Arb baskets held (1)" in bot.report()
+
+
+def test_every_leg_priced_when_one_ladder_runs_out_first():
+    [race] = group_races([mkt("d", "Democratic"), mkt("r", "Republican")])
+    # d's only level is used up by the first sets; r still has depth
+    o = plan_buy(race, books([(0.45, 200)], [(0.60, 1000)]), min_profit=0.01, max_sets=10_000,
+                 depth_fraction=1.0)
+    assert o.sets == 200 and o.limits == (0.55, 0.40)
+    assert abs(o.per_set - 0.95) < 1e-9

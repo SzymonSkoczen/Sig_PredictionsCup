@@ -95,15 +95,20 @@ def _walk(ladders: list[list[Level]], ok, max_sets: int,
         if take <= 0:
             break
         sets += take
-        for j, p in enumerate(prices):
+        for j, p in enumerate(prices):  # every leg is booked before any ladder can run out
             totals[j] += take * p
             limits[j] = p
             left[j] -= take
+        exhausted = False
+        for j in range(len(ladders)):
             if left[j] < 1:
                 idx[j] += 1
                 if idx[j] >= len(ladders[j]):
-                    return sets, tuple(limits), tuple(t / sets for t in totals)
-                left[j] = ladders[j][idx[j]].qty
+                    exhausted = True
+                else:
+                    left[j] = ladders[j][idx[j]].qty
+        if exhausted:
+            break
     if not sets:
         return None
     return sets, tuple(limits), tuple(t / sets for t in totals)
