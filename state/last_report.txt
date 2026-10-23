@@ -1,52 +1,47 @@
-Mode: LIVE (live) | 2026-10-23 19:36 UTC
-Health: OK | up 1h40m | cycles 421 | last good cycle 10s ago | consecutive errors 0
-SIG API: reads 20/70/min, writes 1/20/min, errors total 4
-Last error: AttributeError: 'NoneType' object has no attribute 'get'
-kalshi: last ok 25s ago, 192 quotes, 4 failures
-Markets: 192 mapped, 191 with a fair value
+Mode: LIVE (live) | 2026-10-23 21:36 UTC
+Health: OK | up 1h40m | cycles 410 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 20/70/min, writes 1/20/min, errors total 2
+kalshi: last ok 12s ago, 192 quotes, 17 failures
+Markets: 192 mapped, 192 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized +0 (last 2h), -838 today, -838 all-time | open MTM -449
-Account: periodEnd=2026-10-23T19:36:56.359Z, unrealizedPnl=-381.19, totalAccountValue=98824.99, totalHoldingsValue=73824.45, totalCostBasis=74205.64, roi=-1.18
+Bot P&L: realized +0 (last 2h), -838 today, -838 all-time | open MTM -618
+Account: periodEnd=2026-10-23T21:36:48.142Z, unrealizedPnl=-269.67, totalAccountValue=98936.51, totalHoldingsValue=73935.97, totalCostBasis=74205.64, roi=-1.06
 
 Open positions (10):
-  WA-03 House race [Republican]            NO     253 @0.850 mark 0.855 fair 0.926 held 7h
-  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.850 fair 0.908 held 7h
-  Tennessee Senate [Democratic]            NO      59 @0.885 mark 0.890 fair 0.961 held 4h
-  Virginia Senate [Republican]             NO    3428 @0.909 mark 0.900 fair 0.985 held 4h
-  Rhode Island Governor [Republican]       NO    6604 @0.909 mark 0.905 fair 0.995 held 7h
-  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.875 fair 0.988 held 7h
-  Rhode Island Senate [Republican]         NO    7017 @0.855 mark 0.865 fair 0.987 held 7h
-  Mississippi Senate [Democratic]          NO    7278 @0.824 mark 0.820 fair 0.885 held 5h
-  Mississippi Senate [Republican]          YES   6114 @0.825 mark 0.820 fair 0.885 held 7h
-  Hawaii Governor [Democratic]             YES   6683 @0.898 mark 0.900 fair 0.983 held 6h
+  WA-03 House race [Republican]            NO     253 @0.850 mark 0.855 fair 0.926 held 9h
+  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.850 fair 0.906 held 9h
+  Tennessee Senate [Democratic]            NO      59 @0.885 mark 0.890 fair 0.961 held 6h
+  Virginia Senate [Republican]             NO    3428 @0.909 mark 0.905 fair 0.985 held 6h
+  Rhode Island Governor [Republican]       NO    6604 @0.909 mark 0.905 fair 0.996 held 9h
+  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.880 fair 0.988 held 9h
+  Rhode Island Senate [Republican]         NO    7017 @0.855 mark 0.870 fair 0.987 held 9h
+  Mississippi Senate [Democratic]          NO    7278 @0.824 mark 0.810 fair 0.885 held 7h
+  Mississippi Senate [Republican]          YES   6114 @0.825 mark 0.820 fair 0.890 held 9h
+  Hawaii Governor [Democratic]             YES   6683 @0.898 mark 0.895 fair 0.983 held 8h
 
 Trades last 2h (0):
 
 Arb baskets held (5):
   Alabama Senate                            13411 sets cost 0.990 pays ≥1 sell-now 0.975
-  Alaska Senate                             15578 sets cost 0.984 pays ≥1 sell-now 0.975
+  Alaska Senate                             15578 sets cost 0.984 pays ≥1 sell-now 0.965
   Arizona Governor                           2642 sets cost 0.988 pays ≥1 sell-now 0.970
   California Governor                        1586 sets cost 0.990 pays ≥1 sell-now 0.970
-  Delaware Senate                            1407 sets cost 0.986 pays ≥1 sell-now 0.970
+  Delaware Senate                            1407 sets cost 0.986 pays ≥1 sell-now 0.975
 Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.060, Montana Senate +0.050, Nebraska Senate +0.040
 
-Opportunities this run (421 priced cycles):
-  price gaps: 50 markets reached ≥0.04, 66 more reached ≥0.02 (near misses), of 191 with a fair value
-  best gaps: Rhode Island Senate [Republica +0.122, Rhode Island Senate [Democrati +0.113, Rhode Island Governor [Republi +0.090
-  arb: 47 races reached ≥0.01; best: Rhode Island Governor +0.070, Montana Senate +0.055, Nebraska Senate +0.040
+Opportunities this run (410 priced cycles):
+  price gaps: 47 markets reached ≥0.04, 68 more reached ≥0.02 (near misses), of 192 with a fair value
+  best gaps: Rhode Island Senate [Republica +0.117, Rhode Island Senate [Democrati +0.108, Rhode Island Governor [Republi +0.085
+  arb: 50 races reached ≥0.01; best: Rhode Island Governor +0.065, Montana Senate +0.055, Nebraska Senate +0.040
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.040, Maine Governor +0.035, Louisiana Senate +0.020, SC-01 House race +0.015
-  reference moved ≥3 pts this run (news?): South Carolina Senate [Democra ref +0.035, Cup +0.015; South Carolina Senate [Republi ref -0.030, Cup -0.008
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.035, Maine Governor +0.030, IA-02 House race +0.030, MN-05 House race +0.020
   45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-  Rhode Island Senate [Republican]         buy NO  edge +0.117
-  Rhode Island Senate [Democratic]         buy YES edge +0.108
+  Rhode Island Senate [Republican]         buy NO  edge +0.112
+  Rhode Island Senate [Democratic]         buy YES edge +0.103
   Rhode Island Governor [Republican]       buy NO  edge +0.085
   Hawaii Governor [Democratic]             buy YES edge +0.078
-  Virginia Senate [Republican]             buy NO  edge +0.075
-
-Alerts/errors last 2h (1):
-  19:13 ERROR AttributeError: 'NoneType' object has no attribute 'get'
+  Colorado Senate [Republican]             buy NO  edge +0.074

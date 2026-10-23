@@ -96,3 +96,12 @@ Trades: 0 (no gap trades, no new baskets, no unwinds) · best: n/a · worst: n/a
 💡 Improve (needs your OK): 7h-old conv positions have not converged (RI Gov 0.905 vs fair 0.995, Hawaii 0.900 vs 0.983); too early to tell if gaps close or the fair value is stale; check whether the Cup lags Kalshi by design before adding size.
 🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.04, Maine Gov +0.035 (third-party risk); NO-arb RI Gov +0.07, Montana +0.055; SC Senate ref moved 3.5pts, Cup only 1.5 (news lag); 45 markets unmapped. Hawaii/RI recur every run.
 🔧 Fixed: null body from positions/prices no longer crashes the cycle (+test, 38 pass).
+
+## 2026-10-23T21:37Z run
+LIVE · health OK (kalshi 429s, 2 API errors) · P&L run +0 / all-time -838 · open MTM -618
+Trades: 0 (no gap trades, no baskets, no unwinds) · best: n/a · worst: n/a
+✅ Went well: flat run, no new realised loss; 410 cycles, 192/192 priced, no crashes after the null-body fix.
+❌ Went wrong: 0 entries despite 47 markets with gap >=0.04 (RI Senate R +0.117), likely cash-limited; open MTM -449 -> -618; 10 conv positions held 6-9h with no convergence.
+💡 Improve (needs your OK): 9h-old conv positions not converging (RI Gov 0.905 vs fair 0.996, Hawaii 0.895 vs 0.983); fair values may be stale or Cup lags by design; consider lower conv size / MAX_HOLD_HOURS. Too early to be sure.
+🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.035, Maine Gov +0.03, IA-02 +0.03 (third-party risk); NO-arb RI Gov +0.065, Montana +0.055 (cash-limited); 45 markets unmapped. Hawaii/RI recur every run.
+🔧 Fixed: nothing (no code bug).
