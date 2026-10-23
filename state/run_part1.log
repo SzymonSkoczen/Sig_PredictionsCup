@@ -1,93 +1,150 @@
-2026-10-22 22:52:13,420 INFO sigcup.cli: mode: paper until 2026-10-23T00:00:00+01:00
-2026-10-22 22:52:14,058 INFO sigcup.sig_api: using tournament midterm-elections
-2026-10-22 22:52:14,233 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
-2026-10-22 22:52:15,958 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-22 22:52:17,519 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:17,959 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:52:18,409 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x539 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:18,759 INFO sigcup.notify: 📊 SIG Cup bot report
-Mode: PAPER (paper until 2026-10-23T00:00:00+01:00) | 2026-10-22 22:52 UTC
+2026-10-23 13:57:03,528 INFO sigcup.cli: mode: live
+2026-10-23 13:57:04,192 INFO sigcup.sig_api: using tournament midterm-elections
+2026-10-23 13:57:05,897 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 13:57:06,356 INFO sigcup.bot: resynced from exchange: 14 arb legs, 7 other positions
+2026-10-23 13:57:09,689 INFO sigcup.bot: [live] sent SELL NO basket CA-22 House race x300 @ 0.975/set 
+2026-10-23 13:57:10,494 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x102 @ 0.975/set 
+2026-10-23 13:57:11,131 INFO sigcup.bot: [live] sent BUY NO 17 Rhode Island Senate [Republican] @ 0.855 (fair 0.985, edge 0.130)
+2026-10-23 13:57:11,720 INFO sigcup.notify: 📊 SIG Cup bot report
+Mode: LIVE (live) | 2026-10-23 13:57 UTC
 Health: OK | up 0h00m | cycles 1 | last good cycle 0s ago | consecutive errors 0
-SIG API: reads 14/70/min, writes 0/20/min, errors total 0
-Markets: 0 mapped, 0 with a fair value
+SIG API: reads 17/70/min, writes 3/20/min, errors total 0
+kalshi: last ok 4s ago, 192 quotes, 0 failures
+Markets: 192 mapped, 191 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM -47
-Account: periodEnd=2026-10-22T22:52:18.657Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
+Bot P&L: realized -347 (last 2h), -347 today, -347 all-time | open MTM -1,704
+Account: periodEnd=2026-10-23T13:57:11.599Z, unrealizedPnl=-594.07, totalAccountValue=99061.12, totalHoldingsValue=88683.45, totalCostBasis=89277.53, roi=-0.94
 
-Open positions (0):
+Open positions (7):
+  WA-03 House race [Republican]            NO     253 @0.850 mark 0.845 fair 0.926 held 118m
+  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.845 fair 0.902 held 2h
+  Rhode Island Governor [Republican]       NO    5621 @0.910 mark 0.895 fair 0.995 held 118m
+  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.865 fair 0.986 held 118m
+  Rhode Island Senate [Republican]         NO    7000 @0.855 mark 0.850 fair 0.985 held 118m
+  Mississippi Senate [Republican]          YES   1284 @0.828 mark 0.820 fair 0.904 held 118m
+  Hawaii Governor [Democratic]             YES    103 @0.890 mark 0.885 fair 0.988 held 27m
 
-Trades last 2h (6):
-  22:52 arb BUY NO 368 AZ-01 House race [Democratic] @0.160 (arb +0.010/set)
-  22:52 arb BUY NO 368 AZ-01 House race [Republican] @0.830 (arb +0.010/set)
-  22:52 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
-  22:52 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
-  22:52 arb BUY NO 539 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
-  22:52 arb BUY NO 539 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+Trades last 2h (87):
+  12:28 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
+  12:28 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
+  12:28 conv BUY YES 1121 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:28 arb SELL NO 150 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -1
+  12:28 arb SELL NO 150 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -1
+  12:28 conv BUY YES 168 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:30 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
+  12:30 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
+  12:30 conv BUY YES 356 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:30 conv BUY NO 731 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:48 arb SELL NO 1000 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -8
+  12:48 arb SELL NO 1000 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -5
+  12:48 conv BUY NO 1071 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:50 arb SELL NO 700 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -6
+  12:50 arb SELL NO 700 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -4
+  12:50 conv BUY NO 750 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:52 arb SELL NO 300 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -2
+  12:52 arb SELL NO 300 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -2
+  12:52 conv BUY NO 322 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  13:29 arb SELL NO 39 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
+  13:29 arb SELL NO 39 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
+  13:29 conv BUY YES 43 Hawaii Governor [Democratic] @0.890 (edge 0.097)
+  13:33 arb SELL NO 55 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
+  13:33 arb SELL NO 55 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
+  13:33 conv BUY YES 60 Hawaii Governor [Democratic] @0.890 (edge 0.097)
 
-Arb baskets held (3):
-  AZ-01 House race                            368 sets cost 0.990 pays ≥1 sell-now 0.975
-  Alabama Senate                             2000 sets cost 0.983 pays ≥1 sell-now 0.965
-  Alaska Governor                             539 sets cost 0.990 pays ≥1 sell-now 0.980
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Montana Senate +0.065, Rhode Island Governor +0.055, Nebraska Senate +0.050
+Arb baskets held (7):
+  Alabama Senate                            15637 sets cost 0.990 pays ≥1 sell-now 0.975
+  Alaska Senate                             42670 sets cost 0.984 pays ≥1 sell-now 0.960
+  Arizona Governor                           6361 sets cost 0.988 pays ≥1 sell-now 0.965
+  CA-22 House race                            914 sets cost 0.987 pays ≥1 sell-now 0.975
+  California Governor                        1586 sets cost 0.990 pays ≥1 sell-now 0.965
+  Delaware Senate                            1407 sets cost 0.986 pays ≥1 sell-now 0.970
+  Florida Senate                             2002 sets cost 0.987 pays ≥1 sell-now 0.965
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.085, Montana Senate +0.065, Nebraska Senate +0.045
 
 Opportunities this run (1 priced cycles):
-  price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
-  arb: 43 races reached ≥0.01; best: Montana Senate +0.065, Rhode Island Governor +0.055, Nebraska Senate +0.050
-  depth at best price: median 2,203 shares, max 81,522 (6 books read)
+  price gaps: 43 markets reached ≥0.04, 72 more reached ≥0.02 (near misses), of 191 with a fair value
+  best gaps: Rhode Island Senate [Republica +0.130, Rhode Island Senate [Democrati +0.116, Hawaii Governor [Democratic] +0.098
+  arb: 39 races reached ≥0.01; best: Rhode Island Governor +0.085, Montana Senate +0.065, Nebraska Senate +0.045
+  depth at best price: median 857 shares, max 4,713 (6 books read)
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.045, New Hampshire Senate +0.025, Massachusetts Governor +0.025, Maine Governor +0.020
-  237 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.045, MN-05 House race +0.030, Maine Governor +0.025, New Hampshire Senate +0.020
+  45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-2026-10-22 22:52:30,492 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:30,932 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:52:31,432 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:42,966 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:43,427 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:52:43,881 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:55,439 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:52:55,883 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:52:56,338 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:07,897 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:08,328 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:53:08,772 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:20,344 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:20,875 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:53:21,338 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:32,842 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:33,287 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:53:33,727 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:45,199 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:45,600 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:53:45,993 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:57,504 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:53:57,962 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:53:58,418 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:09,936 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:10,373 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:54:10,800 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:22,367 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:22,813 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:54:23,274 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x539 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:34,904 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:35,377 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:54:35,899 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:47,448 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:47,880 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:54:48,340 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:54:59,891 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:00,369 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:55:00,840 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:12,386 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:12,823 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:55:13,270 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:24,929 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:25,390 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
-2026-10-22 22:55:25,815 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:37,327 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
-2026-10-22 22:55:37,753 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x340 @ 0.980/set (locks +0.020/set)
-2026-10-22 22:55:38,282 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x7 @ 0.990/set (locks +0.010/set)
-2026-10-22 23:22:20,225 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-22 23:52:32,846 INFO sigcup.bot: arb: 117 races with 2+ party markets
+  Rhode Island Senate [Republican]         buy NO  edge +0.130
+  Rhode Island Senate [Democratic]         buy YES edge +0.116
+  Hawaii Governor [Democratic]             buy YES edge +0.098
+  Rhode Island Governor [Republican]       buy NO  edge +0.095
+  Mississippi Senate [Democratic]          buy NO  edge +0.083
+2026-10-23 13:57:24,366 INFO sigcup.bot: [live] sent BUY YES 424 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
+2026-10-23 13:57:36,964 INFO sigcup.bot: sell no CA-22 House race [Democratic]: filled 300/300
+2026-10-23 13:57:36,966 INFO sigcup.bot: sell no CA-22 House race [Republican]: filled 300/300
+2026-10-23 13:57:36,967 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 102/102
+2026-10-23 13:57:36,968 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 102/102
+2026-10-23 13:57:36,969 INFO sigcup.bot: buy no Rhode Island Senate [Republican]: filled 17/17
+2026-10-23 13:57:38,712 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x104 @ 0.975/set 
+2026-10-23 13:57:39,760 INFO sigcup.bot: [live] sent BUY NO 113 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
+2026-10-23 13:57:51,519 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 424/424
+2026-10-23 13:58:06,895 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 104/104
+2026-10-23 13:58:06,896 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 104/104
+2026-10-23 13:58:06,897 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 113/113
+2026-10-23 13:58:08,711 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
+2026-10-23 13:58:09,810 INFO sigcup.bot: [live] sent BUY YES 328 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
+2026-10-23 13:58:34,775 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
+2026-10-23 13:58:34,776 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
+2026-10-23 13:58:34,777 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 328/328
+2026-10-23 13:58:36,589 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
+2026-10-23 13:58:37,691 INFO sigcup.bot: [live] sent BUY YES 329 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
+2026-10-23 13:59:02,415 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
+2026-10-23 13:59:02,417 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
+2026-10-23 13:59:02,418 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 329/329
+2026-10-23 13:59:31,459 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
+2026-10-23 13:59:32,539 INFO sigcup.bot: [live] sent BUY YES 328 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
+2026-10-23 13:59:45,844 INFO sigcup.bot: [live] sent BUY NO 1 Mississippi Senate [Democratic] @ 0.820 (fair 0.901, edge 0.082)
+2026-10-23 14:00:03,553 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
+2026-10-23 14:00:03,556 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
+2026-10-23 14:00:03,557 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 328/328
+2026-10-23 14:00:17,105 INFO sigcup.bot: buy no Mississippi Senate [Democratic]: filled 1/1
+2026-10-23 14:00:35,041 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
+2026-10-23 14:00:36,154 INFO sigcup.bot: [live] sent BUY NO 325 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
+2026-10-23 14:01:01,084 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
+2026-10-23 14:01:01,085 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
+2026-10-23 14:01:01,088 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 325/325
+2026-10-23 14:05:50,427 INFO sigcup.bot: [live] sent SELL NO basket CA-22 House race x614 @ 0.975/set 
+2026-10-23 14:05:51,518 INFO sigcup.bot: [live] sent BUY NO 545 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
+2026-10-23 14:05:52,070 INFO sigcup.bot: [live] sent BUY YES 120 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:06:17,259 INFO sigcup.bot: sell no CA-22 House race [Democratic]: filled 614/614
+2026-10-23 14:06:17,260 INFO sigcup.bot: sell no CA-22 House race [Republican]: filled 614/614
+2026-10-23 14:06:17,262 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 545/545
+2026-10-23 14:06:17,263 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 120/120
+2026-10-23 14:06:19,189 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x5 @ 0.975/set 
+2026-10-23 14:06:20,619 INFO sigcup.bot: [live] sent BUY YES 5 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:06:45,357 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 5/5
+2026-10-23 14:06:45,359 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 5/5
+2026-10-23 14:06:45,360 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 5/5
+2026-10-23 14:21:51,263 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-26-R%2CHOUSEPA8-26-D%2CHOUSEPA8-26-R%2CHOUSETX15-26-D%2CHOUSETX15-26-R%2CHOUSETX28-26-D%2CHOUSETX28-26-R%2CHOUSEVA1-26-D%2CHOUSEVA1-26-R%2CHOUSEVA2-26-D%2CHOUSEVA2-26-R%2CHOUSEVA7-26-D%2CHOUSEVA7-26-R%2CHOUSEWA3-26-D%2CHOUSEWA3-26-R%2CHOUSEWI1-26-D%2CHOUSEWI1-26-R%2CHOUSEWI3-26-D%2CHOUSEWI3-26-R%2CSENATEAK-26-D%2CSENATEAK-26-R%2CSENATEAL-26-D%2CSENATEAL-26-R%2CSENATEAR-26-D%2CSENATEAR-26-R%2CSENATECO-26-D%2CSENATECO-26-R%2CSENATEDE-26-D%2CSENATEDE-26-R%2CSENATEFLS-26-D%2CSENATEFLS-26-R%2CSENATEGA-26-D%2CSENATEGA-26-R%2CSENATEIA-26-D%2CSENATEIA-26-R%2CSENATEID-26-D%2CSENATEID-26-R%2CSENATEIL-26-D%2CSENATEIL-26-R%2CSENATEKS-26-D%2CSENATEKS-26-R%2CSENATELA-26-D%2CSENATELA-26-R%2CSENATEMA-26-D%2CSENATEMA-26-R%2CSENATEME-26-D%2CSENATEME-26-R%2CSENATEMI-26-D%2CSENATEMI-26-R%2CSENATEMN-26-D%2CSENATEMN-26-R%2CSENATEMS-26-D%2CSENATEMS-26-R%2CSENATEMT-26-D%2CSENATEMT-26-R%2CSENATENC-26-D%2CSENATENC-26-R%2CSENATENE-26-D%2CSENATENE-26-R%2CSENATENH-26-D%2CSENATENH-26-R%2CSENATENJ-26-D%2CSENATENJ-26-R%2CSENATENM-26-D%2CSENATENM-26-R%2CSENATEOK-26-D%2CSENATEOK-26-R%2CSENATEOR-26-D%2CSENATEOR-26-R%2CSENATERI-26-D%2CSENATERI-26-R%2CSENATESC-26-D%2CSENATESC-26-R%2CSENATESD-26-D%2CSENATESD-26-R%2CSENATETN-26-D%2CSENATETN-26-R%2CSENATETX-26-D%2CSENATETX-26-R%2CSENATEVA-26-D%2CSENATEVA-26-R%2CSENATEWV-26-D%2CSENATEWV-26-R%2CSENATEWY-26-D%2CSENATEWY-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-23 14:27:10,310 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 14:29:20,369 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x353 @ 0.975/set 
+2026-10-23 14:29:21,625 INFO sigcup.bot: [live] sent BUY YES 383 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:29:46,505 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 353/353
+2026-10-23 14:29:46,506 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 353/353
+2026-10-23 14:29:46,508 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 383/383
+2026-10-23 14:32:42,875 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x5 @ 0.975/set 
+2026-10-23 14:32:44,146 INFO sigcup.bot: [live] sent BUY YES 5 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:33:08,505 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 5/5
+2026-10-23 14:33:08,508 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 5/5
+2026-10-23 14:33:08,509 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 5/5
+2026-10-23 14:37:57,547 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x32 @ 0.975/set 
+2026-10-23 14:37:58,734 INFO sigcup.bot: [live] sent BUY YES 35 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
+2026-10-23 14:38:23,115 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 32/32
+2026-10-23 14:38:23,116 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 32/32
+2026-10-23 14:38:23,117 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 35/35
+2026-10-23 14:38:24,941 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
+2026-10-23 14:38:26,175 INFO sigcup.bot: [live] sent BUY YES 325 Hawaii Governor [Democratic] @ 0.900 (fair 0.986, edge 0.086)
+2026-10-23 14:38:54,845 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
+2026-10-23 14:38:54,847 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
+2026-10-23 14:38:54,848 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 325/325
+2026-10-23 14:49:08,560 WARNING sigcup.sig_api: GET /exchanges/prices failed (0 TRANSPORT_ERROR: The read operation timed out), retrying in 1s
