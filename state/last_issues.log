@@ -1,6 +1,6 @@
-2026-10-23 05:56:37,876 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
-2026-10-23 05:56:39,618 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-23 05:56:41,473 ERROR sigcup.bot: cycle failed
+2026-10-23 07:57:50,632 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
+2026-10-23 07:57:52,244 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 07:57:54,088 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -11,17 +11,17 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-  04:51 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  04:56 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:01 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:06 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:11 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:17 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:22 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:27 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:32 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  05:56 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-2026-10-23 05:57:03,630 ERROR sigcup.bot: cycle failed
+  06:52 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  06:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:02 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:07 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:12 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:17 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:22 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:27 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:32 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  07:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 07:58:16,362 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -32,7 +32,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 05:57:45,847 ERROR sigcup.bot: cycle failed
+2026-10-23 07:58:58,375 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -43,7 +43,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 05:59:07,790 ERROR sigcup.bot: cycle failed
+2026-10-23 08:00:20,522 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -54,7 +54,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:01:49,782 ERROR sigcup.bot: cycle failed
+2026-10-23 08:03:03,187 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -65,7 +65,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:06:51,611 ERROR sigcup.bot: cycle failed
+2026-10-23 08:08:05,338 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -76,7 +76,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:11:53,595 ERROR sigcup.bot: cycle failed
+2026-10-23 08:13:07,275 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -87,7 +87,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:16:59,334 ERROR sigcup.bot: cycle failed
+2026-10-23 08:18:09,138 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -98,7 +98,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:22:01,427 ERROR sigcup.bot: cycle failed
+2026-10-23 08:23:10,978 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -109,7 +109,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:27:05,195 ERROR sigcup.bot: cycle failed
+2026-10-23 08:28:14,513 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -120,7 +120,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:32:06,963 ERROR sigcup.bot: cycle failed
+2026-10-23 08:33:16,387 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -131,7 +131,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:37:08,823 ERROR sigcup.bot: cycle failed
+2026-10-23 08:38:18,198 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -142,7 +142,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:42:10,665 ERROR sigcup.bot: cycle failed
+2026-10-23 08:43:20,221 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -153,7 +153,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:47:12,463 ERROR sigcup.bot: cycle failed
+2026-10-23 08:48:22,043 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -164,7 +164,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:52:14,232 ERROR sigcup.bot: cycle failed
+2026-10-23 08:53:23,839 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -175,7 +175,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 06:57:17,605 ERROR sigcup.bot: cycle failed
+2026-10-23 08:58:27,458 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -186,7 +186,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:02:19,695 ERROR sigcup.bot: cycle failed
+2026-10-23 09:03:29,301 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -197,7 +197,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:07:21,572 ERROR sigcup.bot: cycle failed
+2026-10-23 09:08:31,112 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -208,7 +208,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:12:23,630 ERROR sigcup.bot: cycle failed
+2026-10-23 09:13:33,051 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -219,7 +219,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:17:25,461 ERROR sigcup.bot: cycle failed
+2026-10-23 09:18:35,019 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -230,7 +230,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:22:27,440 ERROR sigcup.bot: cycle failed
+2026-10-23 09:23:37,061 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -241,7 +241,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:27:30,771 ERROR sigcup.bot: cycle failed
+2026-10-23 09:28:40,728 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -252,7 +252,7 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:32:32,714 ERROR sigcup.bot: cycle failed
+2026-10-23 09:33:42,593 ERROR sigcup.bot: cycle failed
 Traceback (most recent call last):
   File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
     self.cycle()
@@ -263,4 +263,4 @@ Traceback (most recent call last):
     self.execute_basket(o)
     ~~~~~~~~~~~~~~~~~~~^^^
 --
-2026-10-23 07:36:38,361 ERROR sigcup.bot: cancel-all on shutdown failed: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 09:37:51,167 ERROR sigcup.bot: cancel-all on shutdown failed: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
