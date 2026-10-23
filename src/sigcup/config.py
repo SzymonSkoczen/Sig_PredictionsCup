@@ -63,6 +63,8 @@ class Settings:
     # baskets at up to ARB_UNWIND_MAX_LOSS per set below cost.
     arb_max_hold_hours: float = 12.0
     arb_unwind_max_loss: float = 0.015
+    # Sell baskets at a loss to free cash for gap trades. Off: baskets are held to take-profit/timeout.
+    arb_unwind_for_cash: bool = False
     # Arb buys only spend cash above this, and baskets are sold to get back to it: keeps money free
     # for gap trades and the next opportunity.
     arb_cash_floor: float = 25_000.0

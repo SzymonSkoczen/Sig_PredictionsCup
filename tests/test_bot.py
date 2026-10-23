@@ -300,6 +300,7 @@ def test_live_reconcile_with_negative_no_quantity(tmp_path):
 def test_arb_unwinds_to_free_cash_then_take_profit(tmp_path):
     from test_arb import books, mkt
     bot, clock = make_bot(tmp_path, live=True)
+    bot.s.arb_unwind_for_cash = True
     bot.map = {}
     bot.api.markets_ = [mkt("d", "Democratic"), mkt("r", "Republican")]
     bot.refresh_races()
@@ -339,3 +340,18 @@ def test_arb_no_unwind_when_cash_ok_but_take_profit(tmp_path):
     bot.cycle()
     [(kind, legs)] = [x for x in bot.api.sent if x[0] == "multi"]
     assert legs[0]["action"] == "sell" and legs[0]["quantity"] == 1000
+
+
+def test_arb_no_unwind_for_cash_by_default(tmp_path):
+    from test_arb import books, mkt
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.map = {}
+    bot.api.markets_ = [mkt("d", "Democratic"), mkt("r", "Republican")]
+    bot.refresh_races()
+    bot.api.positions_ = [Position("d", "1", "", "no", 10_000, 0.55, 0), Position("r", "2", "", "no", 10_000, 0.44, 0)]
+    bot.api.holdings_value = 99_990
+    bot.resync_from_exchange()
+    bot.api.prices_ = {"d": (0.40, 0.455), "r": (0.50, 0.565)}
+    bot.api.books_ = books([(0.40, 50_000)], [(0.50, 50_000)], d_asks=[(0.455, 50_000)], r_asks=[(0.565, 50_000)])
+    bot.cycle()
+    assert not [x for x in bot.api.sent if x[0] == "multi"]  # cash is short, but baskets are held

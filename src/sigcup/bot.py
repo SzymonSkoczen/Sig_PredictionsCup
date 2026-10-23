@@ -394,7 +394,7 @@ class Bot:
         conv_busy = {h.exchange_id for h in self.ledger.holdings("conv")}
         capital = sum(h.qty * h.avg_cost for h in held.values())
         # SUSQies to free by selling baskets: over the arb budget, or cash below the floor
-        to_free = max(capital - s.arb_max_capital, s.arb_cash_floor - self.cash, 0.0)
+        to_free = max(capital - s.arb_max_capital, s.arb_cash_floor - self.cash, 0.0) if s.arb_unwind_for_cash else 0.0
 
         def exit_value(r: Race) -> float:  # sale proceeds minus cost per set; best exits first
             v = screen_sell(r, self.prices)
