@@ -56,9 +56,16 @@ class Settings:
 
     arb_enabled: bool = True
     arb_min_profit: float = 0.01
-    arb_exit_profit: float = 0.01
+    arb_exit_profit: float = 0.005
     arb_max_sets: int = 2_000
-    arb_max_capital: float = 50_000.0
+    arb_max_capital: float = 40_000.0
+    # Short-term arb: sell baskets held longer than this, and free cash for new trades by selling
+    # baskets at up to ARB_UNWIND_MAX_LOSS per set below cost.
+    arb_max_hold_hours: float = 12.0
+    arb_unwind_max_loss: float = 0.015
+    # Arb buys only spend cash above this, and baskets are sold to get back to it: keeps money free
+    # for gap trades and the next opportunity.
+    arb_cash_floor: float = 25_000.0
     arb_depth_fraction: float = 0.5
     arb_repair_slippage: float = 0.02
     arb_repair_minutes: float = 10.0

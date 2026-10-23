@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import math
 import logging
 import time
 from dataclasses import dataclass, field
@@ -81,6 +82,7 @@ class Bot:
         self.races: list[Race] = []
         self.mode_note = "live" if live else "paper"
         self.orders_disabled = ""
+        self.cash = s.bankroll
         self._last_races = 0.0
         self._last_ref = 0.0
         self._alerted: set[str] = set()
@@ -121,24 +123,36 @@ class Bot:
         every leg of a race become arb baskets; anything else is a gap-trade holding."""
         now = self.clock()
         pos = {(p.exchange_id, p.side): p for p in self.api.positions() if p.qty >= 1}
+        # keep when each holding was opened, so hold-time exits survive the hourly restarts
+        opened = {(h.exchange_id, h.side): h.opened_at for h in self.ledger.holdings(None)}
+        since = lambda e, side: min(opened.get((e, side), now), now)
         rows, used = [], {}
         for r in self.races:
             legs = [pos.get((e, "no")) for e in r.exchange_ids]
             if all(legs):
                 sets = min(p.qty for p in legs)
                 for p in legs:
-                    rows.append(("arb", p.exchange_id, "no", sets, p.avg_cost, now))
+                    rows.append(("arb", p.exchange_id, "no", sets, p.avg_cost, since(p.exchange_id, "no")))
                     used[(p.exchange_id, "no")] = sets
         for key, p in pos.items():
             rest = p.qty - used.get(key, 0.0)
             if rest >= 1:
-                rows.append(("conv", p.exchange_id, p.side, rest, p.avg_cost, now))
+                rows.append(("conv", p.exchange_id, p.side, rest, p.avg_cost, since(p.exchange_id, p.side)))
         self.ledger.replace_holdings(rows)
         n_arb = len({r[1] for r in rows if r[0] == "arb"})
         note = f"resynced from exchange: {n_arb} arb legs, {sum(1 for r in rows if r[0] == 'conv')} other positions"
         self.ledger.event("INFO", note)
         log.info(note)
         return note
+
+    def free_cash(self) -> float:
+        """Uninvested SUSQies: the exchange's account value minus holdings (live), or the bankroll
+        minus the cost of what the ledger holds (paper)."""
+        if not self.live:
+            return self.s.bankroll - sum(h.qty * h.avg_cost for h in self.ledger.holdings(None))
+        p = self.api.pnl()
+        p = p.get("data", p) if isinstance(p, dict) else {}
+        return float(p.get("totalAccountValue", 0)) - float(p.get("totalHoldingsValue", 0))
 
     def compute_fairs(self) -> None:
         now = self.clock()
@@ -198,6 +212,7 @@ class Bot:
                 self.ledger.event("INFO", note)
                 log.info(note)
 
+        self.cash = self.free_cash()
         ids = list(dict.fromkeys(list(self.map) + [e for r in self.races for e in r.exchange_ids]))
         self.prices = self.api.prices(ids) if ids else {}
         self.track_opportunities()
@@ -353,7 +368,8 @@ class Bot:
             if eid in pending or (eid, other) in held or eid in arb_held:
                 continue
             room = min(s.max_order_cost, s.max_market_cost - cost.get(eid, 0.0),
-                       min(s.max_total_cost, s.bankroll - s.cash_reserve) - total)
+                       min(s.max_total_cost, s.bankroll - s.cash_reserve) - total,
+                       self.cash - s.cash_reserve)
             if room <= 0:
                 continue
             books_left -= 1
@@ -364,18 +380,30 @@ class Bot:
                 self.execute(o)
                 pending.add(eid)
                 total += o.cost
+                self.cash -= o.cost
                 cost[eid] = cost.get(eid, 0.0) + o.cost
 
     def arb(self, pending: set[str], books_left: int, blocked: bool) -> int:
-        """Repair uneven baskets, sell baskets worth more now than at settlement or cost,
-        and buy new NO baskets when a race's YES bids sum above 1 + ARB_MIN_PROFIT."""
+        """Short-term NO-basket trading: repair uneven baskets; sell baskets for a quick profit, when
+        held too long, or to free cash; buy new baskets when a race's YES bids sum above
+        1 + ARB_MIN_PROFIT, using only cash above ARB_CASH_FLOOR."""
         s, now = self.s, self.clock()
         if not s.arb_enabled:
             return books_left
         held = {h.exchange_id: h for h in self.ledger.holdings("arb")}
         conv_busy = {h.exchange_id for h in self.ledger.holdings("conv")}
         capital = sum(h.qty * h.avg_cost for h in held.values())
-        for race in self.races:
+        # SUSQies to free by selling baskets: over the arb budget, or cash below the floor
+        to_free = max(capital - s.arb_max_capital, s.arb_cash_floor - self.cash, 0.0)
+
+        def exit_value(r: Race) -> float:  # sale proceeds minus cost per set; best exits first
+            v = screen_sell(r, self.prices)
+            if v is None or not all(e in held for e in r.exchange_ids):
+                return -9.0
+            return v - sum(held[e].avg_cost for e in r.exchange_ids)
+        races = sorted(self.races, key=lambda r: (not any(e in held for e in r.exchange_ids), -exit_value(r)))
+
+        for race in races:
             ids = race.exchange_ids
             if any(e in pending for e in ids) or books_left < race.k:
                 continue
@@ -400,20 +428,31 @@ class Bot:
                 self._alerted.discard(key)
             sets = int(min(qtys))
             if sets >= 1:
-                bar = exit_bar(race, sum(held[e].avg_cost for e in ids), s.arb_min_profit, s.arb_exit_profit)
+                cost = sum(held[e].avg_cost for e in ids)
+                bar, max_sell, reason = exit_bar(race, cost, s.arb_min_profit, s.arb_exit_profit), sets, "arb take-profit"
+                opened = min(held[e].opened_at for e in ids)
+                if to_free > 0:
+                    bar, reason = min(bar, cost - s.arb_unwind_max_loss), "arb unwind (free cash)"
+                    max_sell = min(sets, math.ceil(to_free / max(cost, 0.01)))
+                elif s.arb_max_hold_hours and now - opened > s.arb_max_hold_hours * 3600:
+                    bar, reason = min(bar, cost - s.arb_unwind_max_loss), "arb timeout"
                 top = screen_sell(race, self.prices)
                 if top is not None and top >= bar:
                     books_left -= race.k
-                    o = plan_sell(race, {e: self.book(e) for e in ids}, sets_held=sets, bar=bar)
+                    o = plan_sell(race, {e: self.book(e) for e in ids}, sets_held=max_sell, bar=bar,
+                                  reason=reason)
                     if o:
                         self.execute_basket(o)
                         pending.update(ids)
+                        freed = o.sets * cost
+                        to_free, capital, self.cash = to_free - freed, capital - freed, self.cash + o.sets * o.per_set
                         continue
-            if blocked or any(e in conv_busy for e in ids):
+            if blocked or to_free > 0 or any(e in conv_busy for e in ids):
                 continue
             edge = screen_buy(race, self.prices)
             # ARB_MAX_SETS caps the sets held per race, not per order (paper re-bought one book to 18k)
-            room = min(int((s.arb_max_capital - capital) / max(race.k - 1, 1)), s.arb_max_sets - sets)
+            budget = min(s.arb_max_capital - capital, self.cash - s.arb_cash_floor)
+            room = min(int(budget / max(race.k - 1, 1)), s.arb_max_sets - sets)
             if edge is None or edge < s.arb_min_profit or room < 1:
                 continue
             books_left -= race.k
@@ -423,6 +462,7 @@ class Bot:
                 self.execute_basket(o)
                 pending.update(ids)
                 capital += o.sets * o.per_set
+                self.cash -= o.sets * o.per_set
         return books_left
 
     def send(self, what: str, place):

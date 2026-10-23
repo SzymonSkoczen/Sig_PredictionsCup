@@ -141,13 +141,14 @@ def plan_buy(race: Race, books: dict[str, Book], *, min_profit: float, max_sets:
     return BasketOrder(race, "buy", sets, limits, avg, f"arb +{payout - sum(avg):.3f}/set")
 
 
-def plan_sell(race: Race, books: dict[str, Book], *, sets_held: int, bar: float) -> BasketOrder | None:
+def plan_sell(race: Race, books: dict[str, Book], *, sets_held: int, bar: float,
+              reason: str = "arb exit") -> BasketOrder | None:
     r = _walk([books[e].sell_levels("no") for e in race.exchange_ids],
               lambda ps: sum(ps) >= bar - 1e-9, sets_held, 1.0)
     if not r:
         return None
     sets, limits, avg = r
-    return BasketOrder(race, "sell", sets, limits, avg, "arb exit")
+    return BasketOrder(race, "sell", sets, limits, avg, reason)
 
 
 def plan_repair(race: Race, held: dict[str, Holding], books: dict[str, Book], *,

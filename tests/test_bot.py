@@ -16,6 +16,7 @@ class FakeApi:
         self.book_ = Book("e1", [Level(0.50, 100)], [Level(0.52, 400)])
         self.positions_ = []
         self.markets_ = []
+        self.holdings_value = 0.0
         self.sent = []
         self.reads = self.writes = RateLimiter(60)
         self.error_count = 0
@@ -41,7 +42,7 @@ class FakeApi:
         return {"ok": True}
 
     def pnl(self):
-        return {"totalPnl": 12.5}
+        return {"totalPnl": 12.5, "totalAccountValue": 100_000, "totalHoldingsValue": self.holdings_value}
 
 
 class FakeFeed:
@@ -275,6 +276,9 @@ def test_no_position_parsed_as_positive_and_resync(tmp_path):
     conv = {(h.exchange_id, h.side): h.qty for h in bot.ledger.holdings("conv")}
     assert arb == {"d": 300, "r": 300}
     assert conv == {("r", "no"): 200, ("e1", "yes"): 40}
+    clock[0] += 3600
+    bot.resync_from_exchange()  # next run: opening times are kept
+    assert {h.opened_at for h in bot.ledger.holdings(None)} == {clock[0] - 3600}
 
 
 def test_live_reconcile_with_negative_no_quantity(tmp_path):
@@ -291,3 +295,47 @@ def test_live_reconcile_with_negative_no_quantity(tmp_path):
     bot.cycle()
     [h] = bot.ledger.holdings()
     assert (h.side, h.qty) == ("no", qty) and len(bot.api.sent) == 1  # credited once, no re-buy
+
+
+def test_arb_unwinds_to_free_cash_then_take_profit(tmp_path):
+    from test_arb import books, mkt
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.map = {}
+    bot.api.markets_ = [mkt("d", "Democratic"), mkt("r", "Republican")]
+    bot.refresh_races()
+    # A 10,000-set basket bought at 0.99/set, and almost no free cash (like the 09:55 run)
+    bot.api.positions_ = [Position("d", "1", "", "no", 10_000, 0.55, 0), Position("r", "2", "", "no", 10_000, 0.44, 0)]
+    bot.api.holdings_value = 99_990
+    bot.resync_from_exchange()
+    # Selling now pays 0.545 + 0.435 = 0.98/set: 0.01 under cost, within ARB_UNWIND_MAX_LOSS
+    bot.api.prices_ = {"d": (0.40, 0.455), "r": (0.50, 0.565)}
+    bot.api.books_ = books([(0.40, 50_000)], [(0.50, 50_000)], d_asks=[(0.455, 50_000)], r_asks=[(0.565, 50_000)])
+    bot.cycle()
+    [(kind, legs)] = [x for x in bot.api.sent if x[0] == "multi"]
+    assert all(l["action"] == "sell" and l["side"] == "no" for l in legs)
+    # needs 24,990 freed (cash floor 25,000, cash 10): more than the whole basket, so all 10,000 sets
+    assert legs[0]["quantity"] == 10_000 and abs(legs[0]["price"] - 0.545) < 1e-9
+    [(_, _, msg)] = bot.ledger.events_since(0, ("TRADE",))
+    assert "SELL NO basket" in msg
+
+
+def test_arb_no_unwind_when_cash_ok_but_take_profit(tmp_path):
+    from test_arb import books, mkt
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.map = {}
+    bot.api.markets_ = [mkt("d", "Democratic"), mkt("r", "Republican")]
+    bot.refresh_races()
+    bot.api.positions_ = [Position("d", "1", "", "no", 1000, 0.55, 0), Position("r", "2", "", "no", 1000, 0.44, 0)]
+    bot.api.holdings_value = 990
+    bot.resync_from_exchange()
+    # 0.98/set: below cost, cash is plentiful and the basket is fresh -> hold
+    bot.api.prices_ = {"d": (0.40, 0.455), "r": (0.50, 0.565)}
+    bot.api.books_ = books([(0.40, 5000)], [(0.50, 5000)], d_asks=[(0.455, 5000)], r_asks=[(0.565, 5000)])
+    bot.cycle()
+    assert not [x for x in bot.api.sent if x[0] == "multi"]
+    # prices move: selling pays 0.56 + 0.44 = 1.00 >= cost 0.99 + 0.005 -> take profit
+    bot.api.prices_ = {"d": (0.40, 0.44), "r": (0.50, 0.56)}
+    bot.api.books_ = books([(0.40, 5000)], [(0.50, 5000)], d_asks=[(0.44, 5000)], r_asks=[(0.56, 5000)])
+    bot.cycle()
+    [(kind, legs)] = [x for x in bot.api.sent if x[0] == "multi"]
+    assert legs[0]["action"] == "sell" and legs[0]["quantity"] == 1000
