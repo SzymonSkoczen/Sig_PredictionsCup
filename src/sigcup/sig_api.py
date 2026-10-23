@@ -235,7 +235,7 @@ class SigApi:
         out: dict[str, tuple[float | None, float | None]] = {}
         for i in range(0, len(exchange_ids), 100):
             r = self.get("/exchanges/prices", ids=",".join(exchange_ids[i:i + 100]),
-                         tournamentId=self.tournament_id)
+                         tournamentId=self.tournament_id) or {}
             for p in r.get("data", []):
                 eid = str(p.get("exchangeId") or p.get("id"))
                 out[eid] = (_f(p.get("bestBid")), _f(p.get("bestAsk")))
@@ -248,7 +248,7 @@ class SigApi:
         return b
 
     def positions(self) -> list[Position]:
-        r = self.get(f"/tournaments/{self.slug}/portfolio/positions")
+        r = self.get(f"/tournaments/{self.slug}/portfolio/positions") or {}
         return [Position.from_api(p) for p in r.get("positions", r.get("data", []))]
 
     def pnl(self) -> dict[str, Any]:
