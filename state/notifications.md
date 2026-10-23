@@ -24,3 +24,12 @@ Trades: 0 (gap trades 0, arb baskets 0; paper arb capped at held baskets)
 💡 Improve (needs your OK): too early to tell on thresholds; arb edge ≥0.01 reached in 51 races but capital cap blocks new buys, consider ARB_MAX_CAPITAL once live works.
 🔎 Opportunities: arb Rhode Island Gov +0.085, Montana Sen +0.080 (recurring); two-party YES<1: MN-05 +0.060, Maine Gov +0.025 (risk: third-party win). 237 unmapped markets.
 🔧 Fixed: nothing (no code bug).
+
+## 2026-10-23T05:36Z run
+🚨 LIVE, 0 trades: every cycle failed (24 errors) — 403 INSUFFICIENT_SCOPES, SIG_API_KEY lacks "trade" scope. ACTION: regenerate the key with trade scope. Health DEGRADED · P&L run +0 / all-time +0 · open MTM +0 (account 100000, no holdings)
+Trades: 0 (gap 0, arb baskets 0). No uneven basket, no convergence positions.
+✅ Went well: reads fine, 117 races watched, no crashes; order shape reached the API (rejected only on scope).
+❌ Went wrong: live cannot place any order (scope); market map has 0 enabled rows so gap trading is off (237 markets unmapped).
+💡 Improve: once trading works, arb edge ≥0.01 appeared in 47 races (best Rhode Island Gov +0.085, Montana Sen +0.065, depth median 2,685 shares) — consider a verified market map to enable gap trades. Not applied.
+🔎 Opportunities: NO-basket arb Rhode Island Gov +0.085, Montana Sen +0.065, Nebraska Sen +0.040; two-party YES<1: MN-05 +0.050, Maine Gov +0.025, NH Sen +0.020, Mass Gov +0.020 (risk: third-party win).
+🔧 Fixed: nothing (scope error is a key/permission issue, not a code bug).

@@ -1,9 +1,259 @@
-2026-10-23 01:57:49,605 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
-2026-10-23 01:57:51,291 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-23 01:57:52,541 INFO sigcup.notify: 📊 SIG Cup bot report
-Mode: PAPER (paper (no --live flag)) | 2026-10-23 01:57 UTC
-Health: OK | up 0h00m | cycles 1 | last good cycle 0s ago | consecutive errors 0
-SIG API: reads 8/70/min, writes 0/20/min, errors total 0
-Markets: 0 mapped, 0 with a fair value
-Entries: active
-Arb: 117 races watched
+2026-10-23 03:56:17,012 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
+2026-10-23 03:56:18,714 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 03:56:20,639 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+  01:56 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  01:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+  03:56 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 03:56:42,966 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 03:57:25,050 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 03:58:47,104 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:01:29,307 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:06:31,305 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:11:33,146 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:16:35,040 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:21:37,108 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:26:40,556 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:31:42,439 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:36:44,419 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:41:46,350 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:46:48,405 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:51:50,295 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 04:56:53,899 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:01:55,890 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:06:57,807 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:11:59,734 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:17:01,728 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:22:03,686 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:27:07,321 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:32:09,073 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+2026-10-23 05:36:17,490 ERROR sigcup.bot: cancel-all on shutdown failed: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
