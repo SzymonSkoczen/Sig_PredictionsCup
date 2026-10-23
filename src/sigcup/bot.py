@@ -116,6 +116,30 @@ class Bot:
         self._last_races = self.clock()
         log.info("arb: %d races with 2+ party markets", len(self.races))
 
+    def resync_from_exchange(self) -> str:
+        """Live start-up: rebuild the ledger from the exchange's positions. Even NO holdings across
+        every leg of a race become arb baskets; anything else is a gap-trade holding."""
+        now = self.clock()
+        pos = {(p.exchange_id, p.side): p for p in self.api.positions() if p.qty >= 1}
+        rows, used = [], {}
+        for r in self.races:
+            legs = [pos.get((e, "no")) for e in r.exchange_ids]
+            if all(legs):
+                sets = min(p.qty for p in legs)
+                for p in legs:
+                    rows.append(("arb", p.exchange_id, "no", sets, p.avg_cost, now))
+                    used[(p.exchange_id, "no")] = sets
+        for key, p in pos.items():
+            rest = p.qty - used.get(key, 0.0)
+            if rest >= 1:
+                rows.append(("conv", p.exchange_id, p.side, rest, p.avg_cost, now))
+        self.ledger.replace_holdings(rows)
+        n_arb = len({r[1] for r in rows if r[0] == "arb"})
+        note = f"resynced from exchange: {n_arb} arb legs, {sum(1 for r in rows if r[0] == 'conv')} other positions"
+        self.ledger.event("INFO", note)
+        log.info(note)
+        return note
+
     def compute_fairs(self) -> None:
         now = self.clock()
         s = self.s
@@ -562,6 +586,9 @@ class Bot:
                                f"reports every {s.report_interval_hours:g}h, channels: {', '.join(self.notifier.channels) or 'log only'}")
         if not self.map:
             log.warning("market map %s has no enabled rows: nothing to trade", s.map_path)
+        if self.live:
+            self.refresh_races()
+            self.resync_from_exchange()
         try:
             while deadline is None or self.clock() < deadline:
                 try:

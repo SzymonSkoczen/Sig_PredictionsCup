@@ -254,3 +254,40 @@ def test_arb_sets_capped_per_race_across_cycles(tmp_path):
     for _ in range(5):  # paper books never deplete: must stop at the cap
         bot.cycle()
     assert {h.exchange_id: h.qty for h in bot.ledger.holdings("arb")} == {"d": 300, "r": 300}
+
+
+def test_no_position_parsed_as_positive_and_resync(tmp_path):
+    from sigcup.sig_api import Exchange, Market
+    raw = {"exchangeId": "d", "marketId": "1", "marketTitle": "x", "option": "YES", "quantity": -300,
+           "avgCost": 0.55, "lots": [{"side": "NO", "quantity": 300}]}
+    p = Position.from_api(raw)
+    assert (p.side, p.qty, p.avg_cost) == ("no", 300.0, 0.55)
+    assert Position.from_api({**raw, "lots": []}).side == "no"
+
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.api.markets_ = [Market("m1", "Will the Democratic Party win the Ohio Senate?", "open", None, [Exchange("d", None)]),
+                        Market("m2", "Will the Republican Party win the Ohio Senate?", "open", None, [Exchange("r", None)])]
+    bot.refresh_races()
+    bot.api.positions_ = [Position("d", "1", "", "no", 300, 0.55, 0), Position("r", "2", "", "no", 500, 0.43, 0),
+                          Position("e1", "3", "", "yes", 40, 0.5, 0)]
+    bot.resync_from_exchange()
+    arb = {h.exchange_id: h.qty for h in bot.ledger.holdings("arb")}
+    conv = {(h.exchange_id, h.side): h.qty for h in bot.ledger.holdings("conv")}
+    assert arb == {"d": 300, "r": 300}
+    assert conv == {("r", "no"): 200, ("e1", "yes"): 40}
+
+
+def test_live_reconcile_with_negative_no_quantity(tmp_path):
+    bot, clock = make_bot(tmp_path, live=True, fair=(0.40, 0.42))  # SIG too high -> buy NO
+    bot.cycle()
+    [(eid, side, action, qty, price, ttl)] = bot.api.sent
+    assert side == "no"
+    raw = {"exchangeId": "e1", "quantity": -qty, "avgCost": price, "lots": [{"side": "NO"}]}
+    bot.api.positions_ = [Position.from_api(raw)]
+    clock[0] += ttl + 5
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.40, 0.42, clock[0])
+    bot._last_ref = 0
+    bot.api.prices_["e1"] = (0.44, 0.46)  # edge gone
+    bot.cycle()
+    [h] = bot.ledger.holdings()
+    assert (h.side, h.qty) == ("no", qty) and len(bot.api.sent) == 1  # credited once, no re-buy
