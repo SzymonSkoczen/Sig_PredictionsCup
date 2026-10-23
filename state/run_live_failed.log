@@ -1,0 +1,47 @@
+2026-10-23 01:56:47,485 INFO sigcup.cli: mode: live
+2026-10-23 01:56:48,169 INFO sigcup.sig_api: using tournament midterm-elections
+2026-10-23 01:56:48,357 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
+2026-10-23 01:56:49,822 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 01:56:51,754 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 414, in execute_basket
+    resp = self.api.place_multi_leg([{"exchangeId": l.exchange_id, "side": "no", "action": l.action,
+                                      "quantity": l.qty, "price": l.price} for l in legs], ttl)
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 285, in place_multi_leg
+    r = self.post("/orders/multi-leg", {"idempotencyKey": str(uuid.uuid4()), "legs": body_legs})
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 198, in post
+    return self._request("POST", path, json=body)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 186, in _request
+    raise err
+sigcup.sig_api.ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 01:57:13,594 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 414, in execute_basket
+    resp = self.api.place_multi_leg([{"exchangeId": l.exchange_id, "side": "no", "action": l.action,
+                                      "quantity": l.qty, "price": l.price} for l in legs], ttl)
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 285, in place_multi_leg
+    r = self.post("/orders/multi-leg", {"idempotencyKey": str(uuid.uuid4()), "legs": body_legs})
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 198, in post
+    return self._request("POST", path, json=body)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/sig_api.py", line 186, in _request
+    raise err
+sigcup.sig_api.ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 01:57:41,990 ERROR sigcup.bot: cancel-all on shutdown failed: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
