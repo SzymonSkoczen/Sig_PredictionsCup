@@ -7,3 +7,11 @@ Trades: 0 live (57 paper NO-basket buys in first segment, run cut off by contain
 💡 Improve (needs your OK): none yet, too early to tell; paper arb repeats same baskets (AZ-01 x368 several times) so check whether it re-buys filled sets
 🔎 Opportunities: map key races once suggest-map is fixed/faster to enable gap trading; no other data (no report produced)
 🔧 Fixed: nothing (not a code bug). ACTION: regenerate the SIG API key with trade scope in the Cup settings and update SIG_API_KEY
+📊 SIG Cup bot — PAPER, health OK (1h40m, 539 cycles, 0 errors) — 2026-10-23 01:37 UTC
+Mode: PAPER (0/30 healthy paper cycles counted). P&L: realized +0 (window/all-time), open MTM -817.
+Trades: 54 paper arb legs (9 NO baskets re-bought), largest 2000 sets. Baskets held: Alabama Sen 18000, Alaska Gov 16855, Alaska Sen 16009 sets. No uneven basket. Convergence positions: 0.
+✅ Went well: no errors, API reads 15/70 per min, 117 races watched.
+❌ Went wrong: market map empty (0 mapped), so gap trading never ran; "healthy paper cycles" stuck at 0/30, so live never unlocks. Paper arb re-bought the same static depth every cycle (18000 sets vs 2000 intended) — likely paper-only artefact, unverified.
+💡 Improve: check why healthy-cycle counter stays 0 after 539 OK cycles; cap arb sets per race in paper; build a verified market map (suggest-map hung last time).
+🔎 Opportunities: NO-basket arb up to +0.070 (Montana Sen, Rhode Island Gov), Nebraska Sen +0.045; two-party YES<1: MN-05 +0.050, Maine Gov +0.030, Mass Gov +0.025, NH Sen +0.020. 237 markets unmapped.
+🔧 Fixed: nothing (no bugs changed).
