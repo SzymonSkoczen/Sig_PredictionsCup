@@ -1,0 +1,54 @@
+Mode: PAPER (paper: live blocked, only 0/30 healthy paper cycles so far) | 2026-10-23 01:36 UTC
+Health: OK | up 1h40m | cycles 539 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 15/70/min, writes 0/20/min, errors total 0
+Markets: 0 mapped, 0 with a fair value
+Entries: active
+Arb: 117 races watched
+Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM -817
+Account: periodEnd=2026-10-23T01:36:48.381Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
+
+Open positions (0):
+
+Trades last 2h (54):
+  23:57 arb BUY NO 2000 Alaska Senate [Republican] @0.700 (arb +0.025/set)
+  23:57 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
+  23:57 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
+  23:57 arb BUY NO 2000 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
+  23:57 arb BUY NO 2000 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+  23:57 arb BUY NO 2000 Alaska Senate [Democratic] @0.275 (arb +0.025/set)
+  23:57 arb BUY NO 2000 Alaska Senate [Republican] @0.700 (arb +0.025/set)
+  23:57 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
+  23:57 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
+  23:57 arb BUY NO 2000 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
+  23:57 arb BUY NO 2000 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+  23:57 arb BUY NO 2000 Alaska Senate [Democratic] @0.275 (arb +0.025/set)
+  23:57 arb BUY NO 2000 Alaska Senate [Republican] @0.700 (arb +0.025/set)
+  23:58 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
+  23:58 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
+  23:58 arb BUY NO 2000 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
+  23:58 arb BUY NO 2000 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+  23:58 arb BUY NO 2000 Alaska Senate [Democratic] @0.275 (arb +0.025/set)
+  23:58 arb BUY NO 2000 Alaska Senate [Republican] @0.700 (arb +0.025/set)
+  23:58 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
+  23:58 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
+  23:58 arb BUY NO 855 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
+  23:58 arb BUY NO 855 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+  23:58 arb BUY NO 9 Alaska Senate [Democratic] @0.275 (arb +0.025/set)
+  23:58 arb BUY NO 9 Alaska Senate [Republican] @0.700 (arb +0.025/set)
+
+Arb baskets held (3):
+  Alabama Senate                            18000 sets cost 0.983 pays ≥1 sell-now 0.970
+  Alaska Governor                           16855 sets cost 0.990 pays ≥1 sell-now 0.975
+  Alaska Senate                             16009 sets cost 0.975 pays ≥1 sell-now 0.955
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.065, Montana Senate +0.065, Nebraska Senate +0.040
+
+Opportunities this run (539 priced cycles):
+  price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
+  arb: 53 races reached ≥0.01; best: Montana Senate +0.070, Rhode Island Governor +0.070, Nebraska Senate +0.045
+  depth at best price: median 4,006 shares, max 80,632 (54 books read)
+
+Other opportunities (not traded, for review):
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.050, Maine Governor +0.030, Massachusetts Governor +0.025, New Hampshire Senate +0.020
+  237 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+
+Largest gaps now (edge = fair − price to buy):
