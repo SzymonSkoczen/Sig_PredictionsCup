@@ -78,3 +78,12 @@ Trades: 73 in 2h (conv buys ~10, arb unwinds ~60) · best: n/a · worst: Alaska 
 💡 Improve (needs your OK): arb-unwind-for-cash cost ~650 all-time across 2 runs while no conv position has converged; consider disabling cash-funding unwinds or raising gap MIN_EDGE. Too early on convergence (2 live runs).
 🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.06, MN-05 +0.035 (risk: third-party win); NO-arb RI Gov +0.085, Montana Sen +0.07 (cash-limited); 45 markets unmapped. Hawaii/RI repeat across runs.
 🔧 Fixed: nothing (no code bug).
+
+## 2026-10-23T17:37Z run
+LIVE · health OK (kalshi 429s x7, 2 API errors) · P&L run -186 / all-time -838 · open MTM -810
+Trades: 17 (conv buys 3, arb unwinds 14, 0 new baskets) · best: n/a · worst: Alaska Senate arb unwind -113 (8899 sets @ -0.013)
+✅ Went well: 438 cycles, 0 errors/crashes; 10 conv positions held at edges 0.08-0.12; open MTM improved -1,390 → -810.
+❌ Went wrong: realized -186 again from arb baskets unwound "for free cash" (Alaska Senate -113, -53); no conv position has converged after 5h (Hawaii Gov 0.885 vs entry 0.898).
+💡 Improve (needs your OK): 3 runs, ~838 lost to cash-funding arb unwinds while 0 conv positions converged; consider disabling cash-funding unwinds or lowering conv size. Convergence still too early to judge.
+🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.05, MN-05 +0.035 (third-party risk); NO-arb RI Gov +0.075, Montana +0.06 (cash-limited); 45 markets unmapped. Hawaii/RI recur every run.
+🔧 Fixed: nothing (no code bug).
