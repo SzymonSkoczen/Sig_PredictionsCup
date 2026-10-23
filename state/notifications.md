@@ -60,3 +60,12 @@ Trades: ~170 arb baskets sent, all filled on the exchange, none recorded. Bigges
 💡 Improve: cap per-race arb sets by exchange positions, not ledger only; arb edges were thin (+0.01–0.03/set) vs 2000-set size — consider lower ARB sizing. Not applied.
 🔎 Opportunities: gaps Rhode Island Sen R/D +0.12/+0.116, Mississippi Sen D +0.083 (not traded: funds gone); two-party YES<1: Maine Gov +0.03, MN-05 +0.03.
 🔧 Fixed: nothing by me — the same Position-parsing bug was already fixed upstream (e220546) plus resync (80f9bca), which takes effect next run.
+
+## 2026-10-23T13:37Z run
+LIVE (trading works again, key scope fixed) · health OK (kalshi 429s x5, harmless) · P&L run -347 / all-time -347 · open MTM -1,769
+Trades: 87 (gap/conv buys 9, arb unwinds ~78; 7 arb baskets + 7 conv positions held) · best: n/a (nothing closed in profit) · worst: arb unwinds, each -0..-8 (CA-22, Arizona Gov)
+✅ Went well: 414 cycles, 0 errors, first live fills; 191/192 mapped markets priced; conv entries at edges 0.08-0.12 (RI Senate, RI Gov, Hawaii Gov).
+❌ Went wrong: realized -347 came from arb baskets unwound "for free cash" at ~-0.02 each to fund conv buys; all 7 conv positions still under entry mark (-0.005..-0.01, none converged yet, held ~100m); cash is tight (holdings 89k of 99k).
+💡 Improve (needs your OK): unwinding arb baskets at a loss to fund gap trades costs ~347 vs a theoretical +1-2% arb lock-in; consider not unwinding arbs for cash or raising the gap-trade edge floor. Too early to tell on convergence (first live run).
+🔎 Opportunities: RI Senate/Gov gaps +0.13/+0.116 already traded; Hawaii Gov YES basket Σasks<1 by 0.06 (risk: third-party win); NO-arb RI Gov +0.085, Montana Sen +0.07 (cash-limited). 45 markets still unmapped.
+🔧 Fixed: nothing (no code bug).

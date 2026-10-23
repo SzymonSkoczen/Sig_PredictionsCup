@@ -1,45 +1,72 @@
-Mode: LIVE (live) | 2026-10-23 11:36 UTC
-Health: OK | up 1h40m | cycles 387 | last good cycle 10s ago | consecutive errors 0
-SIG API: reads 40/70/min, writes 13/20/min, errors total 975
-kalshi: last ok 14s ago, 192 quotes, 3 failures
+Mode: LIVE (live) | 2026-10-23 13:37 UTC
+Health: OK | up 1h40m | cycles 414 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 44/70/min, writes 1/20/min, errors total 0
+kalshi: last ok 27s ago, 192 quotes, 5 failures
 Markets: 192 mapped, 191 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM +0
-Account: periodEnd=2026-10-23T11:36:38.145Z, unrealizedPnl=-549.62, totalAccountValue=99450.38, totalHoldingsValue=99450.3, totalCostBasis=99999.92, roi=-0.55
+Bot P&L: realized -347 (last 2h), -347 today, -347 all-time | open MTM -1,769
+Account: periodEnd=2026-10-23T13:37:07.843Z, unrealizedPnl=-587.74, totalAccountValue=99072.59, totalHoldingsValue=89072.34, totalCostBasis=89660.07, roi=-0.93
 
-Open positions (0):
+Open positions (7):
+  WA-03 House race [Republican]            NO     253 @0.850 mark 0.845 fair 0.926 held 98m
+  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.845 fair 0.908 held 100m
+  Rhode Island Governor [Republican]       NO    5621 @0.910 mark 0.900 fair 0.994 held 98m
+  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.865 fair 0.986 held 98m
+  Rhode Island Senate [Republican]         NO    7000 @0.857 mark 0.850 fair 0.985 held 98m
+  Mississippi Senate [Republican]          YES   1284 @0.830 mark 0.825 fair 0.903 held 98m
+  Hawaii Governor [Democratic]             YES    103 @0.890 mark 0.885 fair 0.988 held 7m
 
-Trades last 2h (0):
+Trades last 2h (87):
+  12:28 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
+  12:28 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
+  12:28 conv BUY YES 1121 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:28 arb SELL NO 150 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -1
+  12:28 arb SELL NO 150 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -1
+  12:28 conv BUY YES 168 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:30 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
+  12:30 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
+  12:30 conv BUY YES 356 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
+  12:30 conv BUY NO 731 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:48 arb SELL NO 1000 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -8
+  12:48 arb SELL NO 1000 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -5
+  12:48 conv BUY NO 1071 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:50 arb SELL NO 700 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -6
+  12:50 arb SELL NO 700 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -4
+  12:50 conv BUY NO 750 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  12:52 arb SELL NO 300 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -2
+  12:52 arb SELL NO 300 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -2
+  12:52 conv BUY NO 322 Rhode Island Governor [Republican] @0.910 (edge 0.082)
+  13:29 arb SELL NO 39 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
+  13:29 arb SELL NO 39 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
+  13:29 conv BUY YES 43 Hawaii Governor [Democratic] @0.890 (edge 0.097)
+  13:33 arb SELL NO 55 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
+  13:33 arb SELL NO 55 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
+  13:33 conv BUY YES 60 Hawaii Governor [Democratic] @0.890 (edge 0.097)
 
-Arb baskets held (0):
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.080, Montana Senate +0.065, Nebraska Senate +0.045
+Arb baskets held (7):
+  Alabama Senate                            15637 sets cost 0.990 pays ≥1 sell-now 0.970
+  Alaska Senate                             42670 sets cost 0.984 pays ≥1 sell-now 0.960
+  Arizona Governor                           6361 sets cost 0.988 pays ≥1 sell-now 0.965
+  CA-22 House race                            914 sets cost 0.987 pays ≥1 sell-now 0.970
+  California Governor                        1586 sets cost 0.990 pays ≥1 sell-now 0.965
+  Delaware Senate                            1407 sets cost 0.986 pays ≥1 sell-now 0.970
+  Florida Senate                             2002 sets cost 0.987 pays ≥1 sell-now 0.965
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.080, Montana Senate +0.070, Nebraska Senate +0.045
 
-Opportunities this run (387 priced cycles):
-  price gaps: 50 markets reached ≥0.04, 65 more reached ≥0.02 (near misses), of 191 with a fair value
-  best gaps: Rhode Island Senate [Republica +0.120, Rhode Island Senate [Democrati +0.116, Rhode Island Governor [Republi +0.097
-  arb: 51 races reached ≥0.01; best: Rhode Island Governor +0.090, Montana Senate +0.065, FL-20 House race +0.050
-  depth at best price: median 3,900 shares, max 66,600 (2322 books read)
+Opportunities this run (414 priced cycles):
+  price gaps: 48 markets reached ≥0.04, 69 more reached ≥0.02 (near misses), of 191 with a fair value
+  best gaps: Rhode Island Senate [Republica +0.130, Rhode Island Senate [Democrati +0.116, Hawaii Governor [Democratic] +0.107
+  arb: 43 races reached ≥0.01; best: Rhode Island Governor +0.085, Montana Senate +0.070, Nebraska Senate +0.045
+  depth at best price: median 2,982 shares, max 99,478 (2484 books read)
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Maine Governor +0.030, MN-05 House race +0.030, New Hampshire Senate +0.020, NH-01 House race +0.010
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.060, MN-05 House race +0.035, Maine Governor +0.025, New Hampshire Senate +0.020
   45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-  Rhode Island Senate [Republican]         buy NO  edge +0.120
+  Rhode Island Senate [Republican]         buy NO  edge +0.130
   Rhode Island Senate [Democratic]         buy YES edge +0.116
-  Mississippi Senate [Democratic]          buy NO  edge +0.083
-  Rhode Island Governor [Republican]       buy NO  edge +0.081
-  Mississippi Senate [Republican]          buy YES edge +0.079
-
-Alerts/errors last 2h (975):
-  11:35 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:35 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:35 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:35 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alabama Senate x2000 @ 0.986/set (locks +0.014/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alaska Governor x2000 @ 0.987/set (locks +0.013/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
-  11:36 ERROR order rejected: BUY NO basket Alaska Senate x2000 @ 0.984/set (locks +0.016/set): 400 VALIDATION_ERROR: Insufficient available funds for this order.
+  Hawaii Governor [Democratic]             buy YES edge +0.098
+  Rhode Island Governor [Republican]       buy NO  edge +0.084
+  WA-03 House race [Republican]            buy NO  edge +0.076
