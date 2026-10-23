@@ -1,0 +1,24 @@
+2026-10-23 00:08:41,786 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
+2026-10-23 00:08:43,530 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-23 00:08:45,522 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^
+--
+  00:08 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+2026-10-23 00:09:07,735 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 546, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 202, in cycle
+    books_left = self.arb(pending, books_left, bool(blocked))
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 395, in arb
+    self.execute_basket(o)
+    ~~~~~~~~~~~~~~~~~~~^^^

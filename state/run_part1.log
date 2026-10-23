@@ -1,0 +1,93 @@
+2026-10-22 22:52:13,420 INFO sigcup.cli: mode: paper until 2026-10-23T00:00:00+01:00
+2026-10-22 22:52:14,058 INFO sigcup.sig_api: using tournament midterm-elections
+2026-10-22 22:52:14,233 WARNING sigcup.bot: market map state/market_map.csv has no enabled rows: nothing to trade
+2026-10-22 22:52:15,958 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-22 22:52:17,519 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:17,959 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:52:18,409 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x539 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:18,759 INFO sigcup.notify: 📊 SIG Cup bot report
+Mode: PAPER (paper until 2026-10-23T00:00:00+01:00) | 2026-10-22 22:52 UTC
+Health: OK | up 0h00m | cycles 1 | last good cycle 0s ago | consecutive errors 0
+SIG API: reads 14/70/min, writes 0/20/min, errors total 0
+Markets: 0 mapped, 0 with a fair value
+Entries: active
+Arb: 117 races watched
+Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM -47
+Account: periodEnd=2026-10-22T22:52:18.657Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
+
+Open positions (0):
+
+Trades last 2h (6):
+  22:52 arb BUY NO 368 AZ-01 House race [Democratic] @0.160 (arb +0.010/set)
+  22:52 arb BUY NO 368 AZ-01 House race [Republican] @0.830 (arb +0.010/set)
+  22:52 arb BUY NO 2000 Alabama Senate [Democratic] @0.953 (arb +0.017/set)
+  22:52 arb BUY NO 2000 Alabama Senate [Republican] @0.030 (arb +0.017/set)
+  22:52 arb BUY NO 539 Alaska Governor [Democratic] @0.145 (arb +0.010/set)
+  22:52 arb BUY NO 539 Alaska Governor [Republican] @0.845 (arb +0.010/set)
+
+Arb baskets held (3):
+  AZ-01 House race                            368 sets cost 0.990 pays ≥1 sell-now 0.975
+  Alabama Senate                             2000 sets cost 0.983 pays ≥1 sell-now 0.965
+  Alaska Governor                             539 sets cost 0.990 pays ≥1 sell-now 0.980
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Montana Senate +0.065, Rhode Island Governor +0.055, Nebraska Senate +0.050
+
+Opportunities this run (1 priced cycles):
+  price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
+  arb: 43 races reached ≥0.01; best: Montana Senate +0.065, Rhode Island Governor +0.055, Nebraska Senate +0.050
+  depth at best price: median 2,203 shares, max 81,522 (6 books read)
+
+Other opportunities (not traded, for review):
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.045, New Hampshire Senate +0.025, Massachusetts Governor +0.025, Maine Governor +0.020
+  237 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+
+Largest gaps now (edge = fair − price to buy):
+2026-10-22 22:52:30,492 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:30,932 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:52:31,432 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:42,966 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:43,427 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:52:43,881 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:55,439 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:52:55,883 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:52:56,338 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:07,897 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:08,328 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:53:08,772 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:20,344 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:20,875 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:53:21,338 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:32,842 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:33,287 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:53:33,727 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:45,199 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:45,600 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:53:45,993 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:57,504 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:53:57,962 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:53:58,418 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:09,936 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:10,373 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:54:10,800 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:22,367 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:22,813 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:54:23,274 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x539 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:34,904 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:35,377 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:54:35,899 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:47,448 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:47,880 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:54:48,340 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:54:59,891 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:00,369 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:55:00,840 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:12,386 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:12,823 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:55:13,270 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:24,929 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:25,390 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x2000 @ 0.983/set (locks +0.017/set)
+2026-10-22 22:55:25,815 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x789 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:37,327 INFO sigcup.bot: [paper] BUY NO basket AZ-01 House race x368 @ 0.990/set (locks +0.010/set)
+2026-10-22 22:55:37,753 INFO sigcup.bot: [paper] BUY NO basket Alabama Senate x340 @ 0.980/set (locks +0.020/set)
+2026-10-22 22:55:38,282 INFO sigcup.bot: [paper] BUY NO basket Alaska Governor x7 @ 0.990/set (locks +0.010/set)
+2026-10-22 23:22:20,225 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-22 23:52:32,846 INFO sigcup.bot: arb: 117 races with 2+ party markets
