@@ -1,33 +1,28 @@
-Mode: LIVE (live) | 2026-10-23 01:57 UTC
-Health: DEGRADED | up 0h00m | cycles 0 | last good cycle never | consecutive errors 2
-SIG API: reads 17/70/min, writes 3/20/min, errors total 3
-Last error: ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
+Mode: PAPER (paper (no --live flag)) | 2026-10-23 03:38 UTC
+Health: OK | up 1h40m | cycles 541 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 15/70/min, writes 0/20/min, errors total 0
 Markets: 0 mapped, 0 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM +0
-Account: periodEnd=2026-10-23T01:57:42.201Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
+Bot P&L: realized +0 (last 2h), +0 today, +0 all-time | open MTM -491
+Account: periodEnd=2026-10-23T03:38:00.779Z, unrealizedPnl=0, totalAccountValue=100000, totalHoldingsValue=0, totalCostBasis=0, roi=0
 
 Open positions (0):
 
 Trades last 2h (0):
 
-Arb baskets held (0):
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Montana Senate +0.070, Rhode Island Governor +0.065, Nebraska Senate +0.040
+Arb baskets held (3):
+  Alabama Senate                            18000 sets cost 0.983 pays ≥1 sell-now 0.975
+  Alaska Governor                           16855 sets cost 0.990 pays ≥1 sell-now 0.970
+  Alaska Senate                             16009 sets cost 0.975 pays ≥1 sell-now 0.975
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.085, Montana Senate +0.065, Nebraska Senate +0.035
 
-Opportunities this run (2 priced cycles):
+Opportunities this run (541 priced cycles):
   price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
-  arb: 46 races reached ≥0.01; best: Montana Senate +0.070, Rhode Island Governor +0.065, Nebraska Senate +0.040
-  depth at best price: median 76,177 shares, max 76,177 (4 books read)
+  arb: 51 races reached ≥0.01; best: Rhode Island Governor +0.085, Montana Senate +0.080, Idaho Governor +0.040
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.050, Maine Governor +0.025, Hawaii Governor +0.020, Idaho Senate +0.020
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): MN-05 House race +0.060, Maine Governor +0.025, Hawaii Governor +0.025, New Hampshire Senate +0.020
   237 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-
-Alerts/errors last 2h (4):
-  00:08 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  00:09 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  01:56 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
-  01:57 ERROR ApiError: 403 INSUFFICIENT_SCOPES: Insufficient scopes. Required: trade
