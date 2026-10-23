@@ -59,4 +59,4 @@ Trades: ~170 arb baskets sent, all filled on the exchange, none recorded. Bigges
 ❌ Went wrong: Position parser read NO holdings (option YES, negative qty) as negative, so reconcile recorded 0 fills; buying power exhausted (arb ignored held sets).
 💡 Improve: cap per-race arb sets by exchange positions, not ledger only; arb edges were thin (+0.01–0.03/set) vs 2000-set size — consider lower ARB sizing. Not applied.
 🔎 Opportunities: gaps Rhode Island Sen R/D +0.12/+0.116, Mississippi Sen D +0.083 (not traded: funds gone); two-party YES<1: Maine Gov +0.03, MN-05 +0.03.
-🔧 Fixed: Position.from_api sign/side for NO holdings (+test). Existing 19 positions still absent from ledger.
+🔧 Fixed: nothing by me — the same Position-parsing bug was already fixed upstream (e220546) plus resync (80f9bca), which takes effect next run.
