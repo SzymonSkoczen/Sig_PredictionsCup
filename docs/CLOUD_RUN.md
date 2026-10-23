@@ -52,8 +52,12 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
      it to `enabled=0`. Removing a bad mapping is a fix. Adding new rows is not.
    - Nothing to fix → move on. Don't refactor or tidy.
 
-4. **Market map (only if `state/market_map.csv` does not exist).**
-   - Run `sigcup --env state/cloud.env suggest-map --out state/suggested_map.csv`.
+4. **Market map (only if `state/market_map.csv` is missing or has no data rows).**
+   - Run `sigcup --env state/cloud.env build-map --out state/market_map.csv`. It does exact Kalshi
+     matching from the Cup's titles and takes about a minute. Commit the result and skip the rest
+     of this step.
+   - Use the older fuzzy route below only if `build-map` fails:
+     `sigcup --env state/cloud.env suggest-map --out state/suggested_map.csv`.
    - Read the suggestions and write `state/market_map.csv`, using the columns
      `sig_exchange_id,label,source,ref,invert,weight,enabled`.
    - Set `enabled=1` only on rows where you are confident the reference market resolves exactly like

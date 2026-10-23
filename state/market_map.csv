@@ -1,1 +1,193 @@
 sig_exchange_id,label,source,ref,invert,weight,enabled
+1077,Rhode Island Senate [Republican],kalshi,SENATERI-26-R,0,1,1
+1076,Rhode Island Senate [Democratic],kalshi,SENATERI-26-D,0,1,1
+1075,Delaware Senate [Republican],kalshi,SENATEDE-26-R,0,1,1
+1074,Rhode Island Governor [Republican],kalshi,GOVPARTYRI-26-R,0,1,1
+1073,Rhode Island Governor [Democratic],kalshi,GOVPARTYRI-26-D,0,1,1
+1072,Oklahoma Senate [Democratic],kalshi,SENATEOK-26-D,0,1,1
+1071,New Hampshire Senate [Republican],kalshi,SENATENH-26-R,0,1,1
+1070,New Hampshire Senate [Democratic],kalshi,SENATENH-26-D,0,1,1
+1069,Massachusetts Senate [Republican],kalshi,SENATEMA-26-R,0,1,1
+1068,Massachusetts Senate [Democratic],kalshi,SENATEMA-26-D,0,1,1
+1067,Alaska Senate [Republican],kalshi,SENATEAK-26-R,0,1,1
+1066,Alaska Senate [Democratic],kalshi,SENATEAK-26-D,0,1,1
+1065,NH-01 House race [Republican],kalshi,HOUSENH1-26-R,0,1,1
+1064,NH-01 House race [Democratic],kalshi,HOUSENH1-26-D,0,1,1
+1063,Oklahoma Governor [Republican],kalshi,GOVPARTYOK-26-R,0,1,1
+1060,Massachusetts Governor [Republican],kalshi,GOVPARTYMA-26-R,0,1,1
+1059,Massachusetts Governor [Democratic],kalshi,GOVPARTYMA-26-D,0,1,1
+1055,Wyoming Senate [Republican],kalshi,SENATEWY-26-R,0,1,1
+1054,Wyoming Senate [Democratic],kalshi,SENATEWY-26-D,0,1,1
+1053,Virginia Senate [Republican],kalshi,SENATEVA-26-R,0,1,1
+1052,Tennessee Senate [Republican],kalshi,SENATETN-26-R,0,1,1
+1051,Tennessee Senate [Democratic],kalshi,SENATETN-26-D,0,1,1
+1050,Minnesota Senate [Republican],kalshi,SENATEMN-26-R,0,1,1
+1049,Minnesota Senate [Democratic],kalshi,SENATEMN-26-D,0,1,1
+1048,Michigan Senate [Republican],kalshi,SENATEMI-26-R,0,1,1
+1047,Michigan Senate [Democratic],kalshi,SENATEMI-26-D,0,1,1
+1046,Kansas Senate [Republican],kalshi,SENATEKS-26-R,0,1,1
+1045,Kansas Senate [Democratic],kalshi,SENATEKS-26-D,0,1,1
+1044,Florida Senate [Republican],kalshi,SENATEFLS-26-R,0,1,1
+1043,Florida Senate [Democratic],kalshi,SENATEFLS-26-D,0,1,1
+1042,Delaware Senate [Democratic],kalshi,SENATEDE-26-D,0,1,1
+1041,WI-03 House race [Republican],kalshi,HOUSEWI3-26-R,0,1,1
+1040,WI-03 House race [Democratic],kalshi,HOUSEWI3-26-D,0,1,1
+1039,WI-01 House race [Republican],kalshi,HOUSEWI1-26-R,0,1,1
+1038,WI-01 House race [Democratic],kalshi,HOUSEWI1-26-D,0,1,1
+1037,WA-03 House race [Republican],kalshi,HOUSEWA3-26-R,0,1,1
+1036,WA-03 House race [Democratic],kalshi,HOUSEWA3-26-D,0,1,1
+1035,VA-07 House race [Republican],kalshi,HOUSEVA7-26-R,0,1,1
+1032,VA-02 House race [Democratic],kalshi,HOUSEVA2-26-D,0,1,1
+1031,VA-01 House race [Democratic],kalshi,HOUSEVA1-26-D,0,1,1
+1026,MN-02 House race [Republican],kalshi,HOUSEMN2-26-R,0,1,1
+1025,MN-02 House race [Democratic],kalshi,HOUSEMN2-26-D,0,1,1
+1022,MI-10 House race [Republican],kalshi,HOUSEMI10-26-R,0,1,1
+1021,MI-10 House race [Democratic],kalshi,HOUSEMI10-26-D,0,1,1
+1020,MI-07 House race [Republican],kalshi,HOUSEMI7-26-R,0,1,1
+1019,MI-07 House race [Democratic],kalshi,HOUSEMI7-26-D,0,1,1
+1012,FL-13 House race [Democratic],kalshi,HOUSEFL13-26-D,0,1,1
+1006,Wyoming Governor [Republican],kalshi,GOVPARTYWY-26-R,0,1,1
+1005,Wyoming Governor [Democratic],kalshi,GOVPARTYWY-26-D,0,1,1
+1004,Wisconsin Governor [Republican],kalshi,GOVPARTYWI-26-R,0,1,1
+1003,Wisconsin Governor [Democratic],kalshi,GOVPARTYWI-26-D,0,1,1
+1002,Vermont Governor [Republican],kalshi,GOVPARTYVT-26-R,0,1,1
+1001,Vermont Governor [Democratic],kalshi,GOVPARTYVT-26-D,0,1,1
+1000,Tennessee Governor [Republican],kalshi,GOVPARTYTN-26-R,0,1,1
+999,Tennessee Governor [Democratic],kalshi,GOVPARTYTN-26-D,0,1,1
+998,South Dakota Governor [Republican],kalshi,GOVPARTYSD-26-R,0,1,1
+997,Minnesota Governor [Republican],kalshi,GOVPARTYMN-26-R,0,1,1
+996,Minnesota Governor [Democratic],kalshi,GOVPARTYMN-26-D,0,1,1
+995,Michigan Governor [Republican],kalshi,GOVPARTYMI-26-R,0,1,1
+994,Michigan Governor [Democratic],kalshi,GOVPARTYMI-26-D,0,1,1
+991,Hawaii Governor [Republican],kalshi,GOVPARTYHI-26-R,0,1,1
+990,Hawaii Governor [Democratic],kalshi,GOVPARTYHI-26-D,0,1,1
+989,Florida Governor [Republican],kalshi,GOVPARTYFL-26-R,0,1,1
+988,Florida Governor [Democratic],kalshi,GOVPARTYFL-26-D,0,1,1
+987,Connecticut Governor [Democratic],kalshi,GOVPARTYCT-26-D,0,1,1
+986,West Virginia Senate [Republican],kalshi,SENATEWV-26-R,0,1,1
+985,West Virginia Senate [Democratic],kalshi,SENATEWV-26-D,0,1,1
+984,Virginia Senate [Democratic],kalshi,SENATEVA-26-D,0,1,1
+983,Texas Senate [Republican],kalshi,SENATETX-26-R,0,1,1
+982,Texas Senate [Democratic],kalshi,SENATETX-26-D,0,1,1
+981,South Dakota Senate [Republican],kalshi,SENATESD-26-R,0,1,1
+980,South Dakota Senate [Democratic],kalshi,SENATESD-26-D,0,1,1
+979,South Carolina Senate [Republican],kalshi,SENATESC-26-R,0,1,1
+978,South Carolina Senate [Democratic],kalshi,SENATESC-26-D,0,1,1
+977,Oregon Senate [Republican],kalshi,SENATEOR-26-R,0,1,1
+976,Oregon Senate [Democratic],kalshi,SENATEOR-26-D,0,1,1
+975,Oklahoma Senate [Republican],kalshi,SENATEOK-26-R,0,1,1
+974,New Mexico Senate [Republican],kalshi,SENATENM-26-R,0,1,1
+973,New Mexico Senate [Democratic],kalshi,SENATENM-26-D,0,1,1
+972,New Jersey Senate [Republican],kalshi,SENATENJ-26-R,0,1,1
+971,New Jersey Senate [Democratic],kalshi,SENATENJ-26-D,0,1,1
+970,Nebraska Senate [Republican],kalshi,SENATENE-26-R,0,1,1
+968,Nebraska Senate [Democratic],kalshi,SENATENE-26-D,0,1,1
+967,North Carolina Senate [Republican],kalshi,SENATENC-26-R,0,1,1
+966,North Carolina Senate [Democratic],kalshi,SENATENC-26-D,0,1,1
+964,Montana Senate [Republican],kalshi,SENATEMT-26-R,0,1,1
+963,Montana Senate [Democratic],kalshi,SENATEMT-26-D,0,1,1
+962,Mississippi Senate [Republican],kalshi,SENATEMS-26-R,0,1,1
+961,Mississippi Senate [Democratic],kalshi,SENATEMS-26-D,0,1,1
+960,Maine Senate [Republican],kalshi,SENATEME-26-R,0,1,1
+959,Maine Senate [Democratic],kalshi,SENATEME-26-D,0,1,1
+958,Louisiana Senate [Republican],kalshi,SENATELA-26-R,0,1,1
+957,Louisiana Senate [Democratic],kalshi,SENATELA-26-D,0,1,1
+954,Illinois Senate [Republican],kalshi,SENATEIL-26-R,0,1,1
+953,Illinois Senate [Democratic],kalshi,SENATEIL-26-D,0,1,1
+952,Idaho Senate [Republican],kalshi,SENATEID-26-R,0,1,1
+951,Idaho Senate [Democratic],kalshi,SENATEID-26-D,0,1,1
+950,Iowa Senate [Republican],kalshi,SENATEIA-26-R,0,1,1
+949,Iowa Senate [Democratic],kalshi,SENATEIA-26-D,0,1,1
+948,Georgia Senate [Republican],kalshi,SENATEGA-26-R,0,1,1
+947,Georgia Senate [Democratic],kalshi,SENATEGA-26-D,0,1,1
+946,Colorado Senate [Republican],kalshi,SENATECO-26-R,0,1,1
+945,Colorado Senate [Democratic],kalshi,SENATECO-26-D,0,1,1
+944,Arkansas Senate [Republican],kalshi,SENATEAR-26-R,0,1,1
+943,Arkansas Senate [Democratic],kalshi,SENATEAR-26-D,0,1,1
+942,Alabama Senate [Republican],kalshi,SENATEAL-26-R,0,1,1
+941,Alabama Senate [Democratic],kalshi,SENATEAL-26-D,0,1,1
+940,VA-07 House race [Democratic],kalshi,HOUSEVA7-26-D,0,1,1
+939,VA-02 House race [Republican],kalshi,HOUSEVA2-26-R,0,1,1
+938,VA-01 House race [Republican],kalshi,HOUSEVA1-26-R,0,1,1
+937,TX-28 House race [Republican],kalshi,HOUSETX28-26-R,0,1,1
+936,TX-28 House race [Democratic],kalshi,HOUSETX28-26-D,0,1,1
+933,TX-15 House race [Republican],kalshi,HOUSETX15-26-R,0,1,1
+932,TX-15 House race [Democratic],kalshi,HOUSETX15-26-D,0,1,1
+929,PA-10 House race [Republican],kalshi,HOUSEPA10-26-R,0,1,1
+928,PA-10 House race [Democratic],kalshi,HOUSEPA10-26-D,0,1,1
+927,PA-08 House race [Republican],kalshi,HOUSEPA8-26-R,0,1,1
+926,PA-08 House race [Democratic],kalshi,HOUSEPA8-26-D,0,1,1
+925,PA-07 House race [Republican],kalshi,HOUSEPA7-26-R,0,1,1
+924,PA-07 House race [Democratic],kalshi,HOUSEPA7-26-D,0,1,1
+923,PA-01 House race [Republican],kalshi,HOUSEPA1-26-R,0,1,1
+922,PA-01 House race [Democratic],kalshi,HOUSEPA1-26-D,0,1,1
+921,NY-17 House race [Republican],kalshi,HOUSENY17-26-R,0,1,1
+920,NY-17 House race [Democratic],kalshi,HOUSENY17-26-D,0,1,1
+917,NJ-07 House race [Republican],kalshi,HOUSENJ7-26-R,0,1,1
+916,NJ-07 House race [Democratic],kalshi,HOUSENJ7-26-D,0,1,1
+915,NE-02 House race [Republican],kalshi,HOUSENE2-26-R,0,1,1
+914,NE-02 House race [Democratic],kalshi,HOUSENE2-26-D,0,1,1
+913,MT-01 House race [Republican],kalshi,HOUSEMT1-26-R,0,1,1
+912,MT-01 House race [Democratic],kalshi,HOUSEMT1-26-D,0,1,1
+911,ME-02 House race [Republican],kalshi,HOUSEME2-26-R,0,1,1
+910,ME-02 House race [Democratic],kalshi,HOUSEME2-26-D,0,1,1
+907,IA-03 House race [Republican],kalshi,HOUSEIA3-26-R,0,1,1
+906,IA-03 House race [Democratic],kalshi,HOUSEIA3-26-D,0,1,1
+903,IA-01 House race [Republican],kalshi,HOUSEIA1-26-R,0,1,1
+902,IA-01 House race [Democratic],kalshi,HOUSEIA1-26-D,0,1,1
+901,FL-13 House race [Republican],kalshi,HOUSEFL13-26-R,0,1,1
+899,CO-08 House race [Republican],kalshi,HOUSECO8-26-R,0,1,1
+898,CO-08 House race [Democratic],kalshi,HOUSECO8-26-D,0,1,1
+895,CO-03 House race [Republican],kalshi,HOUSECO3-26-R,0,1,1
+894,CO-03 House race [Democratic],kalshi,HOUSECO3-26-D,0,1,1
+891,CA-22 House race [Republican],kalshi,HOUSECA22-26-R,0,1,1
+890,CA-22 House race [Democratic],kalshi,HOUSECA22-26-D,0,1,1
+889,AZ-06 House race [Republican],kalshi,HOUSEAZ6-26-R,0,1,1
+888,AZ-06 House race [Democratic],kalshi,HOUSEAZ6-26-D,0,1,1
+887,AZ-01 House race [Republican],kalshi,HOUSEAZ1-26-R,0,1,1
+886,AZ-01 House race [Democratic],kalshi,HOUSEAZ1-26-D,0,1,1
+885,Texas Governor [Republican],kalshi,GOVPARTYTX-26-R,0,1,1
+884,Texas Governor [Democratic],kalshi,GOVPARTYTX-26-D,0,1,1
+883,South Dakota Governor [Democratic],kalshi,GOVPARTYSD-26-D,0,1,1
+882,South Carolina Governor [Republican],kalshi,GOVPARTYSC-26-R,0,1,1
+881,South Carolina Governor [Democratic],kalshi,GOVPARTYSC-26-D,0,1,1
+879,Pennsylvania Governor [Republican],kalshi,GOVPARTYPA-26-R,0,1,1
+878,Pennsylvania Governor [Democratic],kalshi,GOVPARTYPA-26-D,0,1,1
+877,Oregon Governor [Republican],kalshi,GOVPARTYOR-26-R,0,1,1
+876,Oregon Governor [Democratic],kalshi,GOVPARTYOR-26-D,0,1,1
+875,Oklahoma Governor [Democratic],kalshi,GOVPARTYOK-26-D,0,1,1
+874,New York Governor [Republican],kalshi,GOVPARTYNY-26-R,0,1,1
+873,New York Governor [Democratic],kalshi,GOVPARTYNY-26-D,0,1,1
+872,Nevada Governor [Republican],kalshi,GOVPARTYNV-26-R,0,1,1
+871,Nevada Governor [Democratic],kalshi,GOVPARTYNV-26-D,0,1,1
+870,New Mexico Governor [Republican],kalshi,GOVPARTYNM-26-R,0,1,1
+869,New Mexico Governor [Democratic],kalshi,GOVPARTYNM-26-D,0,1,1
+868,Nebraska Governor [Republican],kalshi,GOVPARTYNE-26-R,0,1,1
+867,Nebraska Governor [Democratic],kalshi,GOVPARTYNE-26-D,0,1,1
+866,Maine Governor [Republican],kalshi,GOVPARTYME-26-R,0,1,1
+865,Maine Governor [Democratic],kalshi,GOVPARTYME-26-D,0,1,1
+864,Maryland Governor [Republican],kalshi,GOVPARTYMD-26-R,0,1,1
+863,Maryland Governor [Democratic],kalshi,GOVPARTYMD-26-D,0,1,1
+862,Illinois Governor [Republican],kalshi,GOVPARTYIL-26-R,0,1,1
+861,Illinois Governor [Democratic],kalshi,GOVPARTYIL-26-D,0,1,1
+860,Idaho Governor [Republican],kalshi,GOVPARTYID-26-R,0,1,1
+859,Idaho Governor [Democratic],kalshi,GOVPARTYID-26-D,0,1,1
+858,Iowa Governor [Republican],kalshi,GOVPARTYIA-26-R,0,1,1
+857,Iowa Governor [Democratic],kalshi,GOVPARTYIA-26-D,0,1,1
+856,Georgia Governor [Republican],kalshi,GOVPARTYGA-26-R,0,1,1
+855,Georgia Governor [Democratic],kalshi,GOVPARTYGA-26-D,0,1,1
+854,Connecticut Governor [Republican],kalshi,GOVPARTYCT-26-R,0,1,1
+853,Colorado Governor [Republican],kalshi,GOVPARTYCO-26-R,0,1,1
+852,Colorado Governor [Democratic],kalshi,GOVPARTYCO-26-D,0,1,1
+851,California Governor [Republican],kalshi,GOVPARTYCA-26-R,0,1,1
+850,California Governor [Democratic],kalshi,GOVPARTYCA-26-D,0,1,1
+849,Arizona Governor [Republican],kalshi,GOVPARTYAZ-26-R,0,1,1
+848,Arizona Governor [Democratic],kalshi,GOVPARTYAZ-26-D,0,1,1
+847,Arkansas Governor [Republican],kalshi,GOVPARTYAR-26-R,0,1,1
+846,Arkansas Governor [Democratic],kalshi,GOVPARTYAR-26-D,0,1,1
+845,Alabama Governor [Republican],kalshi,GOVPARTYAL-26-R,0,1,1
+844,Alabama Governor [Democratic],kalshi,GOVPARTYAL-26-D,0,1,1
+843,U.S. Senate [Republican],kalshi,CONTROLS-2026-R,0,1,1
+842,U.S. Senate [Democratic],kalshi,CONTROLS-2026-D,0,1,1
+841,U.S. House [Republican],kalshi,CONTROLH-2026-R,0,1,1
+840,U.S. House [Democratic],kalshi,CONTROLH-2026-D,0,1,1
