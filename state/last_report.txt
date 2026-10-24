@@ -1,88 +1,86 @@
-Mode: LIVE (live) | 2026-10-24 13:36 UTC
-Health: OK | up 1h40m | cycles 440 | last good cycle 10s ago | consecutive errors 0
-SIG API: reads 20/70/min, writes 1/20/min, errors total 0
-kalshi: last ok 24s ago, 192 quotes, 4 failures
+Mode: LIVE (live) | 2026-10-24 15:36 UTC
+Health: OK | up 1h40m | cycles 449 | last good cycle 10s ago | consecutive errors 0
+SIG API: reads 26/70/min, writes 4/20/min, errors total 0
+kalshi: last ok 15s ago, 192 quotes, 6 failures
 Markets: 192 mapped, 192 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized -337 (last 2h), -519 today, -1,579 all-time | open MTM -52
-Account: periodEnd=2026-10-24T13:36:13.464Z, unrealizedPnl=268.08, totalAccountValue=98697.97, totalHoldingsValue=73697.36, totalCostBasis=73429.28, roi=-1.3, sharpe=-3.384
+Bot P&L: realized +8 (last 2h), -511 today, -1,571 all-time | open MTM +20
+Account: periodEnd=2026-10-24T15:36:02.279Z, unrealizedPnl=341.05, totalAccountValue=98763.69, totalHoldingsValue=72691.31, totalCostBasis=72350.26, roi=-1.24, sharpe=-3.384
 
 Open positions (10):
-  WA-03 House race [Republican]            NO     253 @0.850 mark 0.855 fair 0.917 held 25h
-  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.860 fair 0.900 held 25h
-  Tennessee Senate [Democratic]            NO      59 @0.885 mark 0.885 fair 0.962 held 22h
-  Virginia Senate [Republican]             NO    3428 @0.909 mark 0.925 fair 0.981 held 22h
-  Rhode Island Governor [Republican]       NO    6604 @0.909 mark 0.905 fair 0.997 held 25h
-  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.885 fair 0.987 held 25h
-  Rhode Island Senate [Republican]         NO    7017 @0.855 mark 0.870 fair 0.986 held 25h
-  Mississippi Senate [Democratic]          NO    7278 @0.824 mark 0.820 fair 0.895 held 23h
-  Mississippi Senate [Republican]          YES   6114 @0.825 mark 0.830 fair 0.885 held 25h
-  Hawaii Governor [Democratic]             YES   6683 @0.898 mark 0.910 fair 0.982 held 24h
+  WA-03 House race [Republican]            NO     253 @0.850 mark 0.855 fair 0.917 held 27h
+  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.865 fair 0.902 held 27h
+  Tennessee Senate [Democratic]            NO      59 @0.885 mark 0.885 fair 0.962 held 24h
+  Virginia Senate [Republican]             NO    3428 @0.909 mark 0.920 fair 0.981 held 24h
+  Rhode Island Governor [Republican]       NO    6604 @0.909 mark 0.905 fair 0.997 held 27h
+  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.885 fair 0.987 held 27h
+  Rhode Island Senate [Republican]         NO    7017 @0.855 mark 0.870 fair 0.986 held 27h
+  Mississippi Senate [Democratic]          NO    7278 @0.824 mark 0.825 fair 0.895 held 25h
+  Mississippi Senate [Republican]          YES   6114 @0.825 mark 0.825 fair 0.885 held 27h
+  Hawaii Governor [Democratic]             YES   6683 @0.898 mark 0.915 fair 0.982 held 26h
 
-Trades last 2h (251):
-  13:21 arb BUY NO 12 California Governor [Democratic] @0.080 (arb +0.010/set)
-  13:21 arb BUY NO 12 California Governor [Republican] @0.910 (arb +0.010/set)
-  13:21 arb BUY NO 33 Kansas Senate [Democratic] @0.580 (arb +0.010/set)
-  13:21 arb BUY NO 33 Kansas Senate [Republican] @0.410 (arb +0.010/set)
-  13:21 arb SELL NO 800 AZ-01 House race [Democratic] @0.170 (arb timeout) P&L -1
-  13:21 arb SELL NO 800 AZ-01 House race [Republican] @0.805 (arb timeout) P&L -11
-  13:21 arb BUY NO 780 Maine Senate [Democratic] @0.345 (arb +0.010/set)
-  13:21 arb BUY NO 780 Maine Senate [Republican] @0.645 (arb +0.010/set)
-  13:21 arb BUY NO 8 New Mexico Governor [Democratic] @0.075 (arb +0.010/set)
-  13:21 arb BUY NO 8 New Mexico Governor [Republican] @0.915 (arb +0.010/set)
-  13:22 arb SELL NO 400 AZ-01 House race [Democratic] @0.170 (arb timeout) P&L -1
-  13:22 arb SELL NO 400 AZ-01 House race [Republican] @0.805 (arb timeout) P&L -5
-  13:22 arb BUY NO 240 FL-13 House race [Democratic] @0.710 (arb +0.010/set)
-  13:22 arb BUY NO 240 FL-13 House race [Republican] @0.280 (arb +0.010/set)
-  13:22 arb BUY NO 153 New York Governor [Democratic] @0.055 (arb +0.015/set)
-  13:22 arb BUY NO 153 New York Governor [Republican] @0.930 (arb +0.015/set)
-  13:23 arb BUY NO 2 Idaho Governor [Democratic] @0.930 (arb +0.010/set)
-  13:23 arb BUY NO 2 Idaho Governor [Republican] @0.060 (arb +0.010/set)
-  13:29 arb SELL NO 1670 CO-08 House race [Democratic] @0.160 (arb timeout) P&L -22
-  13:29 arb SELL NO 1670 CO-08 House race [Republican] @0.815 (arb timeout) P&L -0
-  13:29 arb BUY NO 814 Nebraska Senate [Democratic] @0.965 (arb +0.045/set)
-  13:29 arb BUY NO 814 Nebraska Senate [Independent] @0.715 (arb +0.045/set)
-  13:29 arb BUY NO 814 Nebraska Senate [Republican] @0.275 (arb +0.045/set)
-  13:29 arb BUY NO 37 FL-13 House race [Democratic] @0.710 (arb +0.010/set)
-  13:29 arb BUY NO 37 FL-13 House race [Republican] @0.280 (arb +0.010/set)
+Trades last 2h (32):
+  13:56 arb BUY NO 173 Idaho Governor [Republican] @0.060 (arb +0.010/set)
+  13:56 arb BUY NO 2 California Governor [Democratic] @0.080 (arb +0.010/set)
+  13:56 arb BUY NO 2 California Governor [Republican] @0.910 (arb +0.010/set)
+  14:01 arb SELL NO 1393 Alaska Senate [Democratic] @0.260 (arb take-profit) P&L -7
+  14:01 arb SELL NO 1393 Alaska Senate [Republican] @0.725 (arb take-profit) P&L +14
+  14:01 arb BUY NO 25 CO-04 House race [Democratic] @0.690 (arb +0.010/set)
+  14:01 arb BUY NO 25 CO-04 House race [Republican] @0.300 (arb +0.010/set)
+  14:01 arb BUY NO 718 California Governor [Democratic] @0.080 (arb +0.010/set)
+  14:01 arb BUY NO 718 California Governor [Republican] @0.910 (arb +0.010/set)
+  14:01 arb BUY NO 150 FL-13 House race [Democratic] @0.710 (arb +0.010/set)
+  14:01 arb BUY NO 150 FL-13 House race [Republican] @0.280 (arb +0.010/set)
+  14:01 arb BUY NO 488 Idaho Governor [Democratic] @0.930 (arb +0.010/set)
+  14:01 arb BUY NO 488 Idaho Governor [Republican] @0.060 (arb +0.010/set)
+  14:02 arb SELL NO 600 Alaska Senate [Democratic] @0.260 (arb take-profit) P&L -3
+  14:02 arb SELL NO 600 Alaska Senate [Republican] @0.725 (arb take-profit) P&L +6
+  14:02 arb BUY NO 5 California Governor [Democratic] @0.080 (arb +0.010/set)
+  14:02 arb BUY NO 5 California Governor [Republican] @0.910 (arb +0.010/set)
+  14:02 arb BUY NO 75 FL-13 House race [Democratic] @0.710 (arb +0.010/set)
+  14:02 arb BUY NO 75 FL-13 House race [Republican] @0.280 (arb +0.010/set)
+  14:02 arb BUY NO 516 Idaho Governor [Democratic] @0.930 (arb +0.010/set)
+  14:02 arb BUY NO 516 Idaho Governor [Republican] @0.060 (arb +0.010/set)
+  14:02 arb SELL NO 7 Alaska Senate [Democratic] @0.260 (arb take-profit) P&L -0
+  14:02 arb SELL NO 7 Alaska Senate [Republican] @0.725 (arb take-profit) P&L +0
+  14:02 arb BUY NO 13 Maine Senate [Democratic] @0.345 (arb +0.010/set)
+  14:02 arb BUY NO 13 Maine Senate [Republican] @0.645 (arb +0.010/set)
 
-Arb baskets held (25):
-  Alabama Senate                             2000 sets cost 0.990 pays ≥1 sell-now 0.980
-  Alaska Senate                              2000 sets cost 0.980 pays ≥1 sell-now 0.970
-  Arizona Governor                           2000 sets cost 0.990 pays ≥1 sell-now 0.970
-  CA-22 House race                            463 sets cost 0.990 pays ≥1 sell-now 0.980
-  CA-48 House race                            393 sets cost 0.990 pays ≥1 sell-now 0.985
+Arb baskets held (23):
+  Alabama Senate                             2000 sets cost 0.990 pays ≥1 sell-now 0.975
+  Arizona Governor                           2000 sets cost 0.981 pays ≥1 sell-now 0.970
+  CA-22 House race                            463 sets cost 0.990 pays ≥1 sell-now 0.975
+  CA-48 House race                            393 sets cost 0.990 pays ≥1 sell-now 0.980
   CO-03 House race                            932 sets cost 0.988 pays ≥1 sell-now 0.985
-  CO-04 House race                           1390 sets cost 0.990 pays ≥1 sell-now 0.985
-  CO-08 House race                            330 sets cost 0.988 pays ≥1 sell-now 0.970
-  California Governor                        1275 sets cost 0.990 pays ≥1 sell-now 0.980
-  Colorado Senate                             258 sets cost 0.990 pays ≥1 sell-now 0.980
+  CO-04 House race                           1465 sets cost 0.990 pays ≥1 sell-now 0.980
+  California Governor                        2000 sets cost 0.990 pays ≥1 sell-now 0.975
+  Colorado Senate                             258 sets cost 0.990 pays ≥1 sell-now 0.975
   Delaware Senate                            2000 sets cost 0.990 pays ≥1 sell-now 0.975
-  FL-13 House race                            277 sets cost 0.990 pays ≥1 sell-now 0.980
-  Florida Governor                           2000 sets cost 0.990 pays ≥1 sell-now 0.975
-  Idaho Governor                              695 sets cost 0.990 pays ≥1 sell-now 0.980
-  Iowa Senate                                2000 sets cost 0.990 pays ≥1 sell-now 0.975
-  Kansas Governor                            2000 sets cost 0.990 pays ≥1 sell-now 0.980
-  Kansas Senate                              1285 sets cost 0.990 pays ≥1 sell-now 0.980
+  FL-13 House race                            604 sets cost 0.990 pays ≥1 sell-now 0.980
+  Florida Governor                           2000 sets cost 0.985 pays ≥1 sell-now 0.980
+  Idaho Governor                             1872 sets cost 0.990 pays ≥1 sell-now 0.975
+  Iowa Senate                                2000 sets cost 0.987 pays ≥1 sell-now 0.975
+  Kansas Governor                            2000 sets cost 0.988 pays ≥1 sell-now 0.980
+  Kansas Senate                              1285 sets cost 0.990 pays ≥1 sell-now 0.985
   MN-01 House race                           2000 sets cost 0.990 pays ≥1 sell-now 0.980
-  MN-02 House race                           2000 sets cost 0.989 pays ≥1 sell-now 0.970
-  Maine Senate                                780 sets cost 0.990 pays ≥1 sell-now 0.980
-  Montana Senate                             2000 sets cost 1.965 pays ≥2 sell-now 1.950
+  MN-02 House race                           2000 sets cost 0.989 pays ≥1 sell-now 0.980
+  Maine Senate                                793 sets cost 0.990 pays ≥1 sell-now 0.990
+  Montana Senate                             2000 sets cost 1.965 pays ≥2 sell-now 1.945
   NH-01 House race                           2000 sets cost 0.980 pays ≥1 sell-now 0.970
-  Nebraska Senate                             814 sets cost 1.955 pays ≥2 sell-now 1.940
+  Nebraska Senate                             814 sets cost 1.955 pays ≥2 sell-now 1.950
   New Mexico Governor                           8 sets cost 0.990 pays ≥1 sell-now 0.980
   New York Governor                           153 sets cost 0.985 pays ≥1 sell-now 0.975
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.060, Nebraska Senate +0.045, Montana Senate +0.035
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.055, Nebraska Senate +0.035, Montana Senate +0.030
 
-Opportunities this run (440 priced cycles):
-  price gaps: 28 markets reached ≥0.04, 67 more reached ≥0.02 (near misses), of 192 with a fair value
+Opportunities this run (449 priced cycles):
+  price gaps: 29 markets reached ≥0.04, 69 more reached ≥0.02 (near misses), of 192 with a fair value
   best gaps: Rhode Island Senate [Republica +0.111, Rhode Island Senate [Democrati +0.097, Rhode Island Governor [Republi +0.086
-  arb: 46 races reached ≥0.01; best: Rhode Island Governor +0.060, Nebraska Senate +0.045, Montana Senate +0.035
-  depth at best price: median 1,833 shares, max 45,458 (277 books read)
+  arb: 48 races reached ≥0.01; best: Rhode Island Governor +0.055, Nebraska Senate +0.045, Montana Senate +0.040
+  depth at best price: median 1,212 shares, max 8,627 (48 books read)
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.040, New Hampshire Senate +0.020, Maine Governor +0.020, MN-05 House race +0.015
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.035, Maine Governor +0.020, MN-05 House race +0.020, South Dakota Senate +0.015
   45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
@@ -90,4 +88,4 @@ Largest gaps now (edge = fair − price to buy):
   Rhode Island Senate [Democratic]         buy YES edge +0.097
   Rhode Island Governor [Republican]       buy NO  edge +0.086
   Tennessee Senate [Democratic]            buy NO  edge +0.072
-  Mississippi Senate [Democratic]          buy NO  edge +0.070
+  Mississippi Senate [Democratic]          buy NO  edge +0.065
