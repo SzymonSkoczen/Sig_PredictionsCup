@@ -114,3 +114,12 @@ Trades: 0 (no gap trades, no new baskets, no unwinds) · best: n/a · worst: n/a
 💡 Improve (needs your OK): conv positions converge slowly while gaps persist; too early to tell if fair value is stale vs Cup lagging; review MAX_HOLD_HOURS/EXIT_BAND only if still unconverged in the next runs.
 🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.035, Maine Gov +0.030 (third-party risk); NO-arb RI Gov +0.060, Montana +0.050 (cash-limited); 45 markets unmapped. Hawaii/RI recur every run.
 🔧 Fixed: nothing (no code bug).
+
+## 2026-10-24T01:37Z run
+LIVE · health OK (kalshi 429s x6, 0 SIG errors) · P&L run -360 / all-time -1,198 · open MTM -467
+Trades: 432 fills (arb baskets ~108 buys/sells, 0 gap trades) · best: n/a · worst: Delaware Senate arb timeout unwinds (-14, -11, -9)
+✅ Went well: 412 cycles, 0 errors, 192/192 priced; open MTM -618 -> -467; 10 conv positions kept.
+❌ Went wrong: realized -360 from arb baskets bought then sold on "arb timeout" (69 losing exits, e.g. Delaware Senate -34 total); 10 conv positions held 10-13h, still unconverged (RI Gov 0.905 vs fair 0.996).
+💡 Improve (needs your OK): arb baskets are churning (buy at +0.01-0.017/set, timeout-sold at a loss); consider raising ARB_MIN_PROFIT or lengthening the arb timeout. Conv gaps not closing after 13h: review MAX_HOLD_HOURS / fair-value staleness.
+🔎 Opportunities: Hawaii Gov / RI recur every run (RI Gov +0.085 gap); 45 markets unmapped; Kalshi 429s limit refresh.
+🔧 Fixed: nothing (no code bug).
