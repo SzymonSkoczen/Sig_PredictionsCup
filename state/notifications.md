@@ -141,3 +141,12 @@ Trades: 77 fills (0 gap trades, ~13 arb baskets bought, 25 timeout unwinds) · b
 💡 Improve (needs your OK): arb baskets churn (bought +0.015/set, timeout-sold ~-0.02/set): consider longer arb timeout or higher ARB_MIN_PROFIT; conv gaps not closing after 17h: review MAX_HOLD_HOURS/EXIT_BAND or fair-value staleness.
 🔎 Opportunities: RI Gov/Senate gaps ~+0.09-0.12 persist every run (cash-limited; needs freeing cash from stale arb baskets); Hawaii Gov YES basket and 45 unmapped markets recur.
 🔧 Fixed: nothing (no code bug).
+
+## 2026-10-24T07:40Z run
+LIVE · health OK (kalshi 429s x1, 0 SIG errors) · P&L run +16 / all-time -1,236 · open MTM -385
+Trades: 29 fills (0 gap trades, ~10 arb baskets bought, FL Gov take-profit unwinds +14) · best: FL Gov take-profit (+25 R leg) · worst: FL Gov D leg (-12)
+✅ Went well: 459 cycles, 0 errors, 192/192 priced; realized +16 (first positive run in a while); open MTM -404 -> -385.
+❌ Went wrong: 0 gap entries despite 41 markets with gap >=0.04 (RI Senate R +0.117); 10 conv positions held 16-19h, unconverged (RI Gov 0.905 vs fair 0.997).
+💡 Improve (needs your OK): 63 near misses (>=0.02) and 41 gaps reached but no entries and no stop-outs -> cash is the limit (holdings 74k of 99k); consider smaller arb sizing or recycling stale baskets to fund gap trades; conv positions 19h old: review MAX_HOLD_HOURS/EXIT_BAND.
+🔎 Opportunities: RI Gov/Senate gaps +0.09-0.12 persist every run (cash-limited); Hawaii Gov YES basket Σasks<1 by 0.040, Maine Gov +0.030 (third-party risk); 45 unmapped markets.
+🔧 Fixed: nothing (no code bug).
