@@ -183,3 +183,11 @@ Trades: 32 fills (0 gap trades, ~10 arb baskets bought, Alaska Sen take-profits 
 ❌ Went wrong: 0 gap entries despite 29 gaps >=0.04 (RI Senate R +0.111); 10 conv positions held 24-27h, unconverged (RI Gov 0.905 vs fair 0.997).
 💡 Improve (needs your OK): 29 reached + 69 near-miss gaps, no entries, no stop-outs, 72k of 99k tied up -> cash-limited; smaller arb sizing/recycling baskets; review MAX_HOLD_HOURS/EXIT_BAND (27h held).
 🔎 Opportunities: RI Senate/Gov gaps +0.09-0.11 recur every run (cash-limited); Hawaii Gov YES basket Σasks<1 by 0.035 (third-party risk); 45 unmapped markets.
+
+## 2026-10-24T17:40Z run
+LIVE · health OK (kalshi 6 failures/429, 0 SIG errors) · P&L run -96 / all-time -1,666 · open MTM -46
+Trades: ~115 fills (0 gap trades, ~15 arb baskets bought, arb timeout unwinds) · best: Delaware Sen R leg +3 · worst: Delaware Senate timeout (-24)
+✅ Went well: 449 cycles, 0 errors, 192/192 priced; open MTM roughly flat (-46); 0 SIG API errors.
+❌ Went wrong: realized -96, mostly Delaware Senate arb timeout (1494 sets, -24); 0 gap entries despite 32 gaps >=0.04; 10 conv positions held 26-29h unconverged (RI Gov 0.905 vs fair 0.997).
+💡 Improve (needs your OK): arb timeout unwinds lose money 4 of last 5 runs (buy +0.010/set, sell below cost) -> raise ARB_MIN_PROFIT or lengthen arb hold; 32 reached + 60 near-miss gaps, none entered, 73k of 99k tied up -> smaller arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (29h held).
+🔎 Opportunities: RI Senate R +0.105 / D +0.097 / RI Gov +0.086 gaps recur every run (cash-limited); Hawaii Gov YES basket Σasks<1 by 0.035 (third-party risk); 45 unmapped markets.
