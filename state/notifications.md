@@ -207,3 +207,11 @@ Trades: 16 fills (0 gap trades, ~8 arb baskets bought, Kansas Senate take-profit
 ❌ Went wrong: open MTM +55 -> -196; 0 gap entries despite 37 gaps >=0.04 (RI Senate R +0.111); 10 conv positions held 30-33h unconverged.
 💡 Improve (needs your OK): arb timeouts lost money in most recent runs -> raise ARB_MIN_PROFIT or lengthen arb hold; 37 reached + 65 near-miss gaps, none entered, ~73k tied up -> smaller arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (33h held).
 🔎 Opportunities: RI Senate/Gov gaps +0.09-0.11 recur every run (cash-limited); RI Gov NO-arb +0.070, Montana Sen +0.045; 45 unmapped markets.
+
+## 2026-10-24T23:40Z run
+LIVE · health OK (kalshi 8 failures/429, 0 SIG errors) · P&L run -14 / all-time -1,703 · open MTM -22
+Trades: ~33 fills (0 gap trades, ~10 arb baskets bought, NH-01 timeout unwinds) · best: n/a · worst: NH-01 R timeout (-7)
+✅ Went well: 432 cycles, 0 errors, 192/192 priced; open MTM -196 -> -22; 0 SIG API errors.
+❌ Went wrong: realized -14, NH-01 arb timeouts (-8 net); 0 gap entries despite 38 gaps >=0.04; 10 conv positions held 32-35h unconverged.
+💡 Improve (needs your OK): arb timeouts lose small amounts in most runs -> raise ARB_MIN_PROFIT or lengthen arb hold; 38 reached + 60 near-miss gaps, none entered, ~73k tied up -> smaller arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (35h held).
+🔎 Opportunities: RI Senate R +0.105 / D +0.097 / RI Gov +0.086 gaps recur every run (cash-limited); Hawaii Gov YES basket Σasks<1 by 0.040 (third-party risk); 45 unmapped markets.
