@@ -132,3 +132,12 @@ Trades: 6 fills (0 gap trades, 1 arb basket bought, 1 unwind) · best: n/a · wo
 💡 Improve (needs your OK): conv gaps not closing after 15h; consider MAX_HOLD_HOURS/EXIT_BAND or check fair-value staleness. Arb baskets need ~0.01/set but timeout-sell at ~0.975; ARB_MIN_PROFIT up if churn returns.
 🔎 Opportunities: Hawaii Gov YES basket Σasks<1 by 0.040 (third-party risk), Maine Gov +0.025; NO-arb RI Gov +0.065, Montana +0.060 (cash-limited); 45 markets unmapped. Hawaii/RI recur every run.
 🔧 Fixed: nothing (no code bug).
+
+## 2026-10-24T05:37Z run
+LIVE · health OK (kalshi 429s x2, 0 SIG errors) · P&L run -53 / all-time -1,251 · open MTM -404
+Trades: 77 fills (0 gap trades, ~13 arb baskets bought, 25 timeout unwinds) · best: n/a · worst: CA Governor basket partial sell (1242/2000 R leg, repaired by re-buying 758 D, cost 0.997/set)
+✅ Went well: 467 cycles, 0 errors, 192/192 priced; repair logic evened the uneven CA Gov basket; open MTM -421 -> -404.
+❌ Went wrong: realized -53 from Alabama Senate arb timeout unwinds (cost 0.990 vs sell-now 0.970); 0 gap entries despite gaps (RI Senate R ~+0.12); 10 conv positions held 14-17h, unconverged (RI Gov 0.905 vs fair 0.996).
+💡 Improve (needs your OK): arb baskets churn (bought +0.015/set, timeout-sold ~-0.02/set): consider longer arb timeout or higher ARB_MIN_PROFIT; conv gaps not closing after 17h: review MAX_HOLD_HOURS/EXIT_BAND or fair-value staleness.
+🔎 Opportunities: RI Gov/Senate gaps ~+0.09-0.12 persist every run (cash-limited; needs freeing cash from stale arb baskets); Hawaii Gov YES basket and 45 unmapped markets recur.
+🔧 Fixed: nothing (no code bug).
