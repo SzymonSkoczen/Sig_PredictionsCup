@@ -263,3 +263,11 @@ Trades: ~106 fills (0 gap trades, ~20 arb baskets, AZ-01 timeout unwind -3) · b
 ❌ Went wrong: realized -56 (vs -6 last run; all-time -1,948 -> -2,004); 0 gap entries despite 37 gaps >=0.04 (RI Senate D +0.097); 10 conv positions held 44-47h unconverged.
 💡 Improve (needs your OK): ~73k tied up in arb baskets at +0.010/set, so gaps go unentered -> smaller arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (47h held); arb timeout losses grew, ARB_MIN_PROFIT still too early to tell.
 🔎 Opportunities: RI Senate D +0.097 / R +0.090 / RI Gov +0.086 gaps recur every run (cash-limited); RI Gov arb +0.060, Nebraska Senate arb +0.055 near-miss; Hawaii Gov YES basket Σasks<1 by 0.035 (third-party risk); 45 unmapped markets.
+
+## 2026-10-25T13:36Z run
+LIVE · health OK (0 SIG errors, kalshi 3 failures/429) · P&L run -231 / all-time -2,235 · open MTM +245
+Trades: ~414 fills (0 gap trades, ~60 arb baskets/timeouts) · best: Oregon Gov D leg timeout +7 · worst: Idaho Gov R leg timeout -20, Oregon Gov R leg -14
+✅ Went well: 439 cycles, 0 SIG errors, 192/192 priced; open MTM steady +245 (account unrealized +700).
+❌ Went wrong: realized -231 (vs -56; all-time -2,004 -> -2,235), 59 losing arb-timeout exits; 0 gap entries despite 30 gaps >=0.04 (RI Senate D +0.097); 10 conv positions held 46-49h.
+💡 Improve (needs your OK): arb baskets at +0.010/set are churned and timed out at a loss (losses 4 runs running: -16,+2,-6,-56,-231) -> raise ARB_MIN_PROFIT or shorten arb hold/ cut arb sizing; ~73k locked blocks RI gap trades.
+🔎 Opportunities: RI Senate D +0.097 / R +0.090 / RI Gov +0.086 gaps recur every run (cash-limited); RI Gov arb +0.060, Nebraska Senate +0.045 near-miss; Hawaii Gov YES basket Σasks<1 by 0.035 (third-party risk); 45 unmapped markets.
