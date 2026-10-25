@@ -295,3 +295,11 @@ Trades: ~arb baskets only, 0 gap trades (ARB_MIN_PROFIT 0.02 now active, e.g. Ok
 ❌ Went wrong: realized -35 (-550 today); 0 gap entries despite 29 gaps >=0.04 (RI Senate D +0.092); 10 conv positions held up to 55h; Kalshi 429s rose to 14.
 💡 Improve (needs your OK): ~73k locked in arb baskets starves RI gap trades -> smaller arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (55h held); too early to judge ARB_MIN_PROFIT 0.02 (1 run).
 🔎 Opportunities: RI Senate D +0.092 / RI Gov R +0.086 / RI Senate R +0.081 gaps recur every run (cash-limited); RI Gov arb +0.060, Montana +0.055 near-miss; Hawaii Gov YES basket Σasks<1 by 0.035 (third-party risk); 45 unmapped markets.
+
+## 2026-10-25T21:40Z run
+LIVE · health OK (0 SIG errors, kalshi 3 failures/429) · P&L run +2 / all-time -2,293 · open MTM +249
+Trades: 14 fills (0 gap trades, 1 new arb basket Tennessee Gov; 6 arb exits) · best: MT-01 take-profit +4 net · worst: MT-01 timeout -1 net
+✅ Went well: 454 cycles, 0 SIG errors, 192/192 priced; realized flat (+2 vs -35 last run) as old +0.010 baskets clear; Kalshi failures fell 14 -> 3.
+❌ Went wrong: 0 gap entries despite 32 gaps >=0.04 (RI Senate D +0.092); 10 conv positions held 54-57h unconverged; all-time -2,293 (-548 today).
+💡 Improve (needs your OK): ~72k still locked in 20 arb baskets (many 2000-set) starves RI gap trades -> cap arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (57h held). ARB_MIN_PROFIT 0.02 now looks better (14 fills vs 62) but 2 runs is too early to tell.
+🔎 Opportunities: RI Senate D +0.092 / RI Gov R +0.086 / RI Senate R +0.081 gaps recur every run (cash-limited); RI Gov arb +0.060, Montana +0.050, Nebraska +0.045 near-miss; Hawaii Gov YES basket Σasks<1 by 0.030 (third-party risk); 45 unmapped markets.
