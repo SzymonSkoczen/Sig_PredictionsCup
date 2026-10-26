@@ -399,3 +399,12 @@ Trades: ~56 in 2h (0 gap trades, arb baskets: Alaska Sen, PA-10, Maine Sen, Mich
 ❌ Went wrong: first 100-min run died at 20:07 (readonly DB) because I merged git into state/ mid-run — process error, not code; ~1h50 of trading lost. 0 gap entries despite 31 gaps ≥0.04 (cash-limited, 12 positions ~10h unconverged).
 💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND — RI Senate ~6.6k sh held 10h, fair 0.985 vs mark 0.90 (10 runs of evidence).
 🔎 Opportunities: RI Senate/Gov gaps +0.086/+0.089 recur every run; arb near-misses RI Gov +0.060, Nebraska +0.055, Montana +0.050; YES baskets Σasks<1: MN-05/Hawaii Gov +0.025 (third-party risk); 45 unmapped markets.
+
+## 2026-10-26T23:40Z run
+LIVE · health DEGRADED (container restarted 23:26, run cut at ~90/100 min; overlapped with a duplicate session's run, so the report file was clobbered) · P&L last 2h -9 / all-time -2,658 · open MTM -69
+Trades: ~62 fills in 2h (0 gap trades; arb baskets: AZ-01, Colorado Sen churn, Maine Sen take-profit) · best: Maine Sen take-profit +1 · worst: Colorado Sen R timeout -4
+✅ Went well: 0 SIG errors; 12 conv positions intact, open MTM -69; account unrealized +127.
+❌ Went wrong: two sessions ran the bot at once (duplicate orders, 344 unfilled sell attempts, e.g. Tennessee Gov sell 0/218 repeating; MN-01/TN Gov baskets pending); Colorado Senate 1–39 share baskets bought then timed out repeatedly (~0 P&L churn).
+💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND — RI/MS/OK gaps (fair ~0.985 vs mark ~0.90) unconverged 11h (11 runs of evidence); consider a re-entry cooldown after an arb timeout (Colorado churn).
+🔎 Opportunities: RI Senate/Gov gaps ~+0.085 recur every run; arb near-misses Nebraska/Montana/RI Gov; 45 unmapped markets.
+🔧 Fixed: nothing in code.
