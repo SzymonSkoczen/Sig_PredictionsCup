@@ -319,3 +319,11 @@ Trades: 242 fills (0 gap trades, 0 new arb baskets; arb timeout unwinds only) ·
 ❌ Went wrong: realized -220 (vs -31), all-time -2,544 (-220 today), from arb timeout unwinds of 2000-set baskets; 0 gap entries despite 26 gaps >=0.04 (RI Senate D +0.092); Tennessee Gov unwound in ~100 slices of 1-20 sets (thin depth).
 💡 Improve (needs your OK): arb timeouts (MAX_HOLD) cost more than the +0.02 edge on large baskets -> cap arb size / shorten hold or require depth; cash now freed, so watch whether RI gap trades finally fire; review MAX_HOLD_HOURS/EXIT_BAND (61h held).
 🔎 Opportunities: RI Senate D +0.092 / RI Gov R +0.086 / RI Senate R +0.080 gaps recur every run; RI Gov arb +0.060, Nebraska +0.050, Montana +0.045 near-miss; YES baskets Σasks<1: MN-05 +0.030, Hawaii Gov +0.030 (third-party risk); 45 unmapped markets.
+
+## 2026-10-26T03:40Z run
+LIVE · health OK (0 SIG errors, 0 consecutive errors) · P&L run -28 / all-time -2,573 · open MTM +678
+Trades: 103 in last 2h (arb baskets only visible, mostly small Nebraska Sen churn/timeouts) · best: n/a · worst: arb timeouts ~-0 each
+✅ Went well: 472 cycles, 0 SIG errors, 192/192 priced, 0 Kalshi failures; realized only -28 (vs -220 last run) as old 2000-set baskets cleared; open MTM +678 (was +540).
+❌ Went wrong: all-time -2,573 (-248 today); RI Senate D/Gov R/Senate R gaps (+0.09) still held 63h unconverged; Nebraska Sen arb re-entered/timed out repeatedly in 50-set slices.
+💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND (63h held, RI fair 0.99 vs mark 0.89-0.90); cap arb size/churn on thin books (Nebraska) — 3 runs of timeout losses exceed +0.02 edge.
+🔎 Opportunities: RI gaps +0.092/+0.086/+0.080 persist every run; RI Gov arb +0.060, Montana +0.050, Nebraska +0.045 near-miss; YES baskets Σasks<1: Hawaii Gov +0.030, Nebraska Gov +0.025 (third-party risk); 45 unmapped markets.
