@@ -311,3 +311,11 @@ Trades: 10 fills (0 gap trades, 1 new arb basket Delaware Sen; 4 arb timeout exi
 ❌ Went wrong: realized -31 (-579 today) from 2000-set arb timeouts (SC Gov, VA-05 ~-30 net); 0 gap entries despite 29 gaps >=0.04; 10 conv positions held 56-59h; Kalshi 429s 13.
 💡 Improve (needs your OK): ~68k locked in 17 arb baskets (many 2000-set) starves RI gap trades -> cap arb sizing; review MAX_HOLD_HOURS/EXIT_BAND (59h held); arb timeouts on 2000-set baskets cost more than the +0.02 edge.
 🔎 Opportunities: RI Senate D +0.092 / RI Gov R +0.086 / RI Senate R +0.080 gaps recur every run (cash-limited); RI Gov arb +0.065, Montana +0.050 near-miss; Hawaii Gov YES basket Σasks<1 by 0.030 (third-party risk); 45 unmapped markets.
+
+## 2026-10-26T01:40Z run
+LIVE · health OK (0 SIG errors, kalshi 6 failures/429) · P&L run -220 / all-time -2,544 · open MTM +540
+Trades: 242 fills (0 gap trades, 0 new arb baskets; arb timeout unwinds only) · best: arb legs ~0 · worst: SC Senate R leg timeout (-13); realized -220 mostly from unwinding old baskets
+✅ Went well: 461 cycles, 0 SIG errors, 192/192 priced; arb baskets held cut 17 -> 12 (locked cash freed, holdings 68k -> 54k); open MTM +540 (was +308).
+❌ Went wrong: realized -220 (vs -31), all-time -2,544 (-220 today), from arb timeout unwinds of 2000-set baskets; 0 gap entries despite 26 gaps >=0.04 (RI Senate D +0.092); Tennessee Gov unwound in ~100 slices of 1-20 sets (thin depth).
+💡 Improve (needs your OK): arb timeouts (MAX_HOLD) cost more than the +0.02 edge on large baskets -> cap arb size / shorten hold or require depth; cash now freed, so watch whether RI gap trades finally fire; review MAX_HOLD_HOURS/EXIT_BAND (61h held).
+🔎 Opportunities: RI Senate D +0.092 / RI Gov R +0.086 / RI Senate R +0.080 gaps recur every run; RI Gov arb +0.060, Nebraska +0.050, Montana +0.045 near-miss; YES baskets Σasks<1: MN-05 +0.030, Hawaii Gov +0.030 (third-party risk); 45 unmapped markets.
