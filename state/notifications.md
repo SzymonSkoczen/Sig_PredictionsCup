@@ -391,4 +391,3 @@ Trades: 34 in last 2h (0 gap trades, arb baskets only: CO-04, California Gov, Ka
 ❌ Went wrong: all-time -2,658; 0 gap entries despite 28 gaps >=0.04; RI/MS/OK/ME positions held 7h+ unconverged (RI fair 0.985 vs mark 0.90).
 💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND - RI gaps +0.08 persist (9 runs of evidence), earlier timeouts realized losses (VA -92, TN -83).
 🔎 Opportunities: RI Gov/Senate gaps +0.084/+0.081/+0.080 recur every run (held, cash-limited); arb near-misses Montana +0.050, Nebraska +0.045, RI Gov +0.040; YES baskets Σasks<1: Hawaii Gov +0.035 (third-party risk); 45 unmapped markets.
->>>>>>> 7495a7f (bot state 19:40Z)
