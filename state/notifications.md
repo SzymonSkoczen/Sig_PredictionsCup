@@ -391,3 +391,11 @@ Trades: 34 in last 2h (0 gap trades, arb baskets only: CO-04, California Gov, Ka
 ❌ Went wrong: all-time -2,658; 0 gap entries despite 28 gaps >=0.04; RI/MS/OK/ME positions held 7h+ unconverged (RI fair 0.985 vs mark 0.90).
 💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND - RI gaps +0.08 persist (9 runs of evidence), earlier timeouts realized losses (VA -92, TN -83).
 🔎 Opportunities: RI Gov/Senate gaps +0.084/+0.081/+0.080 recur every run (held, cash-limited); arb near-misses Montana +0.050, Nebraska +0.045, RI Gov +0.040; YES baskets Σasks<1: Hawaii Gov +0.035 (third-party risk); 45 unmapped markets.
+
+## 2026-10-26T22:58Z run
+LIVE · health OK (1 transient SIG disconnect; kalshi 2 failures) · P&L run -12 / all-time -2,662 · open MTM -34
+Trades: ~56 in 2h (0 gap trades, arb baskets: Alaska Sen, PA-10, Maine Sen, Michigan Sen…) · best: n/a · worst: n/a
+✅ Went well: 267 cycles over final 60 min, 192/192 priced, 0 cycle errors after restart; open MTM only -34; account unrealized +135.
+❌ Went wrong: first 100-min run died at 20:07 (readonly DB) because I merged git into state/ mid-run — process error, not code; ~1h50 of trading lost. 0 gap entries despite 31 gaps ≥0.04 (cash-limited, 12 positions ~10h unconverged).
+💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND — RI Senate ~6.6k sh held 10h, fair 0.985 vs mark 0.90 (10 runs of evidence).
+🔎 Opportunities: RI Senate/Gov gaps +0.086/+0.089 recur every run; arb near-misses RI Gov +0.060, Nebraska +0.055, Montana +0.050; YES baskets Σasks<1: MN-05/Hawaii Gov +0.025 (third-party risk); 45 unmapped markets.

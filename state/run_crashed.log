@@ -1,0 +1,166 @@
+2026-10-26 19:56:23,315 INFO sigcup.cli: mode: live
+2026-10-26 19:56:23,962 INFO sigcup.sig_api: using tournament midterm-elections
+2026-10-26 19:56:25,600 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-26 19:56:26,078 INFO sigcup.bot: resynced from exchange: 41 arb legs, 12 other positions
+2026-10-26 19:56:29,082 INFO sigcup.bot: [live] sent SELL NO basket Alaska Senate x500 @ 0.980/set 
+2026-10-26 19:56:30,065 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x88 @ 0.965/set 
+2026-10-26 19:56:30,386 INFO sigcup.notify: 📊 SIG Cup bot report
+Mode: LIVE (live) | 2026-10-26 19:56 UTC
+Health: OK | up 0h00m | cycles 1 | last good cycle 0s ago | consecutive errors 0
+SIG API: reads 15/70/min, writes 2/20/min, errors total 0
+kalshi: last ok 3s ago, 192 quotes, 0 failures
+Markets: 192 mapped, 192 with a fair value
+Entries: active
+Arb: 117 races watched
+Bot P&L: realized +0 (last 2h), -324 today, -2,648 all-time | open MTM +14
+Account: periodEnd=2026-10-26T19:56:30.262Z, unrealizedPnl=212.13, totalAccountValue=97611.22, totalHoldingsValue=53018.65, totalCostBasis=52806.52, roi=-2.39, sharpe=-4.818
+
+Open positions (12):
+  Tennessee Senate [Democratic]            NO     161 @0.910 mark 0.905 fair 0.963 held 4h
+  Tennessee Senate [Republican]            YES    869 @0.915 mark 0.915 fair 0.964 held 4h
+  Virginia Senate [Republican]             NO    2697 @0.925 mark 0.925 fair 0.980 held 4h
+  Wyoming Senate [Democratic]              NO    2645 @0.945 mark 0.935 fair 0.988 held 7h
+  Oklahoma Governor [Republican]           YES   6769 @0.830 mark 0.835 fair 0.885 held 7h
+  NH-01 House race [Republican]            NO    2743 @0.909 mark 0.905 fair 0.960 held 4h
+  Rhode Island Senate [Democratic]         YES   6660 @0.901 mark 0.900 fair 0.986 held 7h
+  Rhode Island Senate [Republican]         NO    6629 @0.905 mark 0.900 fair 0.985 held 7h
+  Maine Governor [Democratic]              YES   2525 @0.909 mark 0.905 fair 0.953 held 7h
+  Mississippi Senate [Democratic]          NO    6913 @0.815 mark 0.820 fair 0.895 held 5h
+  Mississippi Senate [Republican]          YES   7343 @0.817 mark 0.830 fair 0.895 held 7h
+  Hawaii Governor [Democratic]             YES   2875 @0.913 mark 0.920 fair 0.980 held 5h
+
+Trades last 2h (0):
+
+Arb baskets held (19):
+  Alaska Senate                               500 sets cost 0.980 pays ≥1 sell-now 0.980
+  CO-04 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.975
+  California Governor                         500 sets cost 0.980 pays ≥1 sell-now 0.975
+  Colorado Senate                             500 sets cost 0.980 pays ≥1 sell-now 0.965
+  Delaware Senate                             500 sets cost 0.980 pays ≥1 sell-now 0.960
+  FL-13 House race                            500 sets cost 0.977 pays ≥1 sell-now 0.980
+  Idaho Governor                              500 sets cost 0.980 pays ≥1 sell-now 0.970
+  Kansas Senate                               500 sets cost 0.980 pays ≥1 sell-now 0.970
+  MN-01 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.980
+  MT-01 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.970
+  Montana Senate                              500 sets cost 1.970 pays ≥2 sell-now 1.950
+  Nebraska Senate                             500 sets cost 1.970 pays ≥2 sell-now 1.940
+  Oklahoma Senate                             500 sets cost 0.980 pays ≥1 sell-now 0.975
+  Rhode Island Governor                       500 sets cost 1.945 pays ≥2 sell-now 1.940
+  Tennessee Governor                          500 sets cost 0.980 pays ≥1 sell-now 0.975
+  U.S. House                                  500 sets cost 0.980 pays ≥1 sell-now 0.975
+  VA-01 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.975
+  Vermont Governor                            500 sets cost 0.980 pays ≥1 sell-now 0.975
+  WI-03 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.970
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.02): Nebraska Senate +0.045, Rhode Island Governor +0.040, Montana Senate +0.035
+
+Opportunities this run (1 priced cycles):
+  price gaps: 22 markets reached ≥0.04, 73 more reached ≥0.02 (near misses), of 192 with a fair value
+  best gaps: Rhode Island Governor [Republi +0.084, Rhode Island Senate [Democrati +0.081, Rhode Island Senate [Republica +0.080
+  arb: 5 races reached ≥0.02; best: Nebraska Senate +0.045, Rhode Island Governor +0.040, Montana Senate +0.035
+  depth at best price: median 1,055 shares, max 1,092 (4 books read)
+
+Other opportunities (not traded, for review):
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Massachusetts Governor +0.025, MN-05 House race +0.025, Hawaii Governor +0.025, Maine Governor +0.020
+  45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+
+Largest gaps now (edge = fair − price to buy):
+  Rhode Island Governor [Republican]       buy NO  edge +0.084
+  Rhode Island Senate [Democratic]         buy YES edge +0.081
+  Rhode Island Senate [Republican]         buy NO  edge +0.080
+  Mississippi Senate [Democratic]          buy NO  edge +0.070
+  Mississippi Senate [Republican]          buy YES edge +0.060
+2026-10-26 19:56:53,616 INFO sigcup.bot: sell no Alaska Senate [Democratic]: filled 500/500
+2026-10-26 19:56:53,617 INFO sigcup.bot: sell no Alaska Senate [Republican]: filled 500/500
+2026-10-26 19:56:53,618 INFO sigcup.bot: sell no Colorado Senate [Democratic]: filled 88/88
+2026-10-26 19:56:53,618 INFO sigcup.bot: sell no Colorado Senate [Republican]: filled 88/88
+2026-10-26 19:56:55,697 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x24 @ 0.980/set (locks +0.020/set)
+2026-10-26 19:57:18,824 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 24/24
+2026-10-26 19:57:18,826 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 24/24
+2026-10-26 19:57:20,662 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x24 @ 0.965/set 
+2026-10-26 19:57:46,079 INFO sigcup.bot: sell no Colorado Senate [Democratic]: filled 24/24
+2026-10-26 19:57:46,081 INFO sigcup.bot: sell no Colorado Senate [Republican]: filled 24/24
+2026-10-26 19:57:48,239 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x12 @ 0.980/set (locks +0.020/set)
+2026-10-26 19:58:11,583 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 12/12
+2026-10-26 19:58:11,584 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 12/12
+2026-10-26 19:58:13,419 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x12 @ 0.965/set 
+2026-10-26 19:58:36,583 INFO sigcup.bot: sell no Colorado Senate [Democratic]: filled 12/12
+2026-10-26 19:58:36,584 INFO sigcup.bot: sell no Colorado Senate [Republican]: filled 12/12
+2026-10-26 19:58:38,614 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x6 @ 0.980/set (locks +0.020/set)
+2026-10-26 19:59:01,940 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 6/6
+2026-10-26 19:59:01,942 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 6/6
+2026-10-26 19:59:03,986 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x6 @ 0.965/set 
+2026-10-26 19:59:35,375 INFO sigcup.bot: sell no Colorado Senate [Democratic]: filled 6/6
+2026-10-26 19:59:35,376 INFO sigcup.bot: sell no Colorado Senate [Republican]: filled 6/6
+2026-10-26 19:59:37,338 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x3 @ 0.980/set (locks +0.020/set)
+2026-10-26 20:00:00,496 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 3/3
+2026-10-26 20:00:00,497 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 3/3
+2026-10-26 20:00:02,835 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x1 @ 0.980/set (locks +0.020/set)
+2026-10-26 20:00:26,609 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 1/1
+2026-10-26 20:00:26,610 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 1/1
+2026-10-26 20:00:28,929 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x1 @ 0.980/set (locks +0.020/set)
+2026-10-26 20:00:52,143 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 1/1
+2026-10-26 20:00:52,145 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 1/1
+2026-10-26 20:05:25,090 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x5 @ 0.965/set 
+2026-10-26 20:05:48,343 INFO sigcup.bot: sell no Colorado Senate [Democratic]: filled 5/5
+2026-10-26 20:05:48,345 INFO sigcup.bot: sell no Colorado Senate [Republican]: filled 5/5
+2026-10-26 20:06:17,101 INFO sigcup.bot: [live] sent BUY NO basket Colorado Senate x2 @ 0.980/set (locks +0.020/set)
+2026-10-26 20:06:40,655 INFO sigcup.bot: buy no Colorado Senate [Democratic]: filled 2/2
+2026-10-26 20:06:40,657 INFO sigcup.bot: buy no Colorado Senate [Republican]: filled 2/2
+2026-10-26 20:06:42,715 INFO sigcup.bot: [live] sent SELL NO basket Colorado Senate x47 @ 0.965/set 
+2026-10-26 20:07:05,455 ERROR sigcup.bot: cycle failed
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 635, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 211, in cycle
+    for note in self.ledger.reconcile(self.positions, now):
+                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/ledger.py", line 133, in reconcile
+    self.record_fill(Order(eid, side, action, int(qty), price, fair, reason), filled, label, now,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     strategy)
+                     ^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/ledger.py", line 92, in record_fill
+    self.db.execute("UPDATE holdings SET qty=? WHERE strategy=? AND exchange_id=? AND side=?",
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    (h.qty - qty, strategy, o.exchange_id, o.side))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: attempt to write a readonly database
+Traceback (most recent call last):
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 635, in run
+    self.cycle()
+    ~~~~~~~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 211, in cycle
+    for note in self.ledger.reconcile(self.positions, now):
+                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/ledger.py", line 133, in reconcile
+    self.record_fill(Order(eid, side, action, int(qty), price, fair, reason), filled, label, now,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     strategy)
+                     ^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/ledger.py", line 92, in record_fill
+    self.db.execute("UPDATE holdings SET qty=? WHERE strategy=? AND exchange_id=? AND side=?",
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    (h.qty - qty, strategy, o.exchange_id, o.side))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: attempt to write a readonly database
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/sigcup", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/cli.py", line 288, in main
+    globals()[f"cmd_{args.cmd.replace('-', '_')}"](s, args)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/cli.py", line 184, in cmd_run
+    bot.run(minutes=args.minutes, report_file=args.report_file)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/bot.py", line 642, in run
+    self.ledger.event("ERROR", h.last_error[:500])
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Sig_PredictionsCup/src/sigcup/ledger.py", line 51, in event
+    self.db.execute("INSERT INTO events (ts, level, msg) VALUES (?, ?, ?)", (time.time(), level, msg))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: attempt to write a readonly database
