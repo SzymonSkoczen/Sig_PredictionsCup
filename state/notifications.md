@@ -440,3 +440,11 @@ Trades: 42 in 2h (0 gap trades; arb baskets: VA-01, Nebraska Gov, Iowa Sen ×3; 
 ❌ Went wrong: 12 conv positions still unconverged after 16-19h (RI Sen fair 0.986 vs mark 0.895); 0 gap entries despite 40 gaps ≥0.04 (cash-limited).
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (14 runs of evidence on RI/MS gaps); slower Kalshi polling (429s).
 🔎 Opportunities: RI Sen/Gov gaps +0.085 recur every run; arb near-misses RI Gov +0.055, Nebraska/Montana Sen +0.045; YES baskets Hawaii Gov +0.035, MN-05 +0.030 (third-party risk); 45 unmapped markets.
+
+## 2026-10-27T09:39Z run
+LIVE · health OK (1 SIG API error, 449 cycles, kalshi 5 failures) · P&L run +1 / all-time -3,013 · open MTM -219
+Trades: 16 in 2h (0 gap trades; arb baskets: Oklahoma Sen, FL-16; take-profits Georgia Gov, VA-01, Nebraska Gov; MT-01 timeout) · best: Georgia Gov +9/-7 net +2 · worst: MT-01 R timeout -5
+✅ Went well: full 100 min, 449 cycles, 191/192 priced; Kalshi failures down to 5 (from 10-14).
+❌ Went wrong: 12 conv positions unconverged 18-21h (RI Sen fair 0.986 vs mark 0.895); 0 gap entries despite 35 gaps ≥0.04 (cash-limited); realized only +1.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (15 runs of evidence on RI/MS gaps).
+🔎 Opportunities: RI Sen/Gov gaps +0.085 recur every run; arb near-misses RI Gov +0.050, Montana/Nebraska Sen +0.040; YES baskets Hawaii Gov +0.045, MN-05 +0.030 (third-party risk); 45 unmapped markets.
