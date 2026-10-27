@@ -417,3 +417,11 @@ Trades: ~15 order batches (0 gap trades; arb baskets e.g. Alaska Sen round-trip)
 💡 Improve (needs your OK): Kalshi 429s repeat each run — slower Kalshi polling would stabilise reference prices; MAX_HOLD_HOURS/EXIT_BAND review still open (RI gaps ~+0.085, 12 runs).
 🔎 Opportunities: RI Senate/Gov gaps ~+0.085 recur (cash-limited); 45 unmapped markets.
 🔧 Fixed: nothing in code.
+
+## 2026-10-27T03:41Z run
+LIVE · health OK (0 SIG errors; kalshi 14 failures, all 429s) · P&L run -7 / all-time -3,023 · open MTM -599
+Trades: 46 in 2h (0 gap trades; arb baskets: Tennessee Gov, U.S. House; timeouts Oklahoma Sen, VA-01) · best: VA-01 leg +3 · worst: VA-01 R timeout -8
+✅ Went well: full 100 min, 416 cycles, 0 SIG errors, 191/192 priced; realized only -7; 21 arb baskets held, sell-now within ~0.01-0.03 of cost.
+❌ Went wrong: open MTM -69 → -599 and all-time -2,658 → -3,023 (12 conv positions marked down ~0.01-0.02, held 12-15h); 0 gap entries despite 45 gaps ≥0.04 (cash-limited).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (RI/MS/OK gaps ~+0.085 unconverged 15h, 13 runs of evidence); slower Kalshi polling (14 429s this run).
+🔎 Opportunities: RI Gov/Senate gaps +0.09 recur every run; arb near-misses Montana +0.050, CO-04 +0.045, RI Gov +0.045; YES baskets Σasks<1: Hawaii Gov +0.045, Alaska Gov +0.035 (third-party risk); 45 unmapped markets.
