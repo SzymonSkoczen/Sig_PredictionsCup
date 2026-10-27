@@ -1,150 +1,79 @@
-2026-10-23 13:57:03,528 INFO sigcup.cli: mode: live
-2026-10-23 13:57:04,192 INFO sigcup.sig_api: using tournament midterm-elections
-2026-10-23 13:57:05,897 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-23 13:57:06,356 INFO sigcup.bot: resynced from exchange: 14 arb legs, 7 other positions
-2026-10-23 13:57:09,689 INFO sigcup.bot: [live] sent SELL NO basket CA-22 House race x300 @ 0.975/set 
-2026-10-23 13:57:10,494 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x102 @ 0.975/set 
-2026-10-23 13:57:11,131 INFO sigcup.bot: [live] sent BUY NO 17 Rhode Island Senate [Republican] @ 0.855 (fair 0.985, edge 0.130)
-2026-10-23 13:57:11,720 INFO sigcup.notify: 📊 SIG Cup bot report
-Mode: LIVE (live) | 2026-10-23 13:57 UTC
+2026-10-27 21:57:35,978 INFO sigcup.cli: mode: live
+2026-10-27 21:57:36,666 INFO sigcup.sig_api: using tournament midterm-elections
+2026-10-27 21:57:38,403 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-27 21:57:38,790 INFO sigcup.bot: resynced from exchange: 33 arb legs, 18 other positions
+2026-10-27 21:57:51,579 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2CGOVPARTYAR-26-R%2CGOVPARTYAZ-26-D%2CGOVPARTYAZ-26-R%2CGOVPARTYCA-26-D%2CGOVPARTYCA-26-R%2CGOVPARTYCO-26-D%2CGOVPARTYCO-26-R%2CGOVPARTYCT-26-D%2CGOVPARTYCT-26-R%2CGOVPARTYFL-26-D%2CGOVPARTYFL-26-R%2CGOVPARTYGA-26-D%2CGOVPARTYGA-26-R%2CGOVPARTYHI-26-D%2CGOVPARTYHI-26-R%2CGOVPARTYIA-26-D%2CGOVPARTYIA-26-R%2CGOVPARTYID-26-D%2CGOVPARTYID-26-R%2CGOVPARTYIL-26-D%2CGOVPARTYIL-26-R%2CGOVPARTYMA-26-D%2CGOVPARTYMA-26-R%2CGOVPARTYMD-26-D%2CGOVPARTYMD-26-R%2CGOVPARTYME-26-D%2CGOVPARTYME-26-R%2CGOVPARTYMI-26-D%2CGOVPARTYMI-26-R%2CGOVPARTYMN-26-D%2CGOVPARTYMN-26-R%2CGOVPARTYNE-26-D%2CGOVPARTYNE-26-R%2CGOVPARTYNM-26-D%2CGOVPARTYNM-26-R%2CGOVPARTYNV-26-D%2CGOVPARTYNV-26-R%2CGOVPARTYNY-26-D%2CGOVPARTYNY-26-R%2CGOVPARTYOK-26-D%2CGOVPARTYOK-26-R%2CGOVPARTYOR-26-D%2CGOVPARTYOR-26-R%2CGOVPARTYPA-26-D%2CGOVPARTYPA-26-R%2CGOVPARTYRI-26-D%2CGOVPARTYRI-26-R%2CGOVPARTYSC-26-D%2CGOVPARTYSC-26-R%2CGOVPARTYSD-26-D%2CGOVPARTYSD-26-R%2CGOVPARTYTN-26-D%2CGOVPARTYTN-26-R%2CGOVPARTYTX-26-D%2CGOVPARTYTX-26-R%2CGOVPARTYVT-26-D%2CGOVPARTYVT-26-R%2CGOVPARTYWI-26-D%2CGOVPARTYWI-26-R%2CGOVPARTYWY-26-D%2CGOVPARTYWY-26-R%2CHOUSEAZ1-26-D%2CHOUSEAZ1-26-R%2CHOUSEAZ6-26-D%2CHOUSEAZ6-26-R%2CHOUSECA22-26-D%2CHOUSECA22-26-R%2CHOUSECO3-26-D%2CHOUSECO3-26-R%2CHOUSECO8-26-D%2CHOUSECO8-26-R%2CHOUSEFL13-26-D%2CHOUSEFL13-26-R%2CHOUSEIA1-26-D%2CHOUSEIA1-26-R%2CHOUSEIA3-26-D%2CHOUSEIA3-26-R%2CHOUSEME2-26-D%2CHOUSEME2-26-R%2CHOUSEMI10-26-D%2CHOUSEMI10-26-R%2CHOUSEMI7-26-D%2CHOUSEMI7-26-R%2CHOUSEMN2-26-D%2CHOUSEMN2-26-R%2CHOUSEMT1-26-D%2CHOUSEMT1-26-R%2CHOUSENE2-26-D%2CHOUSENE2-26-R%2CHOUSENH1-26-D%2CHOUSENH1-26-R%2CHOUSENJ7-26-D%2CHOUSENJ7-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-27 21:57:53,747 INFO sigcup.notify: 📊 SIG Cup bot report
+Mode: LIVE (live) | 2026-10-27 21:57 UTC
 Health: OK | up 0h00m | cycles 1 | last good cycle 0s ago | consecutive errors 0
-SIG API: reads 17/70/min, writes 3/20/min, errors total 0
-kalshi: last ok 4s ago, 192 quotes, 0 failures
-Markets: 192 mapped, 191 with a fair value
+SIG API: reads 11/70/min, writes 0/20/min, errors total 0
+kalshi: last ok never, 0 quotes, 1 failures
+Markets: 192 mapped, 0 with a fair value
 Entries: active
 Arb: 117 races watched
-Bot P&L: realized -347 (last 2h), -347 today, -347 all-time | open MTM -1,704
-Account: periodEnd=2026-10-23T13:57:11.599Z, unrealizedPnl=-594.07, totalAccountValue=99061.12, totalHoldingsValue=88683.45, totalCostBasis=89277.53, roi=-0.94
+Bot P&L: realized +0 (last 2h), -26 today, -3,039 all-time | open MTM -270
+Account: periodEnd=2026-10-27T21:57:53.637Z, unrealizedPnl=38.89, totalAccountValue=96946.57, totalHoldingsValue=74946.51, totalCostBasis=74907.62, roi=-3.05, sharpe=-5.637
 
-Open positions (7):
-  WA-03 House race [Republican]            NO     253 @0.850 mark 0.845 fair 0.926 held 118m
-  Florida Senate [Democratic]              NO    1877 @0.857 mark 0.845 fair 0.902 held 2h
-  Rhode Island Governor [Republican]       NO    5621 @0.910 mark 0.895 fair 0.995 held 118m
-  Rhode Island Senate [Democratic]         YES   6896 @0.870 mark 0.865 fair 0.986 held 118m
-  Rhode Island Senate [Republican]         NO    7000 @0.855 mark 0.850 fair 0.985 held 118m
-  Mississippi Senate [Republican]          YES   1284 @0.828 mark 0.820 fair 0.904 held 118m
-  Hawaii Governor [Democratic]             YES    103 @0.890 mark 0.885 fair 0.988 held 27m
+Open positions (18):
+  WA-03 House race [Democratic]            YES   1885 @0.864 mark 0.855 fair   -   held 5h
+  Michigan Senate [Republican]             NO       1 @0.630 mark 0.640 fair   -   held 15s
+  Tennessee Senate [Democratic]            NO    4572 @0.915 mark 0.910 fair   -   held 30h
+  Tennessee Senate [Republican]            YES    869 @0.915 mark 0.925 fair   -   held 31h
+  Virginia Senate [Republican]             NO    5362 @0.932 mark 0.930 fair   -   held 31h
+  Wyoming Senate [Democratic]              NO    2645 @0.945 mark 0.945 fair   -   held 33h
+  Oklahoma Governor [Republican]           YES   6769 @0.830 mark 0.840 fair   -   held 33h
+  NH-01 House race [Republican]            NO    2743 @0.909 mark 0.900 fair   -   held 30h
+  Massachusetts Senate [Democratic]        YES   5319 @0.937 mark 0.930 fair   -   held 5h
+  Rhode Island Senate [Democratic]         YES   6660 @0.901 mark 0.900 fair   -   held 33h
+  Rhode Island Senate [Republican]         NO    6629 @0.905 mark 0.895 fair   -   held 33h
+  Maine Governor [Democratic]              YES   4137 @0.909 mark 0.900 fair   -   held 33h
+  New York Governor [Democratic]           YES   1123 @0.890 mark 0.890 fair   -   held 5h
+  New York Governor [Republican]           NO    4494 @0.890 mark 0.885 fair   -   held 5h
+  Georgia Senate [Democratic]              YES   5528 @0.902 mark 0.895 fair   -   held 5h
+  Louisiana Senate [Republican]            YES   5410 @0.922 mark 0.915 fair   -   held 5h
+  Mississippi Senate [Republican]          YES   6120 @0.817 mark 0.825 fair   -   held 33h
+  Hawaii Governor [Democratic]             YES   5427 @0.921 mark 0.920 fair   -   held 31h
 
-Trades last 2h (87):
-  12:28 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
-  12:28 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
-  12:28 conv BUY YES 1121 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
-  12:28 arb SELL NO 150 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -1
-  12:28 arb SELL NO 150 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -1
-  12:28 conv BUY YES 168 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
-  12:30 arb SELL NO 1000 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -5
-  12:30 arb SELL NO 1000 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -7
-  12:30 conv BUY YES 356 Rhode Island Senate [Democratic] @0.870 (edge 0.116)
-  12:30 conv BUY NO 731 Rhode Island Governor [Republican] @0.910 (edge 0.082)
-  12:48 arb SELL NO 1000 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -8
-  12:48 arb SELL NO 1000 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -5
-  12:48 conv BUY NO 1071 Rhode Island Governor [Republican] @0.910 (edge 0.082)
-  12:50 arb SELL NO 700 Arizona Governor [Democratic] @0.105 (arb unwind (free cash)) P&L -6
-  12:50 arb SELL NO 700 Arizona Governor [Republican] @0.870 (arb unwind (free cash)) P&L -4
-  12:50 conv BUY NO 750 Rhode Island Governor [Republican] @0.910 (edge 0.082)
-  12:52 arb SELL NO 300 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -2
-  12:52 arb SELL NO 300 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -2
-  12:52 conv BUY NO 322 Rhode Island Governor [Republican] @0.910 (edge 0.082)
-  13:29 arb SELL NO 39 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
-  13:29 arb SELL NO 39 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
-  13:29 conv BUY YES 43 Hawaii Governor [Democratic] @0.890 (edge 0.097)
-  13:33 arb SELL NO 55 CA-22 House race [Democratic] @0.100 (arb unwind (free cash)) P&L -0
-  13:33 arb SELL NO 55 CA-22 House race [Republican] @0.875 (arb unwind (free cash)) P&L -0
-  13:33 conv BUY YES 60 Hawaii Governor [Democratic] @0.890 (edge 0.097)
+Trades last 2h (0):
 
-Arb baskets held (7):
-  Alabama Senate                            15637 sets cost 0.990 pays ≥1 sell-now 0.975
-  Alaska Senate                             42670 sets cost 0.984 pays ≥1 sell-now 0.960
-  Arizona Governor                           6361 sets cost 0.988 pays ≥1 sell-now 0.965
-  CA-22 House race                            914 sets cost 0.987 pays ≥1 sell-now 0.975
-  California Governor                        1586 sets cost 0.990 pays ≥1 sell-now 0.965
-  Delaware Senate                            1407 sets cost 0.986 pays ≥1 sell-now 0.970
-  Florida Senate                             2002 sets cost 0.987 pays ≥1 sell-now 0.965
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.01): Rhode Island Governor +0.085, Montana Senate +0.065, Nebraska Senate +0.045
+Arb baskets held (15):
+  Alaska Senate                               500 sets cost 0.980 pays ≥1 sell-now 0.970
+  Colorado Senate                             465 sets cost 0.980 pays ≥1 sell-now 0.980
+  Delaware Senate                             500 sets cost 0.980 pays ≥1 sell-now 0.970
+  Florida Governor                            500 sets cost 0.980 pays ≥1 sell-now 0.980
+  Idaho Governor                               22 sets cost 0.980 pays ≥1 sell-now 0.970
+  MT-01 House race                             32 sets cost 0.980 pays ≥1 sell-now 0.975
+  Maine Senate                                500 sets cost 0.970 pays ≥1 sell-now 0.970
+  Montana Senate                              500 sets cost 1.975 pays ≥2 sell-now 1.950
+  Nebraska Governor                           500 sets cost 0.980 pays ≥1 sell-now 0.975
+  Nebraska Senate                             500 sets cost 1.980 pays ≥2 sell-now 1.960
+  PA-01 House race                              4 sets cost 0.980 pays ≥1 sell-now 0.975
+  Rhode Island Governor                       500 sets cost 1.964 pays ≥2 sell-now 1.925
+  Tennessee Governor                          168 sets cost 0.980 pays ≥1 sell-now 0.970
+  VA-01 House race                            407 sets cost 0.980 pays ≥1 sell-now 0.975
+  WI-03 House race                            500 sets cost 0.980 pays ≥1 sell-now 0.970
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.02): Rhode Island Governor +0.050, Montana Senate +0.030, Nebraska Senate +0.025
 
 Opportunities this run (1 priced cycles):
-  price gaps: 43 markets reached ≥0.04, 72 more reached ≥0.02 (near misses), of 191 with a fair value
-  best gaps: Rhode Island Senate [Republica +0.130, Rhode Island Senate [Democrati +0.116, Hawaii Governor [Democratic] +0.098
-  arb: 39 races reached ≥0.01; best: Rhode Island Governor +0.085, Montana Senate +0.065, Nebraska Senate +0.045
-  depth at best price: median 857 shares, max 4,713 (6 books read)
+  price gaps: 0 markets reached ≥0.04, 0 more reached ≥0.02 (near misses), of 0 with a fair value
+  arb: 6 races reached ≥0.02; best: Rhode Island Governor +0.050, Montana Senate +0.030, Nebraska Senate +0.025
 
 Other opportunities (not traded, for review):
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.045, MN-05 House race +0.030, Maine Governor +0.025, New Hampshire Senate +0.020
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Hawaii Governor +0.025, Oklahoma Governor +0.020, Maine Governor +0.020, TX-23 House race +0.015
   45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-  Rhode Island Senate [Republican]         buy NO  edge +0.130
-  Rhode Island Senate [Democratic]         buy YES edge +0.116
-  Hawaii Governor [Democratic]             buy YES edge +0.098
-  Rhode Island Governor [Republican]       buy NO  edge +0.095
-  Mississippi Senate [Democratic]          buy NO  edge +0.083
-2026-10-23 13:57:24,366 INFO sigcup.bot: [live] sent BUY YES 424 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
-2026-10-23 13:57:36,964 INFO sigcup.bot: sell no CA-22 House race [Democratic]: filled 300/300
-2026-10-23 13:57:36,966 INFO sigcup.bot: sell no CA-22 House race [Republican]: filled 300/300
-2026-10-23 13:57:36,967 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 102/102
-2026-10-23 13:57:36,968 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 102/102
-2026-10-23 13:57:36,969 INFO sigcup.bot: buy no Rhode Island Senate [Republican]: filled 17/17
-2026-10-23 13:57:38,712 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x104 @ 0.975/set 
-2026-10-23 13:57:39,760 INFO sigcup.bot: [live] sent BUY NO 113 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
-2026-10-23 13:57:51,519 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 424/424
-2026-10-23 13:58:06,895 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 104/104
-2026-10-23 13:58:06,896 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 104/104
-2026-10-23 13:58:06,897 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 113/113
-2026-10-23 13:58:08,711 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
-2026-10-23 13:58:09,810 INFO sigcup.bot: [live] sent BUY YES 328 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
-2026-10-23 13:58:34,775 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
-2026-10-23 13:58:34,776 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
-2026-10-23 13:58:34,777 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 328/328
-2026-10-23 13:58:36,589 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
-2026-10-23 13:58:37,691 INFO sigcup.bot: [live] sent BUY YES 329 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
-2026-10-23 13:59:02,415 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
-2026-10-23 13:59:02,417 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
-2026-10-23 13:59:02,418 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 329/329
-2026-10-23 13:59:31,459 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
-2026-10-23 13:59:32,539 INFO sigcup.bot: [live] sent BUY YES 328 Hawaii Governor [Democratic] @ 0.890 (fair 0.988, edge 0.098)
-2026-10-23 13:59:45,844 INFO sigcup.bot: [live] sent BUY NO 1 Mississippi Senate [Democratic] @ 0.820 (fair 0.901, edge 0.082)
-2026-10-23 14:00:03,553 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
-2026-10-23 14:00:03,556 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
-2026-10-23 14:00:03,557 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 328/328
-2026-10-23 14:00:17,105 INFO sigcup.bot: buy no Mississippi Senate [Democratic]: filled 1/1
-2026-10-23 14:00:35,041 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
-2026-10-23 14:00:36,154 INFO sigcup.bot: [live] sent BUY NO 325 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
-2026-10-23 14:01:01,084 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
-2026-10-23 14:01:01,085 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
-2026-10-23 14:01:01,088 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 325/325
-2026-10-23 14:05:50,427 INFO sigcup.bot: [live] sent SELL NO basket CA-22 House race x614 @ 0.975/set 
-2026-10-23 14:05:51,518 INFO sigcup.bot: [live] sent BUY NO 545 Rhode Island Governor [Republican] @ 0.900 (fair 0.995, edge 0.095)
-2026-10-23 14:05:52,070 INFO sigcup.bot: [live] sent BUY YES 120 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
-2026-10-23 14:06:17,259 INFO sigcup.bot: sell no CA-22 House race [Democratic]: filled 614/614
-2026-10-23 14:06:17,260 INFO sigcup.bot: sell no CA-22 House race [Republican]: filled 614/614
-2026-10-23 14:06:17,262 INFO sigcup.bot: buy no Rhode Island Governor [Republican]: filled 545/545
-2026-10-23 14:06:17,263 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 120/120
-2026-10-23 14:06:19,189 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x5 @ 0.975/set 
-2026-10-23 14:06:20,619 INFO sigcup.bot: [live] sent BUY YES 5 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
-2026-10-23 14:06:45,357 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 5/5
-2026-10-23 14:06:45,359 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 5/5
-2026-10-23 14:06:45,360 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 5/5
-2026-10-23 14:21:51,263 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-26-R%2CHOUSEPA8-26-D%2CHOUSEPA8-26-R%2CHOUSETX15-26-D%2CHOUSETX15-26-R%2CHOUSETX28-26-D%2CHOUSETX28-26-R%2CHOUSEVA1-26-D%2CHOUSEVA1-26-R%2CHOUSEVA2-26-D%2CHOUSEVA2-26-R%2CHOUSEVA7-26-D%2CHOUSEVA7-26-R%2CHOUSEWA3-26-D%2CHOUSEWA3-26-R%2CHOUSEWI1-26-D%2CHOUSEWI1-26-R%2CHOUSEWI3-26-D%2CHOUSEWI3-26-R%2CSENATEAK-26-D%2CSENATEAK-26-R%2CSENATEAL-26-D%2CSENATEAL-26-R%2CSENATEAR-26-D%2CSENATEAR-26-R%2CSENATECO-26-D%2CSENATECO-26-R%2CSENATEDE-26-D%2CSENATEDE-26-R%2CSENATEFLS-26-D%2CSENATEFLS-26-R%2CSENATEGA-26-D%2CSENATEGA-26-R%2CSENATEIA-26-D%2CSENATEIA-26-R%2CSENATEID-26-D%2CSENATEID-26-R%2CSENATEIL-26-D%2CSENATEIL-26-R%2CSENATEKS-26-D%2CSENATEKS-26-R%2CSENATELA-26-D%2CSENATELA-26-R%2CSENATEMA-26-D%2CSENATEMA-26-R%2CSENATEME-26-D%2CSENATEME-26-R%2CSENATEMI-26-D%2CSENATEMI-26-R%2CSENATEMN-26-D%2CSENATEMN-26-R%2CSENATEMS-26-D%2CSENATEMS-26-R%2CSENATEMT-26-D%2CSENATEMT-26-R%2CSENATENC-26-D%2CSENATENC-26-R%2CSENATENE-26-D%2CSENATENE-26-R%2CSENATENH-26-D%2CSENATENH-26-R%2CSENATENJ-26-D%2CSENATENJ-26-R%2CSENATENM-26-D%2CSENATENM-26-R%2CSENATEOK-26-D%2CSENATEOK-26-R%2CSENATEOR-26-D%2CSENATEOR-26-R%2CSENATERI-26-D%2CSENATERI-26-R%2CSENATESC-26-D%2CSENATESC-26-R%2CSENATESD-26-D%2CSENATESD-26-R%2CSENATETN-26-D%2CSENATETN-26-R%2CSENATETX-26-D%2CSENATETX-26-R%2CSENATEVA-26-D%2CSENATEVA-26-R%2CSENATEWV-26-D%2CSENATEWV-26-R%2CSENATEWY-26-D%2CSENATEWY-26-R&limit=1000'
+2026-10-27 22:08:18,086 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-26-R%2CHOUSEPA8-26-D%2CHOUSEPA8-26-R%2CHOUSETX15-26-D%2CHOUSETX15-26-R%2CHOUSETX28-26-D%2CHOUSETX28-26-R%2CHOUSEVA1-26-D%2CHOUSEVA1-26-R%2CHOUSEVA2-26-D%2CHOUSEVA2-26-R%2CHOUSEVA7-26-D%2CHOUSEVA7-26-R%2CHOUSEWA3-26-D%2CHOUSEWA3-26-R%2CHOUSEWI1-26-D%2CHOUSEWI1-26-R%2CHOUSEWI3-26-D%2CHOUSEWI3-26-R%2CSENATEAK-26-D%2CSENATEAK-26-R%2CSENATEAL-26-D%2CSENATEAL-26-R%2CSENATEAR-26-D%2CSENATEAR-26-R%2CSENATECO-26-D%2CSENATECO-26-R%2CSENATEDE-26-D%2CSENATEDE-26-R%2CSENATEFLS-26-D%2CSENATEFLS-26-R%2CSENATEGA-26-D%2CSENATEGA-26-R%2CSENATEIA-26-D%2CSENATEIA-26-R%2CSENATEID-26-D%2CSENATEID-26-R%2CSENATEIL-26-D%2CSENATEIL-26-R%2CSENATEKS-26-D%2CSENATEKS-26-R%2CSENATELA-26-D%2CSENATELA-26-R%2CSENATEMA-26-D%2CSENATEMA-26-R%2CSENATEME-26-D%2CSENATEME-26-R%2CSENATEMI-26-D%2CSENATEMI-26-R%2CSENATEMN-26-D%2CSENATEMN-26-R%2CSENATEMS-26-D%2CSENATEMS-26-R%2CSENATEMT-26-D%2CSENATEMT-26-R%2CSENATENC-26-D%2CSENATENC-26-R%2CSENATENE-26-D%2CSENATENE-26-R%2CSENATENH-26-D%2CSENATENH-26-R%2CSENATENJ-26-D%2CSENATENJ-26-R%2CSENATENM-26-D%2CSENATENM-26-R%2CSENATEOK-26-D%2CSENATEOK-26-R%2CSENATEOR-26-D%2CSENATEOR-26-R%2CSENATERI-26-D%2CSENATERI-26-R%2CSENATESC-26-D%2CSENATESC-26-R%2CSENATESD-26-D%2CSENATESD-26-R%2CSENATETN-26-D%2CSENATETN-26-R%2CSENATETX-26-D%2CSENATETX-26-R%2CSENATEVA-26-D%2CSENATEVA-26-R%2CSENATEWV-26-D%2CSENATEWV-26-R%2CSENATEWY-26-D%2CSENATEWY-26-R&limit=1000'
 For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-2026-10-23 14:27:10,310 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-10-23 14:29:20,369 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x353 @ 0.975/set 
-2026-10-23 14:29:21,625 INFO sigcup.bot: [live] sent BUY YES 383 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
-2026-10-23 14:29:46,505 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 353/353
-2026-10-23 14:29:46,506 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 353/353
-2026-10-23 14:29:46,508 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 383/383
-2026-10-23 14:32:42,875 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x5 @ 0.975/set 
-2026-10-23 14:32:44,146 INFO sigcup.bot: [live] sent BUY YES 5 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
-2026-10-23 14:33:08,505 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 5/5
-2026-10-23 14:33:08,508 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 5/5
-2026-10-23 14:33:08,509 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 5/5
-2026-10-23 14:37:57,547 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x32 @ 0.975/set 
-2026-10-23 14:37:58,734 INFO sigcup.bot: [live] sent BUY YES 35 Hawaii Governor [Democratic] @ 0.900 (fair 0.988, edge 0.088)
-2026-10-23 14:38:23,115 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 32/32
-2026-10-23 14:38:23,116 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 32/32
-2026-10-23 14:38:23,117 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 35/35
-2026-10-23 14:38:24,941 INFO sigcup.bot: [live] sent SELL NO basket Alabama Senate x300 @ 0.975/set 
-2026-10-23 14:38:26,175 INFO sigcup.bot: [live] sent BUY YES 325 Hawaii Governor [Democratic] @ 0.900 (fair 0.986, edge 0.086)
-2026-10-23 14:38:54,845 INFO sigcup.bot: sell no Alabama Senate [Democratic]: filled 300/300
-2026-10-23 14:38:54,847 INFO sigcup.bot: sell no Alabama Senate [Republican]: filled 300/300
-2026-10-23 14:38:54,848 INFO sigcup.bot: buy yes Hawaii Governor [Democratic]: filled 325/325
-2026-10-23 14:49:08,560 WARNING sigcup.sig_api: GET /exchanges/prices failed (0 TRANSPORT_ERROR: The read operation timed out), retrying in 1s
+2026-10-27 22:09:57,597 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2CGOVPARTYAR-26-R%2CGOVPARTYAZ-26-D%2CGOVPARTYAZ-26-R%2CGOVPARTYCA-26-D%2CGOVPARTYCA-26-R%2CGOVPARTYCO-26-D%2CGOVPARTYCO-26-R%2CGOVPARTYCT-26-D%2CGOVPARTYCT-26-R%2CGOVPARTYFL-26-D%2CGOVPARTYFL-26-R%2CGOVPARTYGA-26-D%2CGOVPARTYGA-26-R%2CGOVPARTYHI-26-D%2CGOVPARTYHI-26-R%2CGOVPARTYIA-26-D%2CGOVPARTYIA-26-R%2CGOVPARTYID-26-D%2CGOVPARTYID-26-R%2CGOVPARTYIL-26-D%2CGOVPARTYIL-26-R%2CGOVPARTYMA-26-D%2CGOVPARTYMA-26-R%2CGOVPARTYMD-26-D%2CGOVPARTYMD-26-R%2CGOVPARTYME-26-D%2CGOVPARTYME-26-R%2CGOVPARTYMI-26-D%2CGOVPARTYMI-26-R%2CGOVPARTYMN-26-D%2CGOVPARTYMN-26-R%2CGOVPARTYNE-26-D%2CGOVPARTYNE-26-R%2CGOVPARTYNM-26-D%2CGOVPARTYNM-26-R%2CGOVPARTYNV-26-D%2CGOVPARTYNV-26-R%2CGOVPARTYNY-26-D%2CGOVPARTYNY-26-R%2CGOVPARTYOK-26-D%2CGOVPARTYOK-26-R%2CGOVPARTYOR-26-D%2CGOVPARTYOR-26-R%2CGOVPARTYPA-26-D%2CGOVPARTYPA-26-R%2CGOVPARTYRI-26-D%2CGOVPARTYRI-26-R%2CGOVPARTYSC-26-D%2CGOVPARTYSC-26-R%2CGOVPARTYSD-26-D%2CGOVPARTYSD-26-R%2CGOVPARTYTN-26-D%2CGOVPARTYTN-26-R%2CGOVPARTYTX-26-D%2CGOVPARTYTX-26-R%2CGOVPARTYVT-26-D%2CGOVPARTYVT-26-R%2CGOVPARTYWI-26-D%2CGOVPARTYWI-26-R%2CGOVPARTYWY-26-D%2CGOVPARTYWY-26-R%2CHOUSEAZ1-26-D%2CHOUSEAZ1-26-R%2CHOUSEAZ6-26-D%2CHOUSEAZ6-26-R%2CHOUSECA22-26-D%2CHOUSECA22-26-R%2CHOUSECO3-26-D%2CHOUSECO3-26-R%2CHOUSECO8-26-D%2CHOUSECO8-26-R%2CHOUSEFL13-26-D%2CHOUSEFL13-26-R%2CHOUSEIA1-26-D%2CHOUSEIA1-26-R%2CHOUSEIA3-26-D%2CHOUSEIA3-26-R%2CHOUSEME2-26-D%2CHOUSEME2-26-R%2CHOUSEMI10-26-D%2CHOUSEMI10-26-R%2CHOUSEMI7-26-D%2CHOUSEMI7-26-R%2CHOUSEMN2-26-D%2CHOUSEMN2-26-R%2CHOUSEMT1-26-D%2CHOUSEMT1-26-R%2CHOUSENE2-26-D%2CHOUSENE2-26-R%2CHOUSENH1-26-D%2CHOUSENH1-26-R%2CHOUSENJ7-26-D%2CHOUSENJ7-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-27 22:27:44,126 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-10-27 22:32:04,364 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2CGOVPARTYAR-26-R%2CGOVPARTYAZ-26-D%2CGOVPARTYAZ-26-R%2CGOVPARTYCA-26-D%2CGOVPARTYCA-26-R%2CGOVPARTYCO-26-D%2CGOVPARTYCO-26-R%2CGOVPARTYCT-26-D%2CGOVPARTYCT-26-R%2CGOVPARTYFL-26-D%2CGOVPARTYFL-26-R%2CGOVPARTYGA-26-D%2CGOVPARTYGA-26-R%2CGOVPARTYHI-26-D%2CGOVPARTYHI-26-R%2CGOVPARTYIA-26-D%2CGOVPARTYIA-26-R%2CGOVPARTYID-26-D%2CGOVPARTYID-26-R%2CGOVPARTYIL-26-D%2CGOVPARTYIL-26-R%2CGOVPARTYMA-26-D%2CGOVPARTYMA-26-R%2CGOVPARTYMD-26-D%2CGOVPARTYMD-26-R%2CGOVPARTYME-26-D%2CGOVPARTYME-26-R%2CGOVPARTYMI-26-D%2CGOVPARTYMI-26-R%2CGOVPARTYMN-26-D%2CGOVPARTYMN-26-R%2CGOVPARTYNE-26-D%2CGOVPARTYNE-26-R%2CGOVPARTYNM-26-D%2CGOVPARTYNM-26-R%2CGOVPARTYNV-26-D%2CGOVPARTYNV-26-R%2CGOVPARTYNY-26-D%2CGOVPARTYNY-26-R%2CGOVPARTYOK-26-D%2CGOVPARTYOK-26-R%2CGOVPARTYOR-26-D%2CGOVPARTYOR-26-R%2CGOVPARTYPA-26-D%2CGOVPARTYPA-26-R%2CGOVPARTYRI-26-D%2CGOVPARTYRI-26-R%2CGOVPARTYSC-26-D%2CGOVPARTYSC-26-R%2CGOVPARTYSD-26-D%2CGOVPARTYSD-26-R%2CGOVPARTYTN-26-D%2CGOVPARTYTN-26-R%2CGOVPARTYTX-26-D%2CGOVPARTYTX-26-R%2CGOVPARTYVT-26-D%2CGOVPARTYVT-26-R%2CGOVPARTYWI-26-D%2CGOVPARTYWI-26-R%2CGOVPARTYWY-26-D%2CGOVPARTYWY-26-R%2CHOUSEAZ1-26-D%2CHOUSEAZ1-26-R%2CHOUSEAZ6-26-D%2CHOUSEAZ6-26-R%2CHOUSECA22-26-D%2CHOUSECA22-26-R%2CHOUSECO3-26-D%2CHOUSECO3-26-R%2CHOUSECO8-26-D%2CHOUSECO8-26-R%2CHOUSEFL13-26-D%2CHOUSEFL13-26-R%2CHOUSEIA1-26-D%2CHOUSEIA1-26-R%2CHOUSEIA3-26-D%2CHOUSEIA3-26-R%2CHOUSEME2-26-D%2CHOUSEME2-26-R%2CHOUSEMI10-26-D%2CHOUSEMI10-26-R%2CHOUSEMI7-26-D%2CHOUSEMI7-26-R%2CHOUSEMN2-26-D%2CHOUSEMN2-26-R%2CHOUSEMT1-26-D%2CHOUSEMT1-26-R%2CHOUSENE2-26-D%2CHOUSENE2-26-R%2CHOUSENH1-26-D%2CHOUSENH1-26-R%2CHOUSENJ7-26-D%2CHOUSENJ7-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-27 22:32:56,150 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2CGOVPARTYAR-26-R%2CGOVPARTYAZ-26-D%2CGOVPARTYAZ-26-R%2CGOVPARTYCA-26-D%2CGOVPARTYCA-26-R%2CGOVPARTYCO-26-D%2CGOVPARTYCO-26-R%2CGOVPARTYCT-26-D%2CGOVPARTYCT-26-R%2CGOVPARTYFL-26-D%2CGOVPARTYFL-26-R%2CGOVPARTYGA-26-D%2CGOVPARTYGA-26-R%2CGOVPARTYHI-26-D%2CGOVPARTYHI-26-R%2CGOVPARTYIA-26-D%2CGOVPARTYIA-26-R%2CGOVPARTYID-26-D%2CGOVPARTYID-26-R%2CGOVPARTYIL-26-D%2CGOVPARTYIL-26-R%2CGOVPARTYMA-26-D%2CGOVPARTYMA-26-R%2CGOVPARTYMD-26-D%2CGOVPARTYMD-26-R%2CGOVPARTYME-26-D%2CGOVPARTYME-26-R%2CGOVPARTYMI-26-D%2CGOVPARTYMI-26-R%2CGOVPARTYMN-26-D%2CGOVPARTYMN-26-R%2CGOVPARTYNE-26-D%2CGOVPARTYNE-26-R%2CGOVPARTYNM-26-D%2CGOVPARTYNM-26-R%2CGOVPARTYNV-26-D%2CGOVPARTYNV-26-R%2CGOVPARTYNY-26-D%2CGOVPARTYNY-26-R%2CGOVPARTYOK-26-D%2CGOVPARTYOK-26-R%2CGOVPARTYOR-26-D%2CGOVPARTYOR-26-R%2CGOVPARTYPA-26-D%2CGOVPARTYPA-26-R%2CGOVPARTYRI-26-D%2CGOVPARTYRI-26-R%2CGOVPARTYSC-26-D%2CGOVPARTYSC-26-R%2CGOVPARTYSD-26-D%2CGOVPARTYSD-26-R%2CGOVPARTYTN-26-D%2CGOVPARTYTN-26-R%2CGOVPARTYTX-26-D%2CGOVPARTYTX-26-R%2CGOVPARTYVT-26-D%2CGOVPARTYVT-26-R%2CGOVPARTYWI-26-D%2CGOVPARTYWI-26-R%2CGOVPARTYWY-26-D%2CGOVPARTYWY-26-R%2CHOUSEAZ1-26-D%2CHOUSEAZ1-26-R%2CHOUSEAZ6-26-D%2CHOUSEAZ6-26-R%2CHOUSECA22-26-D%2CHOUSECA22-26-R%2CHOUSECO3-26-D%2CHOUSECO3-26-R%2CHOUSECO8-26-D%2CHOUSECO8-26-R%2CHOUSEFL13-26-D%2CHOUSEFL13-26-R%2CHOUSEIA1-26-D%2CHOUSEIA1-26-R%2CHOUSEIA3-26-D%2CHOUSEIA3-26-R%2CHOUSEME2-26-D%2CHOUSEME2-26-R%2CHOUSEMI10-26-D%2CHOUSEMI10-26-R%2CHOUSEMI7-26-D%2CHOUSEMI7-26-R%2CHOUSEMN2-26-D%2CHOUSEMN2-26-R%2CHOUSEMT1-26-D%2CHOUSEMT1-26-R%2CHOUSENE2-26-D%2CHOUSENE2-26-R%2CHOUSENH1-26-D%2CHOUSENH1-26-R%2CHOUSENJ7-26-D%2CHOUSENJ7-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-27 22:35:33,327 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=HOUSENY17-26-D%2CHOUSENY17-26-R%2CHOUSEPA1-26-D%2CHOUSEPA1-26-R%2CHOUSEPA10-26-D%2CHOUSEPA10-26-R%2CHOUSEPA7-26-D%2CHOUSEPA7-26-R%2CHOUSEPA8-26-D%2CHOUSEPA8-26-R%2CHOUSETX15-26-D%2CHOUSETX15-26-R%2CHOUSETX28-26-D%2CHOUSETX28-26-R%2CHOUSEVA1-26-D%2CHOUSEVA1-26-R%2CHOUSEVA2-26-D%2CHOUSEVA2-26-R%2CHOUSEVA7-26-D%2CHOUSEVA7-26-R%2CHOUSEWA3-26-D%2CHOUSEWA3-26-R%2CHOUSEWI1-26-D%2CHOUSEWI1-26-R%2CHOUSEWI3-26-D%2CHOUSEWI3-26-R%2CSENATEAK-26-D%2CSENATEAK-26-R%2CSENATEAL-26-D%2CSENATEAL-26-R%2CSENATEAR-26-D%2CSENATEAR-26-R%2CSENATECO-26-D%2CSENATECO-26-R%2CSENATEDE-26-D%2CSENATEDE-26-R%2CSENATEFLS-26-D%2CSENATEFLS-26-R%2CSENATEGA-26-D%2CSENATEGA-26-R%2CSENATEIA-26-D%2CSENATEIA-26-R%2CSENATEID-26-D%2CSENATEID-26-R%2CSENATEIL-26-D%2CSENATEIL-26-R%2CSENATEKS-26-D%2CSENATEKS-26-R%2CSENATELA-26-D%2CSENATELA-26-R%2CSENATEMA-26-D%2CSENATEMA-26-R%2CSENATEME-26-D%2CSENATEME-26-R%2CSENATEMI-26-D%2CSENATEMI-26-R%2CSENATEMN-26-D%2CSENATEMN-26-R%2CSENATEMS-26-D%2CSENATEMS-26-R%2CSENATEMT-26-D%2CSENATEMT-26-R%2CSENATENC-26-D%2CSENATENC-26-R%2CSENATENE-26-D%2CSENATENE-26-R%2CSENATENH-26-D%2CSENATENH-26-R%2CSENATENJ-26-D%2CSENATENJ-26-R%2CSENATENM-26-D%2CSENATENM-26-R%2CSENATEOK-26-D%2CSENATEOK-26-R%2CSENATEOR-26-D%2CSENATEOR-26-R%2CSENATERI-26-D%2CSENATERI-26-R%2CSENATESC-26-D%2CSENATESC-26-R%2CSENATESD-26-D%2CSENATESD-26-R%2CSENATETN-26-D%2CSENATETN-26-R%2CSENATETX-26-D%2CSENATETX-26-R%2CSENATEVA-26-D%2CSENATEVA-26-R%2CSENATEWV-26-D%2CSENATEWV-26-R%2CSENATEWY-26-D%2CSENATEWY-26-R&limit=1000'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-10-27 22:37:48,932 WARNING sigcup.sig_api: POST /orders/cancel-all failed (0 TRANSPORT_ERROR: [Errno 111] Connection refused), retrying in 1s
+2026-10-27 22:37:49,934 WARNING sigcup.sig_api: POST /orders/cancel-all failed (0 TRANSPORT_ERROR: [Errno 111] Connection refused), retrying in 2s

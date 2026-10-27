@@ -502,3 +502,12 @@ Trades: 1 fill (1 gap trade: Michigan Sen R NO, 1 share; 0 arb baskets) · best:
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (21 runs of RI/MS gap evidence); capital tied in stuck conv positions blocks new entries.
 🔎 Opportunities: RI Gov/Sen gaps +0.08 recur every run; arb near-miss RI Gov +0.055, Montana Sen +0.045; YES baskets KY-04/Hawaii Gov +0.030 (third-party risk); 45 unmapped markets.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-27T23:00Z run
+LIVE · health DEGRADED (container restarted twice, bot killed at ~40 min and ~20 min; no final report written) · P&L run n/a / all-time -3,039 (last report) · open MTM n/a
+Trades: ~4 arb baskets in the partial runs (PA-01 and MT-01 sells; FL-13 and FL-16 NO buys, all filled fully) · best: n/a · worst: n/a
+✅ Went well: all orders filled in full (4/4, 32/32, 35/35, 1/1); 0 tracebacks.
+❌ Went wrong: sandbox restarts cut the run to ~60 of 100 trading minutes, so last_report.txt is stale (19:38 data); 429s from Kalshi again.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (conv positions stuck 27-31h); too early to tell on anything new.
+🔎 Opportunities: RI Gov/Sen gaps and arb near-miss RI Gov recur every run (per last report); 45 unmapped markets.
+🔧 Fixed: nothing (no bugs found; restarts were environmental).
