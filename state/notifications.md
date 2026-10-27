@@ -408,3 +408,12 @@ Trades: ~62 fills in 2h (0 gap trades; arb baskets: AZ-01, Colorado Sen churn, M
 💡 Improve (needs your OK): review MAX_HOLD_HOURS/EXIT_BAND — RI/MS/OK gaps (fair ~0.985 vs mark ~0.90) unconverged 11h (11 runs of evidence); consider a re-entry cooldown after an arb timeout (Colorado churn).
 🔎 Opportunities: RI Senate/Gov gaps ~+0.085 recur every run; arb near-misses Nebraska/Montana/RI Gov; 45 unmapped markets.
 🔧 Fixed: nothing in code.
+
+## 2026-10-27T00:57Z run
+LIVE · health DEGRADED (container restarted ~00:26, bot died after ~30 of 100 min; no fresh report written) · P&L run ~0 / all-time ≈-2,660 · open MTM n/a
+Trades: ~15 order batches (0 gap trades; arb baskets e.g. Alaska Sen round-trip) · best: n/a · worst: n/a
+✅ Went well: 0 SIG errors in the 30 min traded; conv positions intact.
+❌ Went wrong: infra, not code — container restart killed the run; Kalshi 429s on every batch refresh.
+💡 Improve (needs your OK): Kalshi 429s repeat each run — slower Kalshi polling would stabilise reference prices; MAX_HOLD_HOURS/EXIT_BAND review still open (RI gaps ~+0.085, 12 runs).
+🔎 Opportunities: RI Senate/Gov gaps ~+0.085 recur (cash-limited); 45 unmapped markets.
+🔧 Fixed: nothing in code.
