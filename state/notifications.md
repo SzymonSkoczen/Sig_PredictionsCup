@@ -484,3 +484,12 @@ Trades: 24 fills / 20 orders (15 gap trades "conv" at 15:58-16:01 + 1 at 17:05; 
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (19 runs of RI/MS gap evidence); conv entries at the ask pay the spread immediately, check whether MIN_EDGE 0.04 leaves enough margin.
 🔎 Opportunities: RI Gov/Sen gaps +0.08-0.095 recur every run; arb near-miss RI Gov +0.070, Maine/Montana Sen +0.035; YES basket Hawaii Gov +0.040 (third-party risk); 45 unmapped markets.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-27T19:46Z run
+LIVE · health OK (2 SIG errors, 381 cycles, kalshi 9 failures/429s) · P&L run +0 / all-time -3,039 · open MTM -198
+Trades: 0 fills (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 191/192 priced; open MTM improved -398 → -198 with no trading.
+❌ Went wrong: 0 entries despite 22 gaps ≥0.04 and 13 arb races ≥0.02 (cash-limited); 12 older conv positions still unconverged 27-31h (RI Sen fair 0.986 vs mark 0.90).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (20 runs of RI/MS gap evidence); capital is tied in stuck conv positions, blocking new gap/arb entries.
+🔎 Opportunities: RI Gov/Sen gaps +0.08 recur every run; arb near-miss RI Gov +0.070, Montana Sen +0.045; YES baskets Hawaii Gov +0.030 (third-party risk); 45 unmapped markets.
+🔧 Fixed: nothing (no bugs found; pytest collection errors in this sandbox left untouched).
