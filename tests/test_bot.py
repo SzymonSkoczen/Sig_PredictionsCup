@@ -355,3 +355,56 @@ def test_arb_no_unwind_for_cash_by_default(tmp_path):
     bot.api.books_ = books([(0.40, 50_000)], [(0.50, 50_000)], d_asks=[(0.455, 50_000)], r_asks=[(0.565, 50_000)])
     bot.cycle()
     assert not [x for x in bot.api.sent if x[0] == "multi"]  # cash is short, but baskets are held
+
+
+def test_election_reserve_released_on_election_night(tmp_path):
+    bot, clock = make_bot(tmp_path)
+    bot.s.cash_reserve, bot.s.election_reserve = 2_000, 20_000
+    bot.s.election_night_start = "2026-11-03T23:00:00Z"
+    from datetime import datetime, timezone
+    clock[0] = datetime(2026, 11, 1, tzinfo=timezone.utc).timestamp()
+    assert bot.reserve() == 22_000
+    clock[0] = datetime(2026, 11, 3, 23, 30, tzinfo=timezone.utc).timestamp()
+    assert bot.reserve() == 2_000
+
+
+def test_reserve_limits_gap_entries(tmp_path):
+    bot, clock = make_bot(tmp_path)
+    bot.s.cash_reserve, bot.s.election_reserve = 0, 99_900
+    bot.s.election_night_start = "2099-01-01T00:00:00Z"
+    bot.cycle()  # only 100 SUSQies may be spent
+    [h] = bot.ledger.holdings()
+    assert h.qty * h.avg_cost <= 100
+
+
+def test_race_cap_and_hold_to_settlement(tmp_path):
+    from sigcup.sig_api import Exchange, Market
+    bot, clock = make_bot(tmp_path)
+    bot.api.markets_ = [Market("m1", "Will the Republican Party win the Texas Senate?", "open", None, [Exchange("e1", None)])]
+    bot.s.max_race_cost = 50
+    bot.s.hold_to_settlement = True
+    bot.cycle()
+    [h] = bot.ledger.holdings()
+    assert h.qty * h.avg_cost <= 50
+    # SIG converges to fair: normally a "converged" sale; held instead
+    bot.api.prices_["e1"] = (0.595, 0.60)
+    bot.api.book_ = Book("e1", [Level(0.595, 1000)], [Level(0.60, 1000)])
+    clock[0] += 200 * 3600  # far past any time limit
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.59, 0.61, clock[0])
+    bot._last_ref = 0
+    bot.cycle()
+    assert len(bot.ledger.holdings()) == 1
+    # Fair collapses past the stop-loss: still sells
+    bot.kalshi.q["KX-R"] = RefQuote("kalshi", "KX-R", 0.39, 0.41, clock[0])
+    bot._last_ref = 0
+    bot.api.prices_["e1"] = (0.45, 0.47)
+    bot.api.book_ = Book("e1", [Level(0.45, 1000)], [Level(0.47, 1000)])
+    bot.cycle()
+    assert bot.ledger.holdings() == []
+
+
+def test_settled_positions_ignored_on_resync(tmp_path):
+    bot, clock = make_bot(tmp_path, live=True)
+    bot.api.positions_ = [Position("e1", "1", "", "yes", 100, 0.5, 0, settled=True)]
+    bot.resync_from_exchange()
+    assert bot.ledger.holdings(None) == []

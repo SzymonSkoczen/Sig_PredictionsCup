@@ -122,7 +122,7 @@ class Bot:
         """Live start-up: rebuild the ledger from the exchange's positions. Even NO holdings across
         every leg of a race become arb baskets; anything else is a gap-trade holding."""
         now = self.clock()
-        pos = {(p.exchange_id, p.side): p for p in self.api.positions() if p.qty >= 1}
+        pos = {(p.exchange_id, p.side): p for p in self.api.positions() if p.qty >= 1 and not p.settled}
         # keep when each holding was opened, so hold-time exits survive the hourly restarts
         opened = {(h.exchange_id, h.side): h.opened_at for h in self.ledger.holdings(None)}
         since = lambda e, side: min(opened.get((e, side), now), now)
@@ -224,7 +224,9 @@ class Bot:
             if h.exchange_id in pending or books_left <= 0:
                 continue
             bid, ask = self.prices.get(h.exchange_id, (None, None))
-            kw = dict(exit_band=s.exit_band, stop_loss=s.stop_loss, max_hold_hours=s.max_hold_hours,
+            # hold_to_settlement: only the stop-loss can sell (exit band above 1 never triggers)
+            kw = dict(exit_band=-1.0 if s.hold_to_settlement else s.exit_band, stop_loss=s.stop_loss,
+                      max_hold_hours=0 if s.hold_to_settlement else s.max_hold_hours,
                       exit_slippage=s.exit_slippage)
             fair = self.fair(h.exchange_id)
             if plan_exit(h, fair, Book.top(h.exchange_id, bid, ask), now, **kw) is None:
@@ -355,10 +357,23 @@ class Bot:
                 out.append((bid - fair, eid, "no"))
         return sorted(out, reverse=True)
 
+    def reserve(self) -> float:
+        """Cash no new trade may touch: CASH_RESERVE, plus ELECTION_RESERVE until election night."""
+        s = self.s
+        if s.election_reserve and s.election_night_start:
+            start = datetime.fromisoformat(s.election_night_start.replace("Z", "+00:00")).timestamp()
+            if self.clock() < start:
+                return s.cash_reserve + s.election_reserve
+        return s.cash_reserve
+
     def enter(self, pending: set[str], books_left: int) -> None:
         s = self.s
         cost = self.ledger.cost_by_exchange()
         total = sum(cost.values())
+        race_of = {e: r.key for r in self.races for e in r.exchange_ids}
+        race_cost: dict[str, float] = {}
+        for e, c in cost.items():
+            race_cost[race_of.get(e, e)] = race_cost.get(race_of.get(e, e), 0.0) + c
         held = {(h.exchange_id, h.side) for h in self.ledger.holdings()}
         arb_held = {h.exchange_id for h in self.ledger.holdings("arb")}
         for edge, eid, side in self.gaps():
@@ -367,9 +382,11 @@ class Bot:
             other = "no" if side == "yes" else "yes"
             if eid in pending or (eid, other) in held or eid in arb_held:
                 continue
+            race = race_of.get(eid, eid)
             room = min(s.max_order_cost, s.max_market_cost - cost.get(eid, 0.0),
                        min(s.max_total_cost, s.bankroll - s.cash_reserve) - total,
-                       self.cash - s.cash_reserve)
+                       self.cash - self.reserve(),
+                       (s.max_race_cost - race_cost.get(race, 0.0)) if s.max_race_cost else float("inf"))
             if room <= 0:
                 continue
             books_left -= 1
@@ -382,6 +399,7 @@ class Bot:
                 total += o.cost
                 self.cash -= o.cost
                 cost[eid] = cost.get(eid, 0.0) + o.cost
+                race_cost[race] = race_cost.get(race, 0.0) + o.cost
 
     def arb(self, pending: set[str], books_left: int, blocked: bool) -> int:
         """Short-term NO-basket trading: repair uneven baskets; sell baskets for a quick profit, when
@@ -451,7 +469,7 @@ class Bot:
                 continue
             edge = screen_buy(race, self.prices)
             # ARB_MAX_SETS caps the sets held per race, not per order (paper re-bought one book to 18k)
-            budget = min(s.arb_max_capital - capital, self.cash - s.arb_cash_floor)
+            budget = min(s.arb_max_capital - capital, self.cash - max(s.arb_cash_floor, self.reserve()))
             room = min(int(budget / max(race.k - 1, 1)), s.arb_max_sets - sets)
             if edge is None or edge < s.arb_min_profit or room < 1:
                 continue

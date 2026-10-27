@@ -141,6 +141,7 @@ class Position:
     qty: float
     avg_cost: float
     unrealized_pnl: float
+    settled: bool = False
 
     @classmethod
     def from_api(cls, d: dict[str, Any]) -> "Position":
@@ -150,7 +151,8 @@ class Position:
         qty = float(d.get("quantity", 0))
         side = (d.get("side") or (lots[0].get("side") if lots else None) or ("no" if qty < 0 else "yes")).lower()
         return cls(str(d["exchangeId"]), str(d.get("marketId", "")), d.get("marketTitle", ""), side,
-                   abs(qty), float(d.get("avgCost", 0)), float(d.get("unrealizedPnl", 0)))
+                   abs(qty), float(d.get("avgCost", 0)), float(d.get("unrealizedPnl", 0)),
+                   bool(d.get("settled")))
 
 
 class SigApi:

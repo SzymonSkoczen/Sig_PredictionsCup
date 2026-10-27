@@ -53,6 +53,13 @@ class Settings:
     depth_fraction: float = 0.5
     order_ttl_seconds: int = 15
     max_books_per_cycle: int = 6
+    # Cap on gap-trade cost per race (both party markets together); 0 = off
+    max_race_cost: float = 0.0
+    # Hold gap trades to settlement: no "converged" or time-limit exits (stop-loss still applies)
+    hold_to_settlement: bool = False
+    # Kept free until ELECTION_NIGHT_START (ISO 8601), then released for election-night trading
+    election_reserve: float = 0.0
+    election_night_start: str = ""
 
     arb_enabled: bool = True
     arb_min_profit: float = 0.01
