@@ -39,7 +39,13 @@ class FakeApi:
 
     def place_order(self, *a):
         self.sent.append(a)
-        return {"ok": True}
+        return {"ok": True, "orderId": len(self.sent)}
+
+    def cancel(self, oid):
+        self.cancelled = getattr(self, "cancelled", []) + [oid]
+
+    def fills(self, limit=200):
+        return getattr(self, "fills_", [])
 
     def pnl(self):
         return {"totalPnl": 12.5, "totalAccountValue": 100_000, "totalHoldingsValue": self.holdings_value}

@@ -301,6 +301,15 @@ class SigApi:
         log.info("using tournament %s", self.slug)
         return self.slug
 
+    def cancel(self, order_id: str) -> Any:
+        return self._request("DELETE", f"/orders/{order_id}")
+
+    def fills(self, limit: int = 200) -> list[dict[str, Any]]:
+        """Our newest fills, newest first: {id, orderId, exchangeId, price (in the filled side's terms),
+        quantity (signed by side: + YES, - NO), side, filledAt}."""
+        r = self.get(f"/tournaments/{self.slug}/portfolio/fills", limit=limit)
+        return (r or {}).get("data", [])
+
     def cancel_all(self) -> Any:
         return self.post("/orders/cancel-all", {"tournamentId": self.tournament_id})
 

@@ -61,6 +61,45 @@ class Settings:
     election_reserve: float = 0.0
     election_night_start: str = ""
 
+    # --- adapted from grissou/prediction-market-maker (see value.py) ---
+    # Gap entries must also earn this much per unit of cash, (fair - price) / price; 0 = off
+    min_return: float = 0.0
+    # Scale each race's fair values to sum to 1 when they already sum to within 5% of it
+    race_scale: bool = False
+    # A state's total cost across all its markets, e.g. Rhode Island Senate + Governor + RI-01; 0 = off
+    state_max_cost: float = 0.0
+    # Harvest ladder: resting bids under favourites (fair >= LADDER_FAVOURITE_P) at these offsets below the bid
+    ladder_enabled: bool = False
+    ladder_favourite_p: float = 0.90
+    ladder_offsets: str = "0,0.02,0.04,0.06"
+    ladder_min_edge: float = 0.08
+    ladder_level_cost: float = 3_000.0
+    ladder_budget: float = 15_000.0
+    ladder_requote_seconds: float = 900.0
+    # The ladder may rest bids with this much of ELECTION_RESERVE (grissou carves its ladder out of its reserve);
+    # all ladder bids are cancelled an hour before election night
+    ladder_from_reserve: float = 0.0
+    # Allocator: hourly, sell holdings with little edge left to fund buys with ALLOC_MIN_GAIN more
+    alloc_enabled: bool = False
+    alloc_interval_seconds: float = 3_600.0
+    alloc_min_gain: float = 0.05
+    alloc_max_keep_edge: float = 0.05
+    alloc_sell_margin: float = 0.03
+    alloc_max_turnover: float = 15_000.0
+    alloc_pinned: str = "U.S. House,U.S. Senate"
+    # Election night (Bowen26/election-bot rule): buy a side the references bid at NIGHT_MIN_REF_BID+ while the
+    # Cup still asks NIGHT_MIN_GAP below that bid
+    night_enabled: bool = False
+    night_min_ref_bid: float = 0.95
+    night_min_gap: float = 0.02
+    night_race_cost: float = 8_000.0
+    night_poll_seconds: float = 4.0
+    night_ref_refresh_seconds: float = 5.0
+    # Trading locks at this time (ISO 8601); new orders stop CLOSE_BUFFER_MINUTES before it
+    trading_close: str = ""
+    close_buffer_minutes: float = 10.0
+    swing_shock: float = 0.15
+
     arb_enabled: bool = True
     arb_min_profit: float = 0.01
     arb_exit_profit: float = 0.005

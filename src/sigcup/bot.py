@@ -18,6 +18,8 @@ from .pricing import Fair, RefLeg, fair_value, load_map
 from .references import KalshiFeed, PolymarketFeed, RefQuote
 from .sig_api import ApiError, Book, SigApi
 from .strategy import Holding, Order, plan_entry, plan_exit, side_fair
+from . import value as V
+from .pricing import leg_quote
 
 log = logging.getLogger(__name__)
 
@@ -78,6 +80,9 @@ class Bot:
         self.prices: dict[str, tuple[float | None, float | None]] = {}
         self.positions: dict[tuple[str, str], float] = {}
         self.health = Health(started=clock())
+        self.scaled: dict[str, float] = {}
+        self.ladder_anchor: dict[str, tuple[float, float, float]] = {}   # eid -> (placed, touch, fair)
+        self.turnover: list[tuple[float, float]] = []                     # (when, SUSQies sold by the allocator)
         self.opps = Opportunities()
         self.races: list[Race] = []
         self.mode_note = "live" if live else "paper"
@@ -139,6 +144,7 @@ class Bot:
             if rest >= 1:
                 rows.append(("conv", p.exchange_id, p.side, rest, p.avg_cost, since(p.exchange_id, p.side)))
         self.ledger.replace_holdings(rows)
+        self.ledger.drop_resting()  # the last run's ladder bids were cancelled at its shutdown
         n_arb = len({r[1] for r in rows if r[0] == "arb"})
         note = f"resynced from exchange: {n_arb} arb legs, {sum(1 for r in rows if r[0] == 'conv')} other positions"
         self.ledger.event("INFO", note)
@@ -161,10 +167,11 @@ class Bot:
                                       max_spread=s.ref_max_spread, max_disagreement=s.ref_max_disagreement,
                                       min_sources=s.ref_min_sources)
                       for eid, legs in self.map.items()}
+        raw = {eid: f.p for eid, (f, _) in self.fairs.items() if f}
+        self.scaled = V.race_scaled(raw, [r.exchange_ids for r in self.races]) if s.race_scale else raw
 
     def fair(self, eid: str) -> float | None:
-        f = self.fairs.get(eid, (None, ""))[0]
-        return f.p if f else None
+        return self.scaled.get(eid)
 
     # ---- risk ----
 
@@ -187,6 +194,8 @@ class Bot:
         return self.ledger.realized_since(_midnight(now)) + mtm - float(self.ledger.get("mtm_day_start", "0"))
 
     def entries_blocked(self) -> str:
+        if self.closing():
+            return "trading closes soon"
         if self.orders_disabled:
             return self.orders_disabled
         if Path(self.s.kill_switch).exists():
@@ -201,7 +210,7 @@ class Bot:
     def cycle(self) -> None:
         s = self.s
         now = self.clock()
-        if now - self._last_ref >= s.ref_refresh_seconds:
+        if now - self._last_ref >= (s.night_ref_refresh_seconds if self.night() else s.ref_refresh_seconds):
             self.refresh_refs()
         self.compute_fairs()
         self.refresh_races()
@@ -236,6 +245,9 @@ class Bot:
             if o:
                 self.execute(o)
                 pending.add(o.exchange_id)
+
+        self.allocate(pending)
+        self.ladder(pending)
 
         blocked = self.entries_blocked()
         if blocked:
@@ -366,33 +378,114 @@ class Bot:
                 return s.cash_reserve + s.election_reserve
         return s.cash_reserve
 
+    # ---- time windows ----
+
+    def _ts(self, iso: str) -> float | None:
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp() if iso else None
+
+    def night(self) -> bool:
+        """Inside the election-night window: from ELECTION_NIGHT_START until trading closes."""
+        s, now = self.s, self.clock()
+        start, close = self._ts(s.election_night_start), self._ts(s.trading_close)
+        return bool(s.night_enabled and start and now >= start and (close is None or now < close))
+
+    def closing(self) -> bool:
+        close = self._ts(self.s.trading_close)
+        return close is not None and self.clock() >= close - self.s.close_buffer_minutes * 60
+
+    # ---- exposure ----
+
+    def exposure(self) -> tuple[dict[str, float], dict[str, float], dict[str, str]]:
+        """(cost per race, cost per state, race of each exchange): gap-trade holdings and resting ladder bids
+        (arb baskets are hedged, so they don't count against race or state caps)."""
+        race_of = {e: self.labels.get(e, e).split(" [")[0] for e in set(self.map) | set(self.labels)}
+        race_of.update({e: r.key for r in self.races for e in r.exchange_ids})
+        race_cost: dict[str, float] = {}
+        state_cost: dict[str, float] = {}
+        items = [(h.exchange_id, h.qty * h.avg_cost) for h in self.ledger.holdings("conv")]
+        items += [(r[1], r[3] * r[4]) for r in self.ledger.resting(self.clock())]
+        for e, c in items:
+            race = race_of.get(e, e)
+            race_cost[race] = race_cost.get(race, 0.0) + c
+            st = V.state_of(race)
+            if st:
+                state_cost[st] = state_cost.get(st, 0.0) + c
+        return race_cost, state_cost, race_of
+
+    def side_price(self, eid: str, side: str) -> float | None:
+        """Best price to buy `side` now, from bulk prices."""
+        bid, ask = self.prices.get(eid, (None, None))
+        return ask if side == "yes" else (None if bid is None else round(1 - bid, 6))
+
+    def ranked_gaps(self) -> list[tuple[float, float, str, str]]:
+        """(return on cash, points, exchange, side) for every buy clearing MIN_EDGE and MIN_RETURN, best return
+        first (grissou: every opportunity on one scale)."""
+        s, out = self.s, []
+        for pts, eid, side in self.gaps():
+            px, f = self.side_price(eid, side), self.fair(eid)
+            if px is None or f is None or pts < s.min_edge:
+                continue
+            ret = V.edge(side_fair(f, side), px)
+            if ret >= s.min_return:
+                out.append((ret, pts, eid, side))
+        return sorted(out, reverse=True)
+
+    def night_candidates(self) -> list[tuple[float, str, str, float]]:
+        """Election night (Bowen26 rule): (return, exchange, side, reference bid) where every fresh reference bids
+        the side at NIGHT_MIN_REF_BID+ and the Cup still asks NIGHT_MIN_GAP below that."""
+        s, now, out = self.s, self.clock(), []
+        if not self.night():
+            return out
+        max_age = 2 * s.night_ref_refresh_seconds + 15
+        for eid, legs in self.map.items():
+            qs = [leg_quote(leg, self.quotes, now) for leg in legs]
+            if not qs or any(q is None or q.bid is None or q.ask is None or now - q.ts > max_age for q in qs):
+                continue
+            for side in ("yes", "no"):
+                ref = min(q.bid if side == "yes" else 1 - q.ask for q in qs)
+                px = self.side_price(eid, side)
+                if ref >= s.night_min_ref_bid - 1e-9 and px is not None and px <= ref - s.night_min_gap + 1e-9:
+                    out.append((V.edge(ref, px), eid, side, ref))
+        return sorted(out, reverse=True)
+
     def enter(self, pending: set[str], books_left: int) -> None:
         s = self.s
         cost = self.ledger.cost_by_exchange()
         total = sum(cost.values())
-        race_of = {e: r.key for r in self.races for e in r.exchange_ids}
-        race_cost: dict[str, float] = {}
-        for e, c in cost.items():
-            race_cost[race_of.get(e, e)] = race_cost.get(race_of.get(e, e), 0.0) + c
+        race_cost, state_cost, race_of = self.exposure()
         held = {(h.exchange_id, h.side) for h in self.ledger.holdings()}
         arb_held = {h.exchange_id for h in self.ledger.holdings("arb")}
-        for edge, eid, side in self.gaps():
-            if edge < s.min_edge or books_left <= 0:
+        night = [(ret, eid, side, ref) for ret, eid, side, ref in self.night_candidates()]
+        day = [(ret, eid, side, None) for ret, _, eid, side in self.ranked_gaps()]
+        for ret, eid, side, ref in night + day:
+            if books_left <= 0:
                 break
             other = "no" if side == "yes" else "yes"
             if eid in pending or (eid, other) in held or eid in arb_held:
                 continue
             race = race_of.get(eid, eid)
+            st = V.state_of(race)
+            race_cap = s.night_race_cost if ref is not None else s.max_race_cost
             room = min(s.max_order_cost, s.max_market_cost - cost.get(eid, 0.0),
                        min(s.max_total_cost, s.bankroll - s.cash_reserve) - total,
                        self.cash - self.reserve(),
-                       (s.max_race_cost - race_cost.get(race, 0.0)) if s.max_race_cost else float("inf"))
+                       (race_cap - race_cost.get(race, 0.0)) if race_cap else float("inf"),
+                       (s.state_max_cost - state_cost.get(st, 0.0)) if s.state_max_cost and st else float("inf"))
+            if ref is not None:  # called races: the per-market caps give way to the race cap
+                room = min(s.night_race_cost - race_cost.get(race, 0.0), self.cash - self.reserve())
             if room <= 0:
                 continue
             books_left -= 1
-            o = plan_entry(eid, self.fair(eid), self.book(eid), min_edge=s.min_edge,
-                           depth_fraction=s.depth_fraction, max_cost=room,
-                           kelly_fraction=s.kelly_fraction, bankroll=s.bankroll)
+            if ref is not None:
+                fy = ref if side == "yes" else 1 - ref
+                o = plan_entry(eid, fy, self.book(eid), min_edge=s.night_min_gap, depth_fraction=1.0,
+                               max_cost=room, kelly_fraction=1.0, bankroll=s.bankroll, only_side=side,
+                               reason=f"election night: refs bid {ref:.3f}")
+            else:
+                o = plan_entry(eid, self.fair(eid), self.book(eid), min_edge=s.min_edge,
+                               depth_fraction=s.depth_fraction, max_cost=room, kelly_fraction=s.kelly_fraction,
+                               bankroll=s.bankroll, min_return=s.min_return, only_side=side,
+                               reason=f"edge {ret:.1%} on cash")
             if o:
                 self.execute(o)
                 pending.add(eid)
@@ -400,6 +493,145 @@ class Bot:
                 self.cash -= o.cost
                 cost[eid] = cost.get(eid, 0.0) + o.cost
                 race_cost[race] = race_cost.get(race, 0.0) + o.cost
+                if st:
+                    state_cost[st] = state_cost.get(st, 0.0) + o.cost
+
+    # ---- harvest ladder (grissou ladder.py) ----
+
+    def ladder_fills(self) -> None:
+        """Credit fills of our resting ladder bids, matched by order id from the fills list."""
+        if not self.ledger.resting():
+            return
+        seen = int(self.ledger.get("fill_seen", "0") or 0)
+        fills = self.api.fills()
+        for f in sorted(fills, key=lambda x: int(x.get("id", 0))):
+            fid = int(f.get("id", 0))
+            if fid <= seen:
+                continue
+            note = self.ledger.apply_resting_fill(str(f.get("orderId")), abs(float(f.get("quantity") or 0)),
+                                                  float(f.get("price") or 0), self.clock())
+            if note:
+                self.ledger.event("TRADE", f"[live] {note}")
+                log.info(note)
+        if fills:
+            self.ledger.put("fill_seen", max(seen, max(int(f.get("id", 0)) for f in fills)))
+
+    def cancel_ladder(self, eid: str | None = None) -> None:
+        for r in self.ledger.resting():
+            if eid is None or r[1] == eid:
+                try:
+                    self.api.cancel(r[0])
+                except ApiError as e:
+                    log.info("cancel %s: %s", r[0], e)
+                self.ledger.drop_resting(r[0])
+                self.ladder_anchor.pop(r[1], None)
+
+    def ladder(self, pending: set[str]) -> None:
+        """Rest bids under favourites' touch (fair >= LADDER_FAVOURITE_P) at 0/2/4/6c below it, 8%+ edge on
+        cash, inside LADDER_BUDGET; re-quote a market when its touch or fair moves more than 1c, or every
+        LADDER_REQUOTE_SECONDS. Off on election night and near the close: resting bids on favourites are
+        exactly what gets hit when a race turns."""
+        s, now = self.s, self.clock()
+        start = self._ts(s.election_night_start)
+        if not (s.ladder_enabled and self.live) or self.closing() or (start and now >= start - 3600):
+            if self.ledger.resting():
+                self.cancel_ladder()
+            return
+        self.ladder_fills()
+        for r in self.ledger.resting():
+            if r[6] <= now:  # expired at the exchange
+                self.ledger.drop_resting(r[0])
+        race_cost, state_cost, race_of = self.exposure()
+        held_other = {(h.exchange_id, "no" if h.side == "yes" else "yes") for h in self.ledger.holdings(None)}
+        arb_held = {h.exchange_id for h in self.ledger.holdings("arb")}
+        offsets = [float(x) for x in s.ladder_offsets.split(",") if x.strip()]
+        wanted: list[V.Level] = []
+        for eid in self.map:
+            fy = self.fair(eid)
+            bid, ask = self.prices.get(eid, (None, None))
+            race = race_of.get(eid, eid)
+            st = V.state_of(race)
+            if fy is None or eid in pending or eid in arb_held:
+                continue
+            lvls = V.ladder_levels(eid, fy, Book.top(eid, bid, ask), favourite_p=s.ladder_favourite_p,
+                                   offsets=offsets, min_edge=s.ladder_min_edge, level_cost=s.ladder_level_cost)
+            room = min((s.max_race_cost - race_cost.get(race, 0.0)) if s.max_race_cost else float("inf"),
+                       (s.state_max_cost - state_cost.get(st, 0.0)) if s.state_max_cost and st else float("inf"))
+            # resting bids already in this race/state count in race_cost; a market's levels must fit what's left
+            mine = sum(r[3] * r[4] for r in self.ledger.resting(now) if r[1] == eid)
+            lvls = V.within_budget([l for l in lvls if (l.exchange_id, l.side) not in held_other], room + mine)
+            wanted += [l for l in lvls if l.cost >= 100]   # no dust bids
+        spendable = self.cash - self.reserve() + min(s.ladder_from_reserve, s.election_reserve)
+        wanted = [l for l in V.within_budget(wanted, min(s.ladder_budget, max(0.0, spendable))) if l.cost >= 100]
+        by_eid: dict[str, list[V.Level]] = {}
+        for lv in wanted:
+            by_eid.setdefault(lv.exchange_id, []).append(lv)
+        resting = {}
+        for r in self.ledger.resting():
+            resting.setdefault(r[1], []).append(r)
+        for eid in set(resting) | set(by_eid):
+            fy, (bid, ask) = self.fair(eid), self.prices.get(eid, (None, None))
+            want = by_eid.get(eid, [])
+            side = want[0].side if want else None
+            touch = None if side is None else V.side_touch(Book.top(eid, bid, ask), side)[0]
+            a = self.ladder_anchor.get(eid)
+            keep = (a is not None and want and now - a[0] < s.ladder_requote_seconds
+                    and abs((touch or 0) - a[1]) <= 0.01 + 1e-9 and abs((fy or 0) - a[2]) <= 0.01 + 1e-9)
+            if keep:
+                continue
+            if eid in resting:
+                self.cancel_ladder(eid)
+            for lv in want:
+                label = self.labels.get(eid, eid)
+                msg = f"ladder BUY {lv.side.upper()} {lv.qty} {label} @ {lv.price:.3f} (edge {lv.edge:.1%})"
+                ttl = int(s.ladder_requote_seconds + 120)
+                resp = self.send(msg, lambda lv=lv: self.api.place_order(eid, lv.side, "buy", lv.qty, lv.price, ttl))
+                oid = resp and (resp.get("orderId") or (resp.get("data") or {}).get("orderId"))
+                if oid:
+                    self.ledger.add_resting(oid, lv, label, side_fair(fy, lv.side), now, ttl)
+                    self.ledger.event("TRADE", f"[live] rest {msg}")
+            if want:
+                self.ladder_anchor[eid] = (now, touch or 0.0, fy or 0.0)
+        for r in self.ledger.resting():
+            pending.add(r[1])  # no immediate orders where we rest: fills there are matched by order id
+        self.cash -= sum(r[3] * r[4] for r in self.ledger.resting())
+
+    # ---- allocator (grissou value.py Allocator) ----
+
+    def allocate(self, pending: set[str]) -> None:
+        """Hourly (every 5 min on election night): if the best buy can't be funded, sell the holdings with the
+        least edge left, never more than ALLOC_SELL_MARGIN below fair, when the buy beats them by
+        ALLOC_MIN_GAIN (2 points on election night). The freed cash goes to the normal entry step."""
+        s, now = self.s, self.clock()
+        night = self.night()
+        interval = 300 if night else s.alloc_interval_seconds
+        if not s.alloc_enabled or self.closing() or now - float(self.ledger.get("alloc_last", "0")) < interval:
+            return
+        self.ledger.put("alloc_last", now)
+        cands = [(ret, eid, side) for ret, eid, side, _ in self.night_candidates()]
+        cands += [(ret, eid, side) for ret, _, eid, side in self.ranked_gaps()]
+        if not cands:
+            return
+        best = max(c[0] for c in cands)
+        spare = max(0.0, self.cash - self.reserve())
+        need = min(s.alloc_max_turnover, s.max_order_cost * 3) - spare
+        self.turnover = [(w, u) for w, u in self.turnover if w > now - 3600]
+        left = s.alloc_max_turnover - sum(u for _, u in self.turnover)
+        if need < 20 or left < 20:
+            return
+        pinned = {e for r in self.races if r.key in {x.strip() for x in s.alloc_pinned.split(",")}
+                  for e in r.exchange_ids}
+        busy = pending | {c[1] for c in cands}
+        sellers = V.swap_sellers([h for h in self.ledger.holdings() if h.exchange_id not in busy],
+                                 self.scaled, self.prices, max_keep_edge=s.alloc_max_keep_edge,
+                                 sell_margin=s.alloc_sell_margin, pinned=pinned)
+        min_gain = 0.02 if night else s.alloc_min_gain
+        for sl, n in V.plan_swap_sales(sellers, best, need, left, min_gain):
+            o = Order(sl.exchange_id, sl.side, "sell", n, sl.price, sl.fair,
+                      f"swap: keep {sl.keep_edge:.1%} < buy {best:.1%}")
+            self.execute(o)
+            pending.add(sl.exchange_id)
+            self.turnover.append((now, n * sl.price))
 
     def arb(self, pending: set[str], books_left: int, blocked: bool) -> int:
         """Short-term NO-basket trading: repair uneven baskets; sell baskets for a quick profit, when
@@ -618,6 +850,7 @@ class Bot:
         if near:
             lines.append("Closest arb races (Σ YES bids − 1; trades at ≥ "
                          f"{s.arb_min_profit:g}): " + ", ".join(f"{k} {e:+.3f}" for e, k in near))
+        lines += self.value_lines()
         lines += self.opportunity_lines()
         lines.append("\nLargest gaps now (edge = fair − price to buy):")
         for edge, eid, side in self.gaps()[:5]:
@@ -627,6 +860,39 @@ class Bot:
             lines.append(f"\nAlerts/errors last {s.report_interval_hours:g}h ({len(alerts)}):")
             lines += [f"  {datetime.fromtimestamp(t, timezone.utc):%H:%M} {lvl} {m[:150]}" for t, lvl, m in alerts[-10:]]
         return "\n".join(lines)
+
+    def value_lines(self) -> list[str]:
+        """Ladder, allocator, election-night state, state exposure and the national-swing stress test."""
+        s, now = self.s, self.clock()
+        since = now - s.report_interval_hours * 3600
+        out = ["\nValue book:"]
+        rest = self.ledger.resting(now)
+        lf = [f for f in self.ledger.fills_since(since) if f[8] == "ladder"]
+        if s.ladder_enabled:
+            out.append(f"  ladder: {len(rest)} bids resting ({sum(r[3] * r[4] for r in rest):,.0f} SUSQies) on "
+                       f"{len({r[1] for r in rest})} markets; {len(lf)} fills last {s.report_interval_hours:g}h "
+                       f"(expected gain {sum(f[5] * (f[7] - f[6]) for f in lf):+,.0f})")
+        sw = [f for f in self.ledger.fills_since(since) if str(f[8]).startswith("swap")]
+        if s.alloc_enabled:
+            out.append(f"  allocator: {len(sw)} swap sales last {s.report_interval_hours:g}h "
+                       f"({sum(f[5] * f[6] for f in sw):,.0f} SUSQies freed)")
+        if s.night_enabled:
+            out.append(f"  election night: {'ON' if self.night() else 'from ' + s.election_night_start}, "
+                       f"{len(self.night_candidates())} called races where the Cup lags now")
+        _, state_cost, _ = self.exposure()
+        if state_cost:
+            top = sorted(state_cost.items(), key=lambda kv: -kv[1])[:4]
+            out.append("  biggest states: " + ", ".join(f"{k} {v:,.0f}" for k, v in top)
+                       + (f" (cap {s.state_max_cost:,.0f})" if s.state_max_cost else ""))
+        party = {e: p for r in self.races for e, p in r.legs}
+        hs = [(party.get(h.exchange_id, ""), h.side, h.qty, self.fair(h.exchange_id))
+              for h in self.ledger.holdings(None) if self.fair(h.exchange_id) is not None]
+        if hs:
+            r_up, d_up = V.swing_value_change(hs, s.swing_shock)
+            ev = sum(q * side_fair(fy, sd) for _, sd, q, fy in hs)
+            out.append(f"  holdings expected value at Kalshi odds {ev:,.0f}; national swing "
+                       f"±{s.swing_shock * 100:.0f} pts: R wave {r_up:+,.0f}, D wave {d_up:+,.0f}")
+        return out if len(out) > 1 else []
 
     def send_report(self) -> None:
         self.notifier.send("📊 SIG Cup bot report", self.report())
@@ -651,7 +917,7 @@ class Bot:
             while deadline is None or self.clock() < deadline:
                 try:
                     self.cycle()
-                    delay = s.poll_seconds
+                    delay = s.night_poll_seconds if self.night() else s.poll_seconds
                 except Exception as e:
                     h = self.health
                     h.consecutive_errors += 1

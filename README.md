@@ -55,6 +55,28 @@ YES. So buying **NO on every party** pays at least k−1 per set, whoever wins.
 
 The two strategies keep separate books. An exchange is only ever held by one of them at a time.
 
+## Value book, adapted from grissou/prediction-market-maker (`src/sigcup/value.py`)
+
+The best-documented Cup bot ([grissou/prediction-market-maker](https://github.com/grissou/prediction-market-maker),
+MIT licence) was 152nd of 1,782 on 25 Oct, with +15% expected at settlement. Its key finding: the Cup has a
+favourite–longshot tilt (97% favourites trade at 85–88c), and since every contract pays out at the result,
+holding favourites is where the money is. Ported here:
+
+- **Return on cash.** Every buy is ranked and hurdled by (fair − price) / price (`MIN_RETURN`, 5%). Fair
+  values of a race are scaled to sum to 1 (`RACE_SCALE`).
+- **Harvest ladder.** Resting bids under favourites' best bid at 0/2/4/6c, only at 8%+ edge, 3k per level,
+  15k in total (`LADDER_*`). The bot is a maker here: it gets paid the spread instead of paying it. Fills
+  are matched by order id from the fills list. The ladder may use 10k of the election reserve, and all its
+  bids are cancelled an hour before election night.
+- **Allocator.** Hourly, holdings with 5% or less edge left are sold, never more than 3c under fair, when
+  a buy is 5+ points better (`ALLOC_*`).
+- **Caps.** 5k per race and 15k per state (`MAX_RACE_COST`, `STATE_MAX_COST`). The report shows a
+  ±15-point national swing stress test.
+- **Election night** (the rule from [Bowen26/election-bot](https://github.com/Bowen26/election-bot)). From
+  23:00 UTC on 3 Nov, buy the side every reference bids at 0.95+ while the Cup still asks 2c+ below it,
+  up to 8k per race. The bot polls every 4 s. The allocator recycles nearly-settled holdings into these
+  buys, needing only 2 points of gain. New orders stop 15 min before trading closes at 17:00 UTC on 4 Nov.
+
 ## Unattended cloud runs
 
 `docs/CLOUD_RUN.md` describes the scheduled Claude Code session. It fires every 2 hours, trades

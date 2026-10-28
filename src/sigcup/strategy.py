@@ -51,23 +51,29 @@ def kelly_cost(p: float, price: float, fraction: float, bankroll: float) -> floa
 
 def plan_entry(exchange_id: str, fair_yes: float, book: Book, *, min_edge: float,
                depth_fraction: float, max_cost: float, kelly_fraction: float,
-               bankroll: float) -> Order | None:
+               bankroll: float, min_return: float = 0.0, only_side: str | None = None,
+               reason: str = "") -> Order | None:
+    """Buy the side Kalshi says is cheap. A level is taken only while it clears min_edge (points) and
+    min_return (gain per unit of cash, (f - price) / price)."""
+    ok = lambda f, px: f - px >= min_edge - 1e-9 and (f - px) / max(px, 1e-9) >= min_return - 1e-9
     for side in ("yes", "no"):
+        if only_side and side != only_side:
+            continue
         f = side_fair(fair_yes, side)
         levels = book.buy_levels(side)
-        if not levels or f - levels[0].price < min_edge:
+        if not levels or not ok(f, levels[0].price):
             continue
         budget = min(max_cost, kelly_cost(f, levels[0].price, kelly_fraction, bankroll))
         qty, cost, limit = 0, 0.0, None
         for lvl in levels:
-            if f - lvl.price < min_edge:
+            if not ok(f, lvl.price):
                 break
             take = min(math.floor(lvl.qty * depth_fraction), math.floor((budget - cost) / lvl.price + 1e-9))
             if take <= 0:
                 break
             qty, cost, limit = qty + take, cost + take * lvl.price, lvl.price
         if qty > 0:
-            return Order(exchange_id, side, "buy", qty, limit, f, f"edge {f - levels[0].price:.3f}")
+            return Order(exchange_id, side, "buy", qty, limit, f, reason or f"edge {f - levels[0].price:.3f}")
     return None
 
 

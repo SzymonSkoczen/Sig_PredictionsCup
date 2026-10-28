@@ -40,6 +40,11 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - `sigcup --env state/cloud.env check`. On 401/403, end with "Bot not run: API key rejected
      (or tournament not joined / Terms not accepted)".
 
+   - **Election night (2026-11-03T21:00Z to 2026-11-04T17:00Z):** skip steps 3 and 4 and go straight to
+     step 5 with `--minutes 110`. Every minute of trading counts that night. Note any bug for the next run.
+   - **After 2026-11-04T17:00Z trading is closed:** don't start the bot. Report the final account value
+     and rank instead (`sigcup --env state/cloud.env report`).
+
 3. **Review the previous run and fix bugs.** Spend at most 15 minutes on this step.
    - Read `sigcup --env state/cloud.env review --hours 3`, `state/last_report.txt` and
      `state/last_issues.log`, where present.
@@ -94,7 +99,7 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
 
    ```
    PAPER|LIVE (why) · health OK|DEGRADED · P&L run +X / all-time +Y · open MTM +Z
-   Trades: N (gap trades a, arb baskets b) · best: … · worst: …
+   Trades: N (gap trades a, ladder fills l, swaps w, election-night buys n, arb baskets b) · best: … · worst: …
    ✅ Went well: <1–2 concrete points with numbers, e.g. "3/3 gap trades converged, +86">
    ❌ Went wrong: <1–2 concrete points with numbers, or "nothing">
    💡 Improve (strategy, needs your OK): <1–2 suggestions, each tied to evidence>

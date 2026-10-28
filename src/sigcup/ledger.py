@@ -26,6 +26,9 @@ CREATE TABLE IF NOT EXISTS fills (
     action TEXT, qty REAL, price REAL, fair REAL, reason TEXT, realized REAL, mode TEXT);
 CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, ts REAL, level TEXT, msg TEXT);
 CREATE TABLE IF NOT EXISTS kv (key TEXT PRIMARY KEY, value TEXT);
+CREATE TABLE IF NOT EXISTS resting (
+    order_id TEXT PRIMARY KEY, exchange_id TEXT, side TEXT, price REAL, qty REAL, placed REAL, expires REAL,
+    label TEXT, fair REAL);
 """
 
 
@@ -136,6 +139,41 @@ class Ledger:
             self.db.execute("DELETE FROM pending WHERE id=?", (pid,))
         self.db.commit()
         return notes
+
+    # ---- resting (ladder) orders: fills are matched by order id, not by position changes ----
+
+    def add_resting(self, order_id: str, lv, label: str, fair: float, now: float, ttl: float) -> None:
+        self.db.execute("INSERT OR REPLACE INTO resting VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        (str(order_id), lv.exchange_id, lv.side, lv.price, lv.qty, now, now + ttl, label, fair))
+        self.db.commit()
+
+    def resting(self, now: float | None = None) -> list[tuple]:
+        """(order_id, exchange_id, side, price, qty, placed, expires, label, fair) still resting."""
+        q = "SELECT * FROM resting WHERE qty >= 1"
+        rows = self.db.execute(q + (" AND expires > ?" if now else ""), ((now,) if now else ())).fetchall()
+        return rows
+
+    def drop_resting(self, order_id: str | None = None) -> None:
+        if order_id is None:
+            self.db.execute("DELETE FROM resting")
+        else:
+            self.db.execute("DELETE FROM resting WHERE order_id=?", (str(order_id),))
+        self.db.commit()
+
+    def apply_resting_fill(self, order_id: str, qty: float, price: float, now: float) -> str | None:
+        """Credit a fill of one of our resting buys to the value book; returns a note, or None if not ours."""
+        r = self.db.execute("SELECT exchange_id, side, qty, label, fair FROM resting WHERE order_id=?",
+                            (str(order_id),)).fetchone()
+        if not r:
+            return None
+        eid, side, left, label, fair = r
+        n = min(qty, left)
+        if n <= 0:
+            return None
+        self.record_fill(Order(eid, side, "buy", int(n), price, fair, "ladder"), n, label, now, "conv")
+        self.db.execute("UPDATE resting SET qty=? WHERE order_id=?", (left - n, str(order_id)))
+        self.db.commit()
+        return f"ladder fill: BUY {side.upper()} {n:g} {label} @ {price:.3f}"
 
     # ---- reporting ----
 
