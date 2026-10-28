@@ -520,3 +520,12 @@ Trades: 8 fills (4 gap trades, 2 arb take-profit baskets: Maine Sen, Delaware Se
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (22 runs of RI/MS gap evidence); capital tied in stuck conv positions, 39 gaps ≥0.04 reached but only 4 filled.
 🔎 Opportunities: RI Gov/Sen gaps +0.085-0.098 recur every run; arb near-miss RI Gov +0.055, Montana Sen +0.030; 45 unmapped markets.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-28T03:36Z run
+LIVE · health OK (0 SIG errors, 396 cycles, kalshi 13 429s) · P&L run +3 / all-time -3,031 · open MTM -609
+Trades: 21 fills (1 gap trade, 5 arb take-profit/entry rounds: Florida Gov x2, FL-13, Maine Sen, U.S. House) · best: Florida Gov arb sell +11 · worst: Florida Gov leg -6
+✅ Went well: full 100 min, 0 tracebacks, 0 SIG errors; arb round-trips net +3 realized, all orders filled.
+❌ Went wrong: open MTM -543 → -609 (RI Sen YES mark 0.88 vs 0.901 entry); 12 conv positions unconverged 36-39h; 41 gaps ≥0.04 but only 1 gap fill.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (23 runs of RI/MS gap evidence); capital tied in stuck conv positions starves new gap entries.
+🔎 Opportunities: RI Gov/Sen gaps +0.085-0.098 recur every run; arb near-miss RI Gov +0.060, Montana/Nebraska Sen +0.030; YES baskets Hawaii Gov +0.030 (third-party risk); 45 unmapped markets.
+🔧 Fixed: nothing (no bugs found).
