@@ -511,3 +511,12 @@ Trades: ~4 arb baskets in the partial runs (PA-01 and MT-01 sells; FL-13 and FL-
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (conv positions stuck 27-31h); too early to tell on anything new.
 🔎 Opportunities: RI Gov/Sen gaps and arb near-miss RI Gov recur every run (per last report); 45 unmapped markets.
 🔧 Fixed: nothing (no bugs found; restarts were environmental).
+
+## 2026-10-28T01:37Z run
+LIVE · health OK (0 SIG errors, 399 cycles, kalshi 14 429s) · P&L run +5 / all-time -3,033 · open MTM -543
+Trades: 8 fills (4 gap trades, 2 arb take-profit baskets: Maine Sen, Delaware Sen) · best: Maine/Delaware Sen arb sells +8 legs · worst: -5 legs on arb sells
+✅ Went well: full 100 min, 0 tracebacks; 2 arb baskets closed for net +6; 191/192 priced.
+❌ Went wrong: open MTM fell -190 → -543 (WA-03 Dem YES mark 0.83 vs 0.864 entry, ~-64; RI/NY marks drifting down); 12 conv positions still unconverged 34-37h.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (22 runs of RI/MS gap evidence); capital tied in stuck conv positions, 39 gaps ≥0.04 reached but only 4 filled.
+🔎 Opportunities: RI Gov/Sen gaps +0.085-0.098 recur every run; arb near-miss RI Gov +0.055, Montana Sen +0.030; 45 unmapped markets.
+🔧 Fixed: nothing (no bugs found).
