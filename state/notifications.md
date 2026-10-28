@@ -556,3 +556,12 @@ Trades: 13 fills (2 gap trades, ~4 arb rounds) · best: Alaska Sen arb take-prof
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (26 runs of RI/MS gap evidence); capital tied in stuck conv positions starves new gap entries.
 🔎 Opportunities: RI Gov/Sen gaps +0.090-0.105 recur every run; arb near-miss RI Gov +0.065, Montana/Nebraska Sen +0.030; YES baskets MN-05, Hawaii Gov +0.025 (risk: third-party win); 45 unmapped markets.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-28T11:37Z run
+LIVE · health OK (243 cycles, 0 tracebacks, SIG read timeouts retried, kalshi 8 failures/429s) · P&L run +0 / all-time -3,026 · open MTM -689
+Trades: 0 fills (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 tracebacks, 0 stuck orders; open MTM improved -918 → -689; 14 arb baskets held (cost ≤0.98).
+❌ Went wrong: no fills for the run; 23 positions held up to 47h; 53 gaps ≥0.04 reached, 0 filled.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (27 runs of RI/MS gap evidence); gaps reached but nothing filled → capital tied in stuck conv positions is the limit.
+🔎 Opportunities: RI Gov/Sen gaps +0.090-0.105 recur every run; arb near-miss RI Gov +0.070, Montana/Nebraska Sen +0.030; YES baskets Hawaii Gov +0.030, MN-05 +0.025 (risk: third-party win); 45 unmapped markets.
+🔧 Fixed: nothing (no bugs found).
