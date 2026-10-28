@@ -583,3 +583,12 @@ Trades: 6 fills (0 gap trades, ~2 arb rounds) · best: WI-03 arb take-profit +3 
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (29 runs of RI/WY/MS gap evidence); capital tied in stuck positions starves new entries.
 🔎 Opportunities: RI Sen/Gov gaps +0.10-0.11 recur every run; arb near-miss RI Gov +0.050; YES baskets South Dakota Gov +0.065, Hawaii Gov +0.050, Wyoming Sen +0.040 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-28T17:37Z run
+LIVE · health OK (356 cycles, 0 tracebacks, kalshi 8 failures/429s, SIG timeouts retried) · P&L run +0 / all-time -3,022 · open MTM -840
+Trades: 2 fills (0 gap trades, 1 arb round) · best: FL-16 arb take-profit +0 · worst: n/a
+✅ Went well: full 100 min, 0 tracebacks, 0 stuck orders; open MTM -993 → -840; 13 arb baskets held (cost ≤0.98).
+❌ Went wrong: no gap fills; 24 positions held up to 53h; 91 gaps ≥0.03 reached, 0 filled; ladder 5 bids resting, 0 fills.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (30 runs of RI/WY/MS gap evidence); capital tied in stuck positions starves new entries.
+🔎 Opportunities: RI Gov/Sen gaps +0.09-0.10 and Wyoming Sen +0.107 recur; arb near-miss RI Gov +0.055; YES baskets South Dakota Gov +0.065, Wyoming Sen/Hawaii Gov +0.040 (risk: third-party win); WI Gov ref moved ±0.05 vs Cup ±0.03 (news lag); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
