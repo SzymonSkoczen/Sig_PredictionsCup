@@ -671,3 +671,12 @@ Trades: 2 fills (0 gap trades, 0 ladder fills, 0 swaps, 1 arb basket: Vermont Go
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (39 runs of RI/WY/MS gap evidence); RI ~12k of 15k cap tied up, starving new entries.
 🔎 Opportunities: RI Gov +0.106 / RI Sen +0.09 gaps recur; arb near-miss RI Gov +0.045, Delaware Sen +0.030; YES baskets SD Gov +0.045, Hawaii Gov +0.035 (risk: third-party win); Kansas Sen ref moved 3.4 pts, Cup lagged (+0.023); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-29T13:43Z run
+LIVE · health OK (408 cycles, 0 tracebacks, kalshi 11 failures/429s, SIG errors 0) · P&L run +2 / all-time -3,014 · open MTM -1,043
+Trades: 6 fills (0 gap trades, 0 ladder fills, 0 swaps, 1 arb basket: New Mexico Sen x500 take-profit) · best: NM Sen R leg +7 · worst: NM Sen D leg -5 (offset)
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; NM Sen basket (500 sets) exited at net +3; account value 96,386.
+❌ Went wrong: 99 gaps ≥0.03 reached, 0 gap fills; 24 positions held up to 73h; ladder 5 bids (10.7k) 0 fills; Kalshi 429s (11).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (40 runs of RI/WY/MS gap evidence); RI ~12k of 15k cap tied up, starving new entries.
+🔎 Opportunities: SD Gov +0.091 / RI Gov +0.091 / RI Sen +0.086 gaps recur; arb near-miss RI Gov +0.040, Nebraska Sen +0.035; YES baskets SD Gov +0.050, Hawaii Gov +0.045 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
