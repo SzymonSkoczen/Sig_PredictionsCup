@@ -635,3 +635,12 @@ Trades: 2 fills (0 gap trades, 1 small arb basket: NE-02 x3) · best: arb +0.020
 ❌ Went wrong: open MTM -1,518 → -1,573; 92 gaps ≥0.03 reached, 0 gap fills; 24 positions held up to 63h.
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (35 runs of RI/WY/MS gap evidence); RI ~12k of 15k cap tied up, starving new entries.
 🔎 Opportunities: RI Gov/Sen gaps +0.09-0.098 and MS Sen +0.090 recur; arb near-miss RI Gov +0.075, Montana Sen +0.035; YES baskets Hawaii Gov +0.055, SD Gov +0.035 (risk: third-party win); 45 unmapped.
+
+## 2026-10-29T05:37Z run
+LIVE · health OK (445 cycles, 0 tracebacks, kalshi 7 failures/429s, SIG errors 0) · P&L run +1 / all-time -3,018 · open MTM -1,472
+Trades: 8 fills (0 gap trades, 0 ladder fills, 0 swaps, 3 arb baskets: FL Gov take-profit x2, CA-48 x187, VT Gov x4) · best: FL Gov arb +4 · worst: FL Gov D leg -4 (offset)
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; open MTM -1,573 → -1,472; FL Gov basket sold at 0.985/set, CA-48 187 sets locked +0.020/set.
+❌ Went wrong: 24 positions held up to 65h, unchanged; RI ~12k of 15k cap tied up; Kalshi 429s (7).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (36 runs of RI/WY/MS gap evidence); RI cap usage starves new entries.
+🔎 Opportunities: RI Gov/Sen and WY Sen gaps ~+0.09 recur; unmapped markets (45) could widen gap trading.
+🔧 Fixed: nothing (no bugs found).
