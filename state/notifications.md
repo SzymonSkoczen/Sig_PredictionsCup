@@ -805,4 +805,11 @@ Trades: 38 fills (0 gap trades, 19 arb take-profit pairs; mostly AZ-01 1–47 sh
 ❌ Went wrong: 95 gaps ≥0.03 reached, 0 gap fills (median depth 60 sh); 24 positions held up to 103h; Kalshi 429 x6 (transient).
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (53 runs of gap evidence, none filled); min exit size for AZ-01 arb clips (~0 P&L each).
 🔎 Opportunities: arb NE Sen +0.055, KS Sen +0.050, RI Gov +0.040 reached; YES baskets SD Gov +0.050, HI Gov +0.045 (risk: third-party win); Idaho Sen ref -0.047, Cup flat (news lag); 45 unmapped.
+## 2026-10-30T21:37Z run
+LIVE · health OK (450 cycles, 0 tracebacks, kalshi 4 failures (429), SIG errors 0) · P&L run +1 / all-time -3,009 · open MTM +113
+Trades: 0 fills (0 gap trades, 0 arb baskets)
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; open MTM -718 → +113; 12 arb baskets held at cost ~0.98 paying ≥1; account 97,322.
+❌ Went wrong: gaps ≥0.03 reached again with 0 gap fills; 24 positions held up to 105h; ladder 5 bids (10.5k) 0 fills; RI at 12.0k of 15k cap.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gap evidence, none filled); RI cap starves new entries.
+🔎 Opportunities: arb NE Sen +0.060, RI Gov +0.040; YES baskets (two-party Σ asks<1, risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
