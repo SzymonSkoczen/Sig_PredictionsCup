@@ -725,3 +725,12 @@ Trades: 0 fills (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (44 runs of RI/WY/SD gap evidence); RI cap usage starves new entries.
 🔎 Opportunities: RI Sen/Gov gaps +0.091 and SD Gov +0.086 recur; arb near-miss RI Gov +0.045, Montana Sen +0.040; YES baskets Hawaii Gov +0.045, SD Gov/Maine Gov +0.040 (risk: third-party win); SD Sen ref -5.6 pts, Cup flat; 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-30T01:37Z run
+LIVE · health OK (430 cycles, 0 tracebacks, kalshi 15 429s, SIG errors 0) · P&L run +0 / all-time -3,012 · open MTM -1,473
+Trades: 1 arb basket buy (Tennessee Governor x33, +0.025/set), 0 gap trades · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; 14 arb baskets held at cost ~0.98 paying ≥1; account value 96,178.
+❌ Went wrong: 101 gaps ≥0.03 reached, 0 gap fills; 24 positions held up to 85h; open MTM -1,105 → -1,473; ladder 4 bids (10.0k) 0 fills; RI at 12.0k of 15k cap.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (45 runs of RI/FL/DE gap evidence, none filled); RI cap usage starves new entries.
+🔎 Opportunities: RI Sen/Gov gaps +0.10 recur; arb near-miss RI Gov +0.045, DE Sen +0.040, MT Sen +0.040; YES baskets SD Gov +0.055, OK/Hawaii Gov +0.035 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
