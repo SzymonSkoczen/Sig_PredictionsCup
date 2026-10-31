@@ -76,6 +76,8 @@ class Settings:
     ladder_level_cost: float = 3_000.0
     ladder_budget: float = 15_000.0
     ladder_requote_seconds: float = 900.0
+    # Spend the ladder budget on each market's nearest level first (deep-only bids never filled, 28-31 Oct)
+    ladder_near_first: bool = False
     # The ladder may rest bids with this much of ELECTION_RESERVE (grissou carves its ladder out of its reserve);
     # all ladder bids are cancelled an hour before election night
     ladder_from_reserve: float = 0.0

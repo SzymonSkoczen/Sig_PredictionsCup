@@ -115,6 +115,8 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - Arb near misses → `ARB_MIN_PROFIT`.
    - Positions stuck until timeout → `EXIT_BAND` or `MAX_HOLD_HOURS`.
    - Two runs isn't enough to show a trend. Say "too early to tell" rather than guess.
+   - Gaps reached but 0 gap fills while free cash is at or below the reserve (CASH_RESERVE + ELECTION_RESERVE)
+     means there is no cash to buy with, not a fill-logic problem. Say "cash-limited".
 
    For 🔎, pick the most promising item or items from "Other opportunities". Say what it would
    take to exploit each one:

@@ -102,10 +102,18 @@ def ladder_levels(eid: str, fair_yes: float, book: Book, *, favourite_p: float, 
     return []
 
 
-def within_budget(levels: list[Level], budget: float) -> list[Level]:
-    """Best edge first until the budget is spent; the last level that fits only in part is trimmed."""
+def within_budget(levels: list[Level], budget: float, near_first: bool = False) -> list[Level]:
+    """Best edge first until the budget is spent; the last level that fits only in part is trimmed.
+    near_first: every market's nearest level (closest to the touch) before anyone's deeper ones, best edge
+    first within each depth. Deep levels score the most edge but rarely fill in a book as tight as the Cup's."""
     out, left = [], budget
-    for lv in sorted(levels, key=lambda l: (-l.edge, l.exchange_id, -l.price)):
+    depth: dict[tuple[str, float], int] = {}
+    for eid in {l.exchange_id for l in levels}:
+        for i, px in enumerate(sorted({l.price for l in levels if l.exchange_id == eid}, reverse=True)):
+            depth[(eid, px)] = i
+    key = ((lambda l: (depth[(l.exchange_id, l.price)], -l.edge, l.exchange_id)) if near_first
+           else (lambda l: (-l.edge, l.exchange_id, -l.price)))
+    for lv in sorted(levels, key=key):
         if lv.cost > left + EPS:
             qty = int(left / lv.price + EPS)
             if qty < 1:

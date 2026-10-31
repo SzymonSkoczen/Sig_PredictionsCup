@@ -171,3 +171,26 @@ def test_ladder_respects_race_cap(tmp_path):
     bot.api.prices_["e1"] = (0.88, 0.89)
     bot.cycle()
     assert sum(r[3] * r[4] for r in bot.ledger.resting()) <= 3100 + 1e-6
+
+
+def test_within_budget_near_first():
+    lv = [V.Level("a", "yes", 0.88, 1000, 0.10), V.Level("a", "yes", 0.86, 1000, 0.13),
+          V.Level("b", "yes", 0.80, 1000, 0.12), V.Level("b", "yes", 0.78, 1000, 0.15)]
+    far = V.within_budget(lv, 1700)
+    assert [(l.exchange_id, l.price) for l in far] == [("b", 0.78), ("a", 0.86), ("b", 0.80)][:len(far)]
+    near = V.within_budget(lv, 1700, near_first=True)
+    assert [(l.exchange_id, l.price) for l in near][:2] == [("b", 0.80), ("a", 0.88)]
+
+
+def test_ladder_race_cap_across_both_markets_of_a_race(tmp_path):
+    from sigcup.sig_api import Exchange, Market
+    bot, clock = make_bot(tmp_path, live=True, fair=(0.97, 0.99))
+    s = bot.s
+    s.ladder_enabled, s.min_edge, s.max_race_cost, s.ladder_offsets = True, 0.5, 4000, "0"
+    # e2 is the Democratic leg of the same race: NO on it is the same bet as YES on e1
+    bot.map["e2"] = [bot.map["e1"][0].__class__("e2", "TX D", "kalshi", "KX-R", True, 1)]
+    bot.api.markets_ = [Market("m1", "Will the Republican Party win the Texas Senate?", "open", None, [Exchange("e1", None)]),
+                        Market("m2", "Will the Democratic Party win the Texas Senate?", "open", None, [Exchange("e2", None)])]
+    bot.api.prices_.update({"e1": (0.88, 0.89), "e2": (0.11, 0.12)})
+    bot.cycle()
+    assert sum(r[3] * r[4] for r in bot.ledger.resting()) <= 4000 + 1e-6

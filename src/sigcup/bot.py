@@ -559,10 +559,18 @@ class Bot:
                        (s.state_max_cost - state_cost.get(st, 0.0)) if s.state_max_cost and st else float("inf"))
             # resting bids already in this race/state count in race_cost; a market's levels must fit what's left
             mine = sum(r[3] * r[4] for r in self.ledger.resting(now) if r[1] == eid)
-            lvls = V.within_budget([l for l in lvls if (l.exchange_id, l.side) not in held_other], room + mine)
-            wanted += [l for l in lvls if l.cost >= 100]   # no dust bids
+            lvls = V.within_budget([l for l in lvls if (l.exchange_id, l.side) not in held_other], room + mine,
+                                   s.ladder_near_first)
+            lvls = [l for l in lvls if l.cost >= 100]   # no dust bids
+            wanted += lvls
+            # a race's other market (YES on D is NO on R) must see these bids against the same caps
+            new = sum(l.cost for l in lvls) - mine
+            race_cost[race] = race_cost.get(race, 0.0) + new
+            if st:
+                state_cost[st] = state_cost.get(st, 0.0) + new
         spendable = self.cash - self.reserve() + min(s.ladder_from_reserve, s.election_reserve)
-        wanted = [l for l in V.within_budget(wanted, min(s.ladder_budget, max(0.0, spendable))) if l.cost >= 100]
+        wanted = [l for l in V.within_budget(wanted, min(s.ladder_budget, max(0.0, spendable)), s.ladder_near_first)
+                  if l.cost >= 100]
         by_eid: dict[str, list[V.Level]] = {}
         for lv in wanted:
             by_eid.setdefault(lv.exchange_id, []).append(lv)
