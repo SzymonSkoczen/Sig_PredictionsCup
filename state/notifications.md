@@ -883,3 +883,12 @@ Trades: 4 sells (0 gap trades, 0 arb baskets; NE-02 basket closed via arb take-p
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.084 never fill, positions stuck ~5 days); depth median 5.9k so fill logic, not depth, looks limiting.
 🔎 Opportunities: arb NE Sen +0.060, RI Gov +0.055 reached, nothing filled; YES baskets SC Gov +0.045, HI Gov +0.045 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found; local pytest env lacks httpx, not a code bug).
+
+## 2026-10-31T15:37Z run
+LIVE · health OK (450 cycles, 0 tracebacks, 0 SIG errors, kalshi 2 failures/429) · P&L run +0 / all-time -3,004 · open MTM -231
+Trades: 0 (gap trades 0, ladder fills 0, swaps 0, election-night buys 0, arb baskets 0)
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; account 97,118; all 10 arb baskets held intact.
+❌ Went wrong: 87 gaps ≥0.03 reached, 0 gap fills (8th run running); 22 positions held up to 123h; MTM -231.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.081 never fill, positions stuck ~5 days).
+🔎 Opportunities: arb RI Gov +0.060, NE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.045, OK Gov +0.035 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
