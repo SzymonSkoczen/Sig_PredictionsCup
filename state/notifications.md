@@ -892,3 +892,12 @@ Trades: 0 (gap trades 0, ladder fills 0, swaps 0, election-night buys 0, arb bas
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.081 never fill, positions stuck ~5 days).
 🔎 Opportunities: arb RI Gov +0.060, NE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.045, OK Gov +0.035 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-31T17:37Z run
+LIVE · health OK (432 cycles, 0 tracebacks, 0 SIG errors, kalshi 9 failures/429) · P&L run +0 / all-time -3,004 · open MTM -111
+Trades: 1 (ladder fill: BUY NO 3,236 U.S. House [R] @0.860; 0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; first ladder fill in several runs; MTM improved -231 → -111; account 97,122.
+❌ Went wrong: 83 gaps ≥0.03 reached, 0 gap fills (9th run running); 23 positions held up to 125h; Kalshi 429 x9 (up from 2).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.079 never fill, positions ~5 days); Kalshi poll interval could be eased to cut 429s.
+🔎 Opportunities: arb RI Gov +0.065, NE Sen +0.050 reached, nothing filled; YES baskets HI Gov +0.055, SD Gov +0.035 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
