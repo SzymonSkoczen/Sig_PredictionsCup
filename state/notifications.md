@@ -821,3 +821,12 @@ Trades: 0 fills (0 gap trades, 0 arb baskets)
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gap evidence across runs, none filled); RI cap starves new entries.
 🔎 Opportunities: arb Nebraska Senate +0.070, RI Gov +0.045, Montana Senate +0.040 reached, nothing filled; YES baskets SD Gov +0.045, Maine Gov +0.035 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-30T23:56Z run (second session, 01:36Z report)
+LIVE · health OK (427 cycles, 0 tracebacks, kalshi 14 failures (429), SIG errors 0) · P&L run +0 / all-time -3,009 · open MTM +4
+Trades: 0 fills (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; open MTM flat (+4); 12 arb baskets held at cost ~0.98 paying ≥1; account 97,283.
+❌ Went wrong: 92 gaps ≥0.03 reached, 0 gap fills; 24 positions held up to 109h; ladder 5 bids (11.0k) 0 fills; RI at 12.0k of 15k cap; Kalshi 429 x14.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gap evidence, none filled); consider slower Kalshi poll to cut 429s.
+🔎 Opportunities: arb NE Sen +0.075, RI Gov +0.065, AK Sen +0.045 reached, nothing filled; YES baskets SD Gov +0.050, ME Gov/MN-05/HI Gov +0.035 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
