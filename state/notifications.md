@@ -847,3 +847,12 @@ Trades: 2 swap sells (1 unit each), 0 gap trades, 0 arb baskets
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.089 never fill, positions stuck 4+ days); RI cap starves new entries.
 🔎 Opportunities: arb RI Gov +0.070, NE Sen +0.060 reached, nothing filled; YES baskets SD Gov +0.055, HI Gov +0.050 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-31T07:37Z run
+LIVE · health OK (455 cycles, 0 tracebacks, kalshi 0 failures, SIG errors 1 transient timeout) · P&L run +0 / all-time -3,009 · open MTM -271
+Trades: 0 fills (0 gap trades, 0 arb baskets)
+✅ Went well: full 100 min, 0 stuck orders, Kalshi 429s gone (0); 13 arb baskets held at cost ~0.98 paying ≥1; account 97,309.
+❌ Went wrong: 83 gaps ≥0.03 reached, 0 gap fills (5th run running); 22 positions held up to 115h; ladder 5 bids (13.0k) 0 fills; RI at 12.0k of 15k cap.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.089 never fill, positions stuck ~5 days); RI cap starves new entries.
+🔎 Opportunities: arb RI Gov +0.070, NE Sen +0.065, US Senate +0.045 reached, nothing filled; YES baskets HI Gov +0.045, ME Gov +0.040 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
