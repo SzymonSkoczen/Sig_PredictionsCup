@@ -865,3 +865,12 @@ Trades: 1 arb basket sold (0 gap trades) · Nebraska Gov take-profit 260 sets, n
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.080 never fill, positions stuck ~5 days); RI cap starves new entries.
 🔎 Opportunities: arb NE Sen +0.080, RI Gov +0.075, DE Sen +0.040 reached, nothing filled; YES baskets HI Gov +0.050, ME Gov +0.040 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-10-31T11:37Z run
+LIVE · health OK (471 cycles, 0 tracebacks, 0 SIG errors, kalshi 0 failures) · P&L run +2 / all-time -3,007 · open MTM -247
+Trades: 4 sells (0 gap trades, 0 arb baskets; VA-01 basket closed via arb take-profit, net +3)
+✅ Went well: full 100 min, 0 errors, 0 stuck orders; VA-01 arb take-profit (473 sets) netted ~+3; account 97,154.
+❌ Went wrong: 85 gaps ≥0.03 reached, 0 gap fills (6th run running); 22 positions held up to 119h; ladder 5 bids (11.2k) 0 fills; RI at 12.0k of 15k cap.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.088 never fill, positions stuck ~5 days); depth median 3.2k so DEPTH_FRACTION/resting quotes may be the limit.
+🔎 Opportunities: arb RI Gov +0.075, NE Sen +0.065 reached, nothing filled; YES baskets FL-09 +0.070, HI Gov +0.050 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
