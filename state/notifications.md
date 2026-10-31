@@ -910,3 +910,12 @@ Trades: 10 (8 ladder fills, 2 arb take-profit sells of 1 set; 0 gap trades, 0 ar
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.145 never fill, depth median only 4 shares); ease Kalshi poll interval to cut 429s.
 🔎 Opportunities: arb RI Gov +0.080, NE Sen +0.075 reached, nothing filled; YES baskets HI Gov +0.085, SD Gov +0.060 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found; local pytest lacks deps for collection, not a code bug).
+
+## 2026-10-31T21:37Z run
+LIVE · health OK (459 cycles, 0 tracebacks, 0 SIG errors, kalshi 5 failures/429) · P&L run +0 / all-time -3,004 · open MTM -1,837 (acct 96,201)
+Trades: 0 reported (WY Sen [R] YES 2,066 @0.900 and U.S. House [R] NO +2,593 appeared in holdings); 0 gap trades, 0 arb baskets
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; all 10 arb baskets intact.
+❌ Went wrong: MTM -1,613 → -1,837; 88 gaps ≥0.03, 0 gap fills (11th run running); positions held up to 129h. Note: this run overlapped the 19:56Z run's push (state merge conflict, resolved keeping newest).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.16 never close); too early to tell whether Kalshi leads the Cup marks.
+🔎 Opportunities: arb RI Gov +0.090, NE Sen +0.075, OK Sen +0.065 reached, nothing filled; YES baskets HI Gov +0.085, SD Gov +0.075 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
