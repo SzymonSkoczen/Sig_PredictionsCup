@@ -1009,3 +1009,12 @@ Trades: 1 (1 conv ladder buy Arkansas Gov R YES 268 @0.88, 0 arb baskets) · bes
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D, WY Sen R, AR Gov D edges +0.11 never fill; 20 runs is a clear pattern); Kalshi 429s rising — consider slower Kalshi poll.
 🔎 Opportunities: arb NE Sen +0.100, RI Gov +0.095, MI-10 +0.060 reached, little filled; YES baskets HI Gov +0.070, CT Gov +0.070 (risk: third-party win); MI Sen ref moved 5 pts, Cup 3; 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T19:37Z run
+LIVE · health OK (457 cycles, 0 tracebacks, 0 SIG errors, kalshi 8 failures/429s) · P&L run +0 / all-time -3,004 · open MTM -2,076 (acct 95,727)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 8 arb baskets intact; MTM -2,285 → -2,076 (+209).
+❌ Went wrong: 110 gaps ≥0.03 reached, 0 gap fills (21st run running); 25 positions held up to 149h; Kalshi 429s x8.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D +0.133, AR Gov R +0.120, AR Sen D +0.119 never fill; 21 runs is a clear pattern); Kalshi 429s persist — consider slower Kalshi poll.
+🔎 Opportunities: arb RI Gov +0.095, NE Sen +0.080, MI Sen +0.060 reached, nothing filled; YES baskets HI Gov +0.070, SD Gov +0.065 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
