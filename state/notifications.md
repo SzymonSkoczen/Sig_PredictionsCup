@@ -919,3 +919,12 @@ Trades: 0 reported (WY Sen [R] YES 2,066 @0.900 and U.S. House [R] NO +2,593 app
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.16 never close); too early to tell whether Kalshi leads the Cup marks.
 🔎 Opportunities: arb RI Gov +0.090, NE Sen +0.075, OK Sen +0.065 reached, nothing filled; YES baskets HI Gov +0.085, SD Gov +0.075 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T00:30Z run
+LIVE · health OK (190 cycles in 40m restart, 0 tracebacks, 0 SIG errors, kalshi 0 failures) · P&L run +5 / all-time -2,999 · open MTM -1,932
+Trades: 2 (Montana Senate 500-set NO basket sold @1.985; 1 ladder fill BUY YES 568 SD Gov @0.865; 0 gap trades, 0 new arb baskets)
+✅ Went well: Montana Senate basket take-profit closed 500 sets; 0 SIG errors, 0 stuck orders; Kalshi 429s gone after restart (0 vs 10/run).
+❌ Went wrong: worker restart killed the first 100m run after ~45m (no report written), re-ran 40m; 94 gaps ≥0.03 reached, 0 gap fills (11th run); MTM -1,613 → -1,932.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.14 never fill; 24 positions held ~5 days); RI at 11,999 of 15k cap.
+🔎 Opportunities: arb NE Sen +0.075, RI Gov +0.075 reached, nothing filled; YES baskets HI Gov +0.080, SD Gov +0.065 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
