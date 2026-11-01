@@ -1018,3 +1018,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D +0.133, AR Gov R +0.120, AR Sen D +0.119 never fill; 21 runs is a clear pattern); Kalshi 429s persist — consider slower Kalshi poll.
 🔎 Opportunities: arb RI Gov +0.095, NE Sen +0.080, MI Sen +0.060 reached, nothing filled; YES baskets HI Gov +0.070, SD Gov +0.065 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T21:42Z run
+LIVE · health OK (452 cycles, 0 tracebacks, 0 SIG errors, kalshi 9 failures/429s) · P&L run +16 / all-time -2,988 · open MTM -1,950
+Trades: 3 (0 gap trades, 0 arb baskets; 2 allocator swap sells TX-15 +15, PA-08 +0; 1 ladder buy Arkansas Gov R YES 192 @0.875) · best: TX-15 swap +15 · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 8 arb baskets intact; realized +16 via allocator swaps; ladder fill expected gain +20.
+❌ Went wrong: 104 gaps ≥0.03 reached, 0 gap fills (21st run running); MTM -1,160/-2,285 → -1,950; 23 positions held up to 153h; Kalshi 429s x9.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (MI Gov D +0.103, OK Sen D +0.102, WY Sen R +0.099 never fill; 21 runs is a clear pattern); Kalshi 429s recurring (3→10→9) — consider slower Kalshi poll.
+🔎 Opportunities: arb NE Sen +0.075, RI Gov +0.070, NH-01 +0.050 reached, little filled; YES baskets HI Gov +0.075, CT Gov +0.070 (risk: third-party win); election night from 2026-11-03T23:00Z; 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
