@@ -973,3 +973,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen [D] +0.102, SD Gov [R] +0.096, RI Sen [R] +0.093 never fill); 16 runs is a clear pattern.
 🔎 Opportunities: arb RI Gov +0.065, NE Sen +0.050, DE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.075, ME Gov +0.050 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T11:37Z run
+LIVE · health OK (484 cycles, 0 tracebacks, 0 SIG errors, kalshi 0 failures) · P&L run +0 / all-time -3,005 · open MTM -1,076 (acct 96,264)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors/Kalshi failures, 9 arb baskets intact; MTM improved -1,130 → -1,076 (+54).
+❌ Went wrong: 91 gaps ≥0.03 reached, 0 gap fills (17th run running); 24 positions still held up to 139h+.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen [D] +0.102, SD Gov [R] +0.096, RI Sen +0.092 never fill); 17 runs is a clear pattern.
+🔎 Opportunities: arb RI Gov +0.075, NE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.075, SD Gov +0.045 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
