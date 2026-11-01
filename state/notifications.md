@@ -928,3 +928,12 @@ Trades: 2 (Montana Senate 500-set NO basket sold @1.985; 1 ladder fill BUY YES 5
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.14 never fill; 24 positions held ~5 days); RI at 11,999 of 15k cap.
 🔎 Opportunities: arb NE Sen +0.075, RI Gov +0.075 reached, nothing filled; YES baskets HI Gov +0.080, SD Gov +0.065 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T01:36Z run
+LIVE · health DEGRADED (container restart cut run at 44 min; resumed 55 min, 267 cycles, 0 SIG errors, kalshi 0 failures) · P&L run +0 / all-time -3,004 · open MTM -1,724 (acct 95,703)
+Trades: 1 (ladder BUY YES 568 SD Gov [R] @0.865; 0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: 0 SIG errors, 0 stuck orders; Kalshi 429s gone (0 failures); ladder fill expected gain +60.
+❌ Went wrong: 91 gaps ≥0.03, 0 gap fills (12th run running); MTM -1,837 → -1,724; Montana Senate arb basket no longer held (9 vs 10); positions up to 133h.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.14 never close; OK Sen [D] +0.125).
+🔎 Opportunities: arb RI Gov +0.075, NE Sen +0.065, DE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.085, SD Gov +0.060 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
