@@ -937,3 +937,12 @@ Trades: 1 (ladder BUY YES 568 SD Gov [R] @0.865; 0 gap trades, 0 arb baskets) ·
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (gaps up to +0.14 never close; OK Sen [D] +0.125).
 🔎 Opportunities: arb RI Gov +0.075, NE Sen +0.065, DE Sen +0.045 reached, nothing filled; YES baskets HI Gov +0.085, SD Gov +0.060 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-01T03:37Z run
+LIVE · health OK (469 cycles, 0 tracebacks, 0 SIG errors, kalshi 2 failures) · P&L run -0 / all-time -3,005 · open MTM -1,757 (acct 95,566)
+Trades: 2 (Alaska Senate arb take-profit 97 + repair rebuy 97 @0.305; 0 gap trades, 0 new arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 0 stuck orders; 9 arb baskets intact; Kalshi 429s minimal (2 failures).
+❌ Went wrong: 97 gaps ≥0.03 reached, 0 gap fills (13th run running); MTM -1,724 → -1,757; positions held up to 135h.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen [D] +0.134, SD Gov +0.102 never fill; depth median 3,499 so depth isn't the limit).
+🔎 Opportunities: arb NE Sen +0.065, RI Gov +0.075 reached, nothing filled; YES baskets HI Gov +0.085, ME Gov +0.065 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
