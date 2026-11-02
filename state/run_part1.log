@@ -1,0 +1,79 @@
+2026-11-02 01:55:53,810 INFO sigcup.cli: mode: live
+2026-11-02 01:55:54,406 INFO sigcup.sig_api: using tournament midterm-elections
+2026-11-02 01:55:56,366 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-11-02 01:55:56,850 INFO sigcup.bot: resynced from exchange: 18 arb legs, 23 other positions
+2026-11-02 01:57:25,139 INFO sigcup.notify: 📊 SIG Cup bot report
+Mode: LIVE (live) | 2026-11-02 01:57 UTC
+Health: OK | up 0h01m | cycles 7 | last good cycle 0s ago | consecutive errors 0
+SIG API: reads 20/70/min, writes 0/20/min, errors total 0
+kalshi: last ok 2s ago, 192 quotes, 0 failures
+Markets: 192 mapped, 191 with a fair value
+Entries: active
+Arb: 117 races watched
+Bot P&L: realized +0 (last 2h), +0 today, -2,988 all-time | open MTM -2,129
+Account: periodEnd=2026-11-02T01:57:25.027Z, unrealizedPnl=-1388.23, totalAccountValue=95576.63, totalHoldingsValue=83575.91, totalCostBasis=84964.15, roi=-4.42, sharpe=-5.036
+
+Open positions (23):
+  WA-03 House race [Democratic]            YES   1885 @0.864 mark 0.825 fair 0.895 held 129h
+  WA-03 House race [Republican]            NO    1189 @0.825 mark 0.820 fair 0.895 held 121h
+  Florida Senate [Democratic]              NO      41 @0.835 mark 0.805 fair 0.865 held 113h
+  Tennessee Senate [Democratic]            NO    4572 @0.915 mark 0.890 fair 0.975 held 154h
+  Tennessee Senate [Republican]            YES    869 @0.915 mark 0.905 fair 0.975 held 155h
+  Virginia Senate [Republican]             NO    5362 @0.932 mark 0.890 fair 0.988 held 155h
+  Wyoming Senate [Democratic]              NO    2645 @0.945 mark 0.905 fair 0.990 held 157h
+  Wyoming Senate [Republican]              YES   2066 @0.900 mark 0.890 fair 0.990 held 30h
+  Oklahoma Governor [Republican]           YES   6769 @0.830 mark 0.830 fair 0.913 held 157h
+  NH-01 House race [Republican]            NO    2743 @0.909 mark 0.870 fair 0.944 held 154h
+  Massachusetts Senate [Democratic]        YES   5319 @0.937 mark 0.925 fair 0.987 held 129h
+  Rhode Island Senate [Democratic]         YES   6660 @0.901 mark 0.880 fair 0.988 held 157h
+  Rhode Island Senate [Republican]         NO    6629 @0.905 mark 0.880 fair 0.988 held 157h
+  U.S. House [Republican]                  NO    5829 @0.858 mark 0.840 fair 0.933 held 33h
+  Arkansas Governor [Republican]           YES    460 @0.878 mark 0.870 fair 0.980 held 9h
+  Maine Governor [Democratic]              YES   4137 @0.909 mark 0.875 fair 0.960 held 157h
+  New York Governor [Democratic]           YES   1123 @0.890 mark 0.875 fair 0.962 held 129h
+  New York Governor [Republican]           NO    4494 @0.890 mark 0.880 fair 0.962 held 129h
+  Georgia Senate [Democratic]              YES   5528 @0.902 mark 0.880 fair 0.964 held 129h
+  Louisiana Senate [Republican]            YES   5410 @0.922 mark 0.890 fair 0.962 held 129h
+  Mississippi Senate [Republican]          YES   6120 @0.817 mark 0.800 fair 0.865 held 157h
+  Hawaii Governor [Democratic]             YES   5427 @0.921 mark 0.890 fair 0.979 held 155h
+  South Dakota Governor [Republican]       YES   6239 @0.880 mark 0.865 fair 0.973 held 108h
+
+Trades last 2h (0):
+
+Arb baskets held (8):
+  Alaska Senate                                97 sets cost 0.975 pays ≥1 sell-now 0.960
+  Arizona Governor                            119 sets cost 0.980 pays ≥1 sell-now 0.960
+  Colorado Senate                             500 sets cost 0.980 pays ≥1 sell-now 0.945
+  Delaware Senate                              79 sets cost 0.980 pays ≥1 sell-now 0.945
+  Idaho Governor                              500 sets cost 0.980 pays ≥1 sell-now 0.945
+  Nebraska Senate                             500 sets cost 1.980 pays ≥2 sell-now 1.890
+  Oklahoma Senate                              18 sets cost 0.980 pays ≥1 sell-now 0.950
+  Rhode Island Governor                       500 sets cost 1.964 pays ≥2 sell-now 1.895
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.02): Rhode Island Governor +0.080, Nebraska Senate +0.070, NH-01 House race +0.035
+
+Value book:
+  ladder: 0 bids resting (0 SUSQies) on 0 markets; 0 fills last 2h (expected gain +0)
+  allocator: 0 swap sales last 2h (0 SUSQies freed)
+  election night: from 2026-11-03T23:00:00Z, 0 called races where the Cup lags now
+  biggest states: RI 11,999, OK 5,618, SD 5,491, MS 5,000 (cap 15,000)
+  holdings expected value at Kalshi odds 90,159; national swing ±15 pts: R wave -6,543, D wave -3,436
+
+Opportunities this run (7 priced cycles):
+  price gaps: 89 markets reached ≥0.03, 40 more reached ≥0.015 (near misses), of 191 with a fair value
+  best gaps: Oklahoma Senate [Democratic] +0.102, Alabama Senate [Democratic] +0.100, Rhode Island Senate [Democrati +0.098
+  arb: 29 races reached ≥0.02; best: Rhode Island Governor +0.080, Nebraska Senate +0.070, NH-01 House race +0.040
+
+Other opportunities (not traded, for review):
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): Maine Governor +0.075, Hawaii Governor +0.055, South Carolina Governor +0.050, Connecticut Governor +0.045
+  45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
+
+Largest gaps now (edge = fair − price to buy):
+  Oklahoma Senate [Democratic]             buy NO  edge +0.102
+  Alabama Senate [Democratic]              buy NO  edge +0.100
+  Rhode Island Senate [Democratic]         buy YES edge +0.098
+  Rhode Island Senate [Republican]         buy NO  edge +0.098
+  South Dakota Governor [Republican]       buy YES edge +0.098
+2026-11-02 02:26:07,731 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-11-02 02:29:35,172 WARNING sigcup.sig_api: GET /exchanges/prices failed (0 TRANSPORT_ERROR: Server disconnected without sending a response.), retrying in 1s
+2026-11-02 02:29:35,196 WARNING sigcup.sig_api: POST /orders/cancel-all failed (0 TRANSPORT_ERROR: [Errno 111] Connection refused), retrying in 1s
+2026-11-02 02:29:36,197 WARNING sigcup.sig_api: POST /orders/cancel-all failed (0 TRANSPORT_ERROR: [Errno 111] Connection refused), retrying in 2s

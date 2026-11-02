@@ -1045,3 +1045,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D +0.111, RI Sen R +0.108, AR Gov R +0.105 never fill; 23 runs is a clear pattern). Election night 11-03 23:00Z is the main catalyst.
 🔎 Opportunities: arb RI Gov +0.085, NE Sen +0.085, KS Sen +0.065 reached, nothing filled; YES baskets ME Gov +0.090, HI Gov +0.065, CT Gov +0.065 (risk: third-party win); KS Sen ref moved 6 pts, Cup Dem 6 / Rep only 2; 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-02T03:30Z run
+LIVE · health OK (277 cycles in restart; first run killed at ~34 min by container restart, 0 tracebacks, 0 SIG errors, kalshi 5 failures/429s) · P&L run +0 / all-time -2,988 · open MTM -2,994 (acct 95,057)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: 0 SIG errors, 7+ arb baskets intact (Rhode Island Governor basket no longer listed); restart recovered cleanly after container restart.
+❌ Went wrong: 113 gaps ≥0.03 reached, 0 gap fills (24th run running); MTM -2,142 → -2,994 (-852); trading time only ~94 of 100 min (interrupted).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D +0.111, SD Gov R +0.123, AR Gov R +0.114 never fill; 24 runs is a clear pattern); too early to judge Kalshi 429s (5 this run).
+🔎 Opportunities: arb NE Sen +0.085, RI Gov +0.080, DE Sen +0.060 reached, nothing filled; YES baskets ME Gov +0.095, HI Gov +0.085 (risk: third-party win); TX Gov ref moved 3 pts, Cup followed; 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
