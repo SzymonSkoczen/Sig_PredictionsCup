@@ -1,4 +1,4 @@
-2026-11-02 12:11:37,525 WARNING sigcup.sig_api: GET /tournaments/midterm-elections/portfolio/positions failed (0 TRANSPORT_ERROR: _ssl.c:1018: The handshake operation timed out), retrying in 1s
-2026-11-02 12:30:29,306 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-11-02 13:00:31,437 INFO sigcup.bot: arb: 117 races with 2+ party markets
-2026-11-02 13:30:38,954 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-11-02 15:46:21,417 WARNING sigcup.bot: kalshi refresh failed: Client error '429 Too Many Requests' for url 'https://api.elections.kalshi.com/trade-api/v2/markets?tickers=CONTROLH-2026-D%2CCONTROLH-2026-R%2CCONTROLS-2026-D%2CCONTROLS-2026-R%2CGOVPARTYAL-26-D%2CGOVPARTYAL-26-R%2CGOVPARTYAR-26-D%2
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-11-02 15:58:41,728 INFO sigcup.bot: arb: 117 races with 2+ party markets
+2026-11-02 16:28:47,756 INFO sigcup.bot: arb: 117 races with 2+ party markets

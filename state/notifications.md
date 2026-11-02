@@ -1099,3 +1099,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (TX-15 R +0.234, TX-15 D +0.214, DE Sen R +0.185 never fill; 29 runs is a clear pattern). Election night 11-03 23:00Z is the catalyst.
 🔎 Opportunities: arb NE Sen +0.170, MN Sen +0.120, RI Gov +0.120 reached, nothing filled; YES baskets HI Gov +0.130, SD Gov +0.110 (risk: third-party win); wide spreads MI Gov D 0.095 (resting quotes); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-02T16:40Z run
+LIVE · health OK (467 cycles, 0 tracebacks, 0 SIG errors, kalshi 1 failure/429) · P&L run +0 / all-time -2,987 · open MTM -3,053 (acct 93,805)
+Trades: 2 (0 gap trades, 1 arb basket take-profit) · best: Alaska Senate arb sold 97 sets @0.98 · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors; MTM -5,106 → -3,053 (+2,053); arb take-profit on Alaska Senate filled 97/97 (net ≈ 0).
+❌ Went wrong: 125 gaps ≥0.03 reached, 0 gap fills (30th run running); 7 arb baskets remain, positions held up to ~170h.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (AR Sen R +0.191, MA Gov R +0.184, TX-15 D +0.174 never fill; 30 runs a clear pattern). Election night 11-03 23:00Z is the catalyst.
+🔎 Opportunities: arb NE Sen +0.140, MA Gov +0.135, DE Sen +0.130 reached; YES baskets SD Gov +0.095, WY Sen +0.090 (risk: third-party win); wide spread CO Sen D 0.12 (resting quotes); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
