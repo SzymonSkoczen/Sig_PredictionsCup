@@ -1063,3 +1063,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (NE-02 R +0.127, CO Gov D +0.124, NJ-07 D +0.116 never fill; 25 runs is a clear pattern); Kalshi 429s recurring — consider slower Kalshi poll.
 🔎 Opportunities: arb NE Sen +0.105, RI Gov +0.080, TX Gov +0.050 reached, nothing filled; 45 unmapped. Election night from 11-03T23:00Z is the catalyst.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-02T07:36Z run
+LIVE · health OK (470 cycles, 0 tracebacks, 0 SIG errors, kalshi 5 failures/429s) · P&L run +0 / all-time -2,988 · open MTM -3,901 (acct 94,694)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 8 arb baskets intact; Kalshi 429s down 8 → 5.
+❌ Went wrong: 120 gaps ≥0.03 reached, 0 gap fills (26th run running); MTM -3,178 → -3,901 (-723).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (AL Sen D +0.129, RI Sen D +0.129, NJ-07 D +0.126 never fill; 26 runs is a clear pattern). Election night 11-03 23:00Z is the catalyst.
+🔎 Opportunities: arb NE Sen +0.090, RI Gov +0.090, MN Sen +0.080 reached, nothing filled; YES baskets ME Gov +0.090, HI Gov +0.090 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
