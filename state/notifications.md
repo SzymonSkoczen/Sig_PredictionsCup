@@ -1118,3 +1118,12 @@ Trades: 3 (0 gap trades, 2 ladder fills, 0 swaps, 0 election-night buys, 1 arb b
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (AZ-06 D +0.176, OK Sen D +0.139 never fill; 30 runs is a clear pattern). Election night 11-03 23:00Z is the catalyst.
 🔎 Opportunities: arb US Sen +0.125, RI Gov +0.100, KS Gov +0.085 reached; YES baskets HI Gov +0.090, SD Gov +0.075 (risk: third-party win); wide spreads AZ-06 D 0.105 (resting quotes); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-02T19:38Z run
+LIVE · health OK (467 cycles, 0 tracebacks, 0 SIG errors, kalshi 2 failures/429) · P&L run +0 / all-time -2,985 · open MTM -3,943 (acct 94,338)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors, 6 arb baskets intact (NE Sen sell-now 1.98 = cost); acct value 94,338 (+5 vs last run).
+❌ Went wrong: 125 gaps ≥0.03 reached, 0 gap fills (31st run); MTM -2,308 → -3,943 (-1,635); 24 positions held up to 175h, none exited.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (OK Sen D +0.177, WY Sen R +0.162, TX Sen D +0.160 never fill; 31 runs is a clear pattern). Election night 11-03 23:00Z is the catalyst.
+🔎 Opportunities: arb RI Gov +0.095, OK Sen +0.080, MT-01 +0.075 reached, nothing filled; YES baskets TX Sen +0.115, HI Gov +0.110 (risk: third-party win); wide spreads OK Sen D 0.70, TX Sen D 0.555 (resting quotes); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
