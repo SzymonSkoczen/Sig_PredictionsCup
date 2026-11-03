@@ -88,7 +88,11 @@ Branch: `claude/quirky-darwin-u0tfmx` (repo `szymonskoczen/sig_predictionscup`).
    - Keep the useful part of the log for the next run's review:
      `grep -E -A8 "WARNING|ERROR|Traceback" state/run.log | tail -400 > state/last_issues.log || true`.
    - Run `git add state/ && git commit -m "bot state <UTC time>"`.
-   - Then run `git pull --rebase origin claude/quirky-darwin-u0tfmx && git push -u origin claude/quirky-darwin-u0tfmx`.
+   - Then run `git pull --no-rebase -X ours origin claude/quirky-darwin-u0tfmx && git push -u origin claude/quirky-darwin-u0tfmx`
+     (a merge that keeps *your* copy of `state/` if another run pushed state meanwhile).
+   - **Never run git pull, checkout, rebase or stash while the bot is running.** It overwrites the live
+     database under the bot (this happened at 07:56Z on 3 Nov). The bot rebuilds positions from the exchange
+     at start-up, so git state is only a record; it isn't worth the risk.
    - If the push fails because of the network, retry up to 4 times with backoff.
 
 8. **Final message, the notification.** At most 14 lines. Base it on this run's
