@@ -194,3 +194,19 @@ def test_ladder_race_cap_across_both_markets_of_a_race(tmp_path):
     bot.api.prices_.update({"e1": (0.88, 0.89), "e2": (0.11, 0.12)})
     bot.cycle()
     assert sum(r[3] * r[4] for r in bot.ledger.resting()) <= 4000 + 1e-6
+
+
+def test_night_skips_new_arb_baskets_and_buys_called_race(tmp_path):
+    from test_arb import mkt, books
+    bot, clock = make_bot(tmp_path, fair=(0.97, 0.98))
+    s = bot.s
+    s.night_enabled, s.min_edge = True, 0.5
+    s.election_night_start = datetime.fromtimestamp(clock[0] - 60, timezone.utc).isoformat()
+    # an arb race is available too
+    bot.api.markets_ = [mkt("d", "Democratic", "Ohio Senate"), mkt("r", "Republican", "Ohio Senate")]
+    bot.api.prices_.update({"e1": (0.90, 0.92), "d": (0.45, 0.47), "r": (0.60, 0.62)})
+    bot.api.books_ = dict(books([(0.45, 400)], [(0.60, 400)], d_asks=[(0.47, 400)], r_asks=[(0.62, 400)]),
+                          e1=Book("e1", [Level(0.90, 1000)], [Level(0.92, 1000)]))
+    bot.cycle()
+    assert bot.ledger.holdings("arb") == []
+    assert [h.exchange_id for h in bot.ledger.holdings()] == ["e1"]

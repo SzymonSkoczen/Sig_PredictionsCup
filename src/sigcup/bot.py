@@ -255,7 +255,8 @@ class Bot:
         else:
             self._alerted = {a for a in self._alerted if not a.startswith("blocked:")}
         # Risk-free baskets get first call on the book budget; repairs/exits run even when blocked.
-        books_left = self.arb(pending, books_left, bool(blocked))
+        # On election night new arb baskets (~2% locked) wait: cash and book reads go to called races first
+        books_left = self.arb(pending, books_left, bool(blocked) or self.night())
         if not blocked:
             self.enter(pending, books_left)
 
