@@ -1208,3 +1208,11 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (ID Sen R +0.131, SD Sen R +0.121, AZ-06 D +0.097 never fill; persistent over 7 runs). Election night 11-03 23:00Z is the catalyst.
 🔎 Opportunities: arb RI Gov +0.065, AK Sen +0.060, DE Sen +0.050 reached, nothing filled; YES baskets HI Gov +0.060, SD Sen +0.055 (risk: third-party win); VA-01 ref moved ±0.068 vs Cup ±0.04 (news lag); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-03T15:37Z run
+LIVE · health OK (443 cycles, 1 transient JSONDecodeError on SIG positions read 15:39Z, auto-recovered; kalshi 9 failures/429) · P&L run +0 / all-time -2,984 · open MTM -442 (acct 97,113)
+Trades: 0 (0 gap trades, 0 ladder, 0 swaps, 0 election-night, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min; acct +849 vs prior run (96,264 → 97,113), MTM -1,128 → -442; 4 arb baskets intact.
+❌ Went wrong: 123 gaps ≥0.03 reached, 0 gap fills; 25 positions held up to 197h, none exited.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (MA Sen R +0.100, SD Gov R +0.097, SD Sen R +0.097 never fill; persistent over 8 runs). Election night 23:00Z is the catalyst.
+🔎 Opportunities: arb RI Gov +0.065, WI-01 +0.055, MN Sen +0.050 reached, nothing filled; YES baskets VA-05 +0.060, SD Sen +0.055 (risk: third-party win); SD Sen ref -0.054 vs Cup +0.035 (news lag); VA-05 R spread 0.095 (market-making); 45 unmapped.
