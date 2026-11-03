@@ -1181,3 +1181,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (ID Sen R +0.131, SD Sen R +0.126, TN Gov D +0.117 never fill; persistent pattern). Election night 11-03 23:00Z is the catalyst.
 🔎 Opportunities: arb US Sen +0.075, DE Sen +0.060, RI Gov +0.055 reached, nothing filled; YES baskets ME Gov +0.065, SD Gov +0.060 (risk: third-party win); SD Sen ref moved +0.052 vs Cup +0.013 (news lag); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-03T09:38Z run
+LIVE · health OK (467 cycles, 0 tracebacks, 0 SIG errors, kalshi 6 failures/429) · P&L run +0 / all-time -2,985 · open MTM -1,712 (acct 95,847)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 SIG errors; 5 arb baskets intact; acct +260 vs previous run (95,587 → 95,847).
+❌ Went wrong: 144 gaps ≥0.03 reached, 0 gap fills; 25 positions held up to 189h, none exited; a concurrent session pushed state at 07:56Z and my mid-run git op briefly broke the live DB (bot restarted cleanly 07:57, no trades lost).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (ID Sen R +0.116, OK Sen D +0.102 never fill; persistent pattern over 5 runs). Election night 11-03 23:00Z is the catalyst.
+🔎 Opportunities: arb US Sen +0.065, DE Sen +0.060, RI Gov +0.055 reached, nothing filled; YES baskets SD Sen +0.055, ME Gov +0.045 (risk: third-party win); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
