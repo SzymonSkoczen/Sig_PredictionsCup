@@ -1190,3 +1190,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (ID Sen R +0.116, OK Sen D +0.102 never fill; persistent pattern over 5 runs). Election night 11-03 23:00Z is the catalyst.
 🔎 Opportunities: arb US Sen +0.065, DE Sen +0.060, RI Gov +0.055 reached, nothing filled; YES baskets SD Sen +0.055, ME Gov +0.045 (risk: third-party win); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-03T11:37Z run
+LIVE · health OK (471 cycles, 0 tracebacks, 0 SIG errors, kalshi 2 failures/429) · P&L run +0 / all-time -2,984 · open MTM -1,704 (acct 96,084)
+Trades: 0 new entries (0 gap trades, 0 arb baskets); Delaware Senate basket (79 sets) sold out at 11:21Z by existing logic
+✅ Went well: full 100 min, 0 SIG errors; acct +237 vs previous run (95,847 → 96,084).
+❌ Went wrong: 136 gaps ≥0.03 reached, 0 gap fills; 25 positions held up to 191h, none exited.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (ID Sen R +0.106, OK Sen D +0.103, TN Sen D +0.099 never fill; persistent over 6 runs). Election night 11-03 23:00Z is the catalyst.
+🔎 Opportunities: arb RI Gov +0.060, AK Sen +0.050, MI Sen +0.050 reached, nothing filled; YES baskets SD Sen +0.055, ME Gov +0.050 (risk: third-party win); CO-03 ref moved ±0.045 vs Cup ±0.015 (news lag); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
