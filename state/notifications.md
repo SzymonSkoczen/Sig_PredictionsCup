@@ -1225,3 +1225,12 @@ Trades: 6 (0 gap trades, 0 ladder fills, 0 swaps, 0 election-night buys, 0 new a
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (RI Sen R +0.095, LA Sen R +0.093 never fill; persistent over 9 runs). Median depth 804 shares at best price, so a higher DEPTH_FRACTION may matter; election night 23:00Z is the catalyst.
 🔎 Opportunities: arb RI Gov +0.065, MT Sen +0.045, TX Gov +0.045 reached; YES baskets ID Sen +0.050, HI Gov +0.045 (risk: third-party win); NV Gov ref ±0.060 vs Cup ±0.035 (news lag); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-03T21:20Z run
+LIVE · health OK (403 cycles, 0 tracebacks, SIG errors 0, kalshi 15 failures/429) · P&L run +0 / all-time -2,982 · open MTM -1,823 (acct 96,884)
+Trades: 1 (0 gap trades, 1 ladder fill, 0 new arb baskets) · best: Idaho Senate R ladder buy 1210 @0.885 (exp +134) · worst: n/a
+✅ Went well: ladder filled Idaho Senate [R] YES 1210 @0.885 vs fair 0.995 (expected +134); full 100 min, 0 SIG errors.
+❌ Went wrong: 115 gaps ≥0.03 reached, 0 gap fills; open MTM fell -510 → -1,823 and acct -83 vs prior run; 25 positions held up to 201h, none exited.
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND and DEPTH_FRACTION review (ID Sen R +0.105, LA Sen R +0.102 never fill; persistent 10 runs). Election night 23:00Z is the catalyst.
+🔎 Opportunities: arb RI Gov +0.075 (best of 29 races ≥0.02) not filled; wide spreads NH Gov R 0.120, MA Sen R 0.095 (market-making); YES baskets HI Gov +0.060, ID Sen +0.050 (risk: third-party win); SD Sen ref -0.048 vs Cup +0.003 (news lag); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
