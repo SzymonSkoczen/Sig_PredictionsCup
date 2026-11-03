@@ -1216,3 +1216,12 @@ Trades: 0 (0 gap trades, 0 ladder, 0 swaps, 0 election-night, 0 arb baskets) · 
 ❌ Went wrong: 123 gaps ≥0.03 reached, 0 gap fills; 25 positions held up to 197h, none exited.
 💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (MA Sen R +0.100, SD Gov R +0.097, SD Sen R +0.097 never fill; persistent over 8 runs). Election night 23:00Z is the catalyst.
 🔎 Opportunities: arb RI Gov +0.065, WI-01 +0.055, MN Sen +0.050 reached, nothing filled; YES baskets VA-05 +0.060, SD Sen +0.055 (risk: third-party win); SD Sen ref -0.054 vs Cup +0.035 (news lag); VA-05 R spread 0.095 (market-making); 45 unmapped.
+
+## 2026-11-03T19:18Z run
+LIVE · health OK (427 cycles, 0 tracebacks, SIG errors 1, kalshi 13 failures/429) · P&L run +3 / all-time -2,982 · open MTM -510 (acct 96,967)
+Trades: 6 (0 gap trades, 0 ladder fills, 0 swaps, 0 election-night buys, 0 new arb baskets; 1 Nebraska Senate arb take-profit, 500 sets) · best: NE Sen arb +2 · worst: n/a
+✅ Went well: Nebraska Senate arb basket closed at take-profit (+3 realized); full 100 min, no tracebacks.
+❌ Went wrong: 114 gaps ≥0.03 reached, 0 gap fills; 25 positions held up to 199h, none exited; acct -147 vs prior run (97,113 → 96,967).
+💡 Improve (needs your OK): MAX_HOLD_HOURS/EXIT_BAND review (RI Sen R +0.095, LA Sen R +0.093 never fill; persistent over 9 runs). Median depth 804 shares at best price, so a higher DEPTH_FRACTION may matter; election night 23:00Z is the catalyst.
+🔎 Opportunities: arb RI Gov +0.065, MT Sen +0.045, TX Gov +0.045 reached; YES baskets ID Sen +0.050, HI Gov +0.045 (risk: third-party win); NV Gov ref ±0.060 vs Cup ±0.035 (news lag); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
