@@ -1314,3 +1314,12 @@ Trades: 1 (0 gap trades, 0 arb baskets; 1 conv swap sale) · best: WA-03 R NO se
 💡 Improve (needs your OK): daily-loss stop counts unrealized MTM on called races and has blocked entries 5 runs straight; only 8 gaps ≥0.03 (Alaska Sen R +0.105) unfilled — consider realized-only P&L for the stop.
 🔎 Opportunities: arb Alaska Gov +0.160, Iowa Gov +0.145, NH-01 House +0.135 reached unfilled; YES basket FL-16 +0.160 (risk: third party); 102 wide-spread markets (market-making); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T17:16Z run
+LIVE · health OK (580 cycles, 0 tracebacks, SIG errors 1, kalshi 30 failures) · P&L run +0 / all-time -4,544 · open MTM -4,325 (acct 91,084, +2.6k vs last run)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, 0 tracebacks, SIG API healthy; acct 88.5k→91.1k as marks recovered (WA-03 R NO mark 0.92 vs 0.825 entry).
+❌ Went wrong: entries paused all run ("trading closes soon"/daily loss stop); called races still deeply marked down: Wyoming Sen R YES 5959 @0.923→0.12, RI Sen D YES 6660 @0.90→0.125, Maine Gov D YES 6921 @0.92→0.12.
+💡 Improve (needs your OK): daily-loss stop counted unrealized MTM and blocked entries 6 runs straight; only 7 gaps ≥0.03 (ME-02 +0.095) unfilled — consider realized-only P&L for the stop; too early to tell otherwise.
+🔎 Opportunities: arb Alaska Gov +0.050, VA-05 +0.030 unfilled; YES basket Alaska Sen +0.045 (risk: third party); 104 wide-spread markets (market-making); Alaska Sen Cup lagged ref (-0.10 vs -0.04).
+🔧 Fixed: nothing (no bugs found).
