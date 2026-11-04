@@ -1287,3 +1287,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): daily-loss stop has blocked entries for 2 straight runs on unrealized MTM; 11 gaps ≥0.03 (CO-03 D +0.090) unfilled — consider whether stop should use realized P&L only; too early to tell otherwise.
 🔎 Opportunities: arb Maine Senate +0.270, Montana +0.080 unfilled; YES basket Hawaii Gov Σasks +0.115 (risk: third party); 92 wide-spread markets for market-making; 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T11:17Z run
+LIVE · health OK (888 cycles, 0 tracebacks, SIG errors 0, kalshi 8 failures/429) · P&L run +0 / all-time -4,644 · open MTM -13,259 (acct 94,633, ~-1,350 vs run start)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, no crashes, 0 SIG errors; Virginia Sen R NO mark 0.75, MA Gov R NO 0.765 held up.
+❌ Went wrong: entries paused all run (daily loss stop -12,406); U.S. House R NO 5914 @0.859 now 0.18 (~-4,000), RI Sen D YES 6660 @0.90 now 0.60, FL Gov R YES 2217 @0.947 now 0.70.
+💡 Improve (needs your OK): daily-loss stop has blocked entries 3 straight runs on unrealized MTM; only 8 gaps ≥0.03 (best MI-10 D +0.059) unfilled — consider realized-only P&L for the stop.
+🔎 Opportunities: arb Alaska Sen +0.060, Montana +0.050 unfilled; YES baskets FL-20 +0.125, TN Gov +0.075 (risk: third party); 102 wide-spread markets (market-making); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
