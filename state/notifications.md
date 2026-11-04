@@ -1251,3 +1251,12 @@ Trades: ~20 fills (election-night buys 6, swaps 4, arb take-profit 1) · best: W
 ❌ Went wrong: 3 losing exits (-114 total, mostly Oklahoma Gov swap -95); 4 partial sells (e.g. Mississippi Senate 251/6120) — thin books. Container restart killed bot before report.
 💡 Improve: too early to tell.
 🔎 Opportunities: Louisiana Senate D buy NO edge +0.157; Arkansas Senate D buy NO +0.059.
+
+## 2026-11-04T03:17Z run
+LIVE (election night) · health OK · P&L run -1,899 / all-time -4,669 · open MTM -1,020 (acct 95,521)
+Trades: 15 (0 gap trades, 4 stop-outs, 3 swap sales, 8 election-night buys, 0 new arb baskets) · best: WA-03 Dem swap +34 · worst: Oklahoma Gov R stop -742
+✅ Went well: 520 cycles, 0 SIG errors, 0 tracebacks; election-night buys (US House D @0.925, ME Gov D @0.935) marked +0.01-0.02 above cost.
+❌ Went wrong: 4 stops sold into thin bids: OK Gov R 3090 sh @0.46-0.475 (-1,112) though it now marks 0.905; MS Sen R 5869 sh @0.64-0.69 (-850). Realized -1,899 vs -105 prior run.
+💡 Improve (needs your OK): stops fired on one-sided/thin bids on election night; require stop price to persist N cycles or compare against the reference fair value (OK Gov fair 0.99 vs sale 0.47).
+🔎 Opportunities: Louisiana Sen D gap +0.317 / R +0.291 (fair missing/unfilled); arb Nebraska Gov +0.115, MN-01 +0.085 reached unfilled; YES basket FL-16 +0.190 (risk: third party); 147 wide spreads (market-making); 45 unmapped.
+🔧 Fixed: nothing (pytest env lacks httpx for its interpreter; not a code bug).
