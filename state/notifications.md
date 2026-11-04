@@ -1305,3 +1305,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): daily-loss stop has blocked entries 4 straight runs on unrealized MTM; only 2 gaps ≥0.03 (CO-03 R +0.045) — consider realized-only P&L for the stop.
 🔎 Opportunities: arb NH-01 House +0.120, VA-05 +0.075 unfilled; YES baskets NH Gov +0.040 (risk: third party); 99 wide-spread markets (market-making); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T15:17Z run
+LIVE · health OK (600 cycles, 0 tracebacks, SIG errors 1, kalshi 44 failures) · P&L run +101 / all-time -4,544 · open MTM -11,581 (acct 88,481, ~-1.9k vs last run)
+Trades: 1 (0 gap trades, 0 arb baskets; 1 conv swap sale) · best: WA-03 R NO sell 720 @0.965 +101 · worst: n/a
+✅ Went well: WA-03 House R NO sold @0.965 vs 0.825 entry (+101); full 100 min, no crashes.
+❌ Went wrong: entries paused all run again (daily loss stop -10.6k, 5th run in a row, unrealized MTM); Wyoming Sen R YES 5959 @0.923→0.70, Maine Gov D YES 6921 @0.92→0.70, FL Gov R YES 2217 @0.947→0.70.
+💡 Improve (needs your OK): daily-loss stop counts unrealized MTM on called races and has blocked entries 5 runs straight; only 8 gaps ≥0.03 (Alaska Sen R +0.105) unfilled — consider realized-only P&L for the stop.
+🔎 Opportunities: arb Alaska Gov +0.160, Iowa Gov +0.145, NH-01 House +0.135 reached unfilled; YES basket FL-16 +0.160 (risk: third party); 102 wide-spread markets (market-making); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).

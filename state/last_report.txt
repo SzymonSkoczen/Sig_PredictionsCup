@@ -1,84 +1,85 @@
-Mode: LIVE (live) | 2026-11-04 13:16 UTC
-Health: OK | up 1h40m | cycles 754 | last good cycle 4s ago | consecutive errors 0
-SIG API: reads 30/70/min, writes 1/20/min, errors total 0
-kalshi: last ok 6s ago, 28 quotes, 16 failures
-Markets: 192 mapped, 16 with a fair value
-Entries: PAUSED — daily loss stop hit (-13,407 today)
+Mode: LIVE (live) | 2026-11-04 15:16 UTC
+Health: OK | up 1h40m | cycles 600 | last good cycle 4s ago | consecutive errors 0
+SIG API: reads 30/70/min, writes 1/20/min, errors total 1
+kalshi: last ok 6s ago, 28 quotes, 44 failures
+Markets: 192 mapped, 17 with a fair value
+Entries: PAUSED — daily loss stop hit (-10,627 today)
 Arb: 117 races watched
-Bot P&L: realized +0 (last 2h), -1,988 today, -4,644 all-time | open MTM -14,260
-Account: periodEnd=2026-11-04T13:16:22.962Z, unrealizedPnl=-4890.2, totalAccountValue=90418.75, totalHoldingsValue=88418.74, totalCostBasis=93308.94, roi=-9.58, sharpe=-2.137
+Bot P&L: realized +101 (last 2h), -1,887 today, -4,544 all-time | open MTM -11,581
+Account: periodEnd=2026-11-04T15:16:18.931Z, unrealizedPnl=-6929.07, totalAccountValue=88480.67, totalHoldingsValue=85785.86, totalCostBasis=92714.94, roi=-11.52, sharpe=-2.137
 
 Open positions (29):
-  WA-03 House race [Republican]            NO    1189 @0.825 mark 0.955 fair   -   held 180h
-  Florida Senate [Democratic]              NO     331 @0.901 mark 0.705 fair   -   held 173h
-  Kansas Senate [Republican]               NO     824 @0.950 mark 0.700 fair   -   held 9h
-  Tennessee Senate [Democratic]            NO    4572 @0.915 mark 0.700 fair   -   held 213h
-  Tennessee Senate [Republican]            YES    869 @0.915 mark 0.700 fair   -   held 214h
-  Virginia Senate [Republican]             NO    5362 @0.932 mark 0.695 fair   -   held 214h
-  Wyoming Senate [Democratic]              NO    2645 @0.945 mark 0.700 fair   -   held 217h
-  Wyoming Senate [Republican]              YES   5959 @0.923 mark 0.700 fair   -   held 89h
-  Massachusetts Governor [Republican]      NO    1628 @0.942 mark 0.700 fair   -   held 14h
-  Oklahoma Governor [Republican]           YES    501 @0.830 mark 0.700 fair   -   held 217h
-  NH-01 House race [Republican]            NO    2743 @0.909 mark 0.840 fair   -   held 213h
-  Massachusetts Senate [Democratic]        YES   5319 @0.937 mark 0.895 fair   -   held 189h
-  Rhode Island Senate [Democratic]         YES   6660 @0.901 mark 0.700 fair   -   held 217h
-  Rhode Island Senate [Republican]         NO    6629 @0.905 mark 0.670 fair   -   held 217h
-  U.S. House [Democratic]                  YES   3203 @0.911 mark 0.905 fair   -   held 13h
-  U.S. House [Republican]                  NO    5914 @0.859 mark 0.700 fair   -   held 92h
-  Arizona Governor [Republican]            NO     692 @0.925 mark 0.885 fair   -   held 11h
-  Iowa Governor [Republican]               NO     255 @0.930 mark 0.755 fair   -   held 10h
-  Maine Governor [Democratic]              YES   6921 @0.920 mark 0.705 fair   -   held 217h
-  New York Governor [Democratic]           YES   1123 @0.890 mark 0.880 fair   -   held 189h
-  New York Governor [Republican]           NO    4982 @0.895 mark 0.875 fair   -   held 189h
-  Arkansas Senate [Republican]             YES   8700 @0.917 mark 0.840 fair   -   held 44h
-  Idaho Senate [Republican]                YES   1345 @0.883 mark 0.900 fair   -   held 32h
-  Louisiana Senate [Democratic]            NO    3329 @0.905 mark 0.780 fair   -   held 14h
-  Louisiana Senate [Republican]            YES   5451 @0.922 mark 0.895 fair   -   held 189h
-  Florida Governor [Republican]            YES   2217 @0.947 mark 0.700 fair   -   held 11h
-  Hawaii Governor [Democratic]             YES   5446 @0.921 mark 0.700 fair   -   held 215h
-  Michigan Governor [Democratic]           YES    199 @0.940 mark 0.695 fair   -   held 12h
-  South Dakota Governor [Republican]       YES   6239 @0.880 mark 0.840 fair   -   held 167h
+  WA-03 House race [Republican]            NO     469 @0.825 mark 0.930 fair   -   held 182h
+  Florida Senate [Democratic]              NO     331 @0.901 mark 0.715 fair   -   held 175h
+  Kansas Senate [Republican]               NO     824 @0.950 mark 0.700 fair   -   held 11h
+  Tennessee Senate [Democratic]            NO    4572 @0.915 mark 0.700 fair   -   held 215h
+  Tennessee Senate [Republican]            YES    869 @0.915 mark 0.740 fair   -   held 216h
+  Virginia Senate [Republican]             NO    5362 @0.932 mark 0.740 fair   -   held 216h
+  Wyoming Senate [Democratic]              NO    2645 @0.945 mark 0.700 fair   -   held 219h
+  Wyoming Senate [Republican]              YES   5959 @0.923 mark 0.700 fair   -   held 91h
+  Massachusetts Governor [Republican]      NO    1628 @0.942 mark 0.720 fair   -   held 16h
+  Oklahoma Governor [Republican]           YES    501 @0.830 mark 0.715 fair   -   held 219h
+  NH-01 House race [Republican]            NO    2743 @0.909 mark 0.870 fair   -   held 215h
+  Massachusetts Senate [Democratic]        YES   5319 @0.937 mark 0.905 fair   -   held 191h
+  Rhode Island Senate [Democratic]         YES   6660 @0.901 mark 0.905 fair   -   held 219h
+  Rhode Island Senate [Republican]         NO    6629 @0.905 mark 0.855 fair   -   held 219h
+  U.S. House [Democratic]                  YES   3203 @0.911 mark 0.905 fair   -   held 15h
+  U.S. House [Republican]                  NO    5914 @0.859 mark 0.745 fair   -   held 94h
+  Arizona Governor [Republican]            NO     692 @0.925 mark 0.790 fair   -   held 13h
+  Iowa Governor [Republican]               NO     255 @0.930 mark 0.725 fair   -   held 12h
+  Maine Governor [Democratic]              YES   6921 @0.920 mark 0.700 fair   -   held 219h
+  New York Governor [Democratic]           YES   1123 @0.890 mark 0.730 fair   -   held 191h
+  New York Governor [Republican]           NO    4982 @0.895 mark 0.875 fair   -   held 191h
+  Arkansas Senate [Republican]             YES   8700 @0.917 mark 0.750 fair   -   held 46h
+  Idaho Senate [Republican]                YES   1345 @0.883 mark 0.900 fair   -   held 34h
+  Louisiana Senate [Democratic]            NO    3329 @0.905 mark 0.725 fair   -   held 16h
+  Louisiana Senate [Republican]            YES   5451 @0.922 mark 0.905 fair   -   held 191h
+  Florida Governor [Republican]            YES   2217 @0.947 mark 0.700 fair   -   held 13h
+  Hawaii Governor [Democratic]             YES   5446 @0.921 mark 0.700 fair   -   held 217h
+  Michigan Governor [Democratic]           YES    199 @0.940 mark 0.700 fair   -   held 14h
+  South Dakota Governor [Republican]       YES   6239 @0.880 mark 0.950 fair   -   held 169h
 
-Trades last 2h (0):
+Trades last 2h (1):
+  14:12 conv SELL NO 720 WA-03 House race [Republican] @0.965 (swap: keep 2.5% < buy 4.8%) P&L +101
 
 Arb baskets held (2):
   Idaho Governor                              169 sets cost 0.980 pays ≥1 sell-now   -  
   Rhode Island Governor                       500 sets cost 1.964 pays ≥2 sell-now   -  
-Closest arb races (Σ YES bids − 1; trades at ≥ 0.02): NH-01 House race +0.025, ME-02 House race +0.015, VA-05 House race +0.010
+Closest arb races (Σ YES bids − 1; trades at ≥ 0.02): NH-01 House race +0.025, MN-02 House race +0.010, New Mexico Governor +0.005
 
 Value book:
   ladder: 0 bids resting (0 SUSQies) on 0 markets; 0 fills last 2h (expected gain +0)
-  allocator: 0 swap sales last 2h (0 SUSQies freed)
-  election night: ON, 0 called races where the Cup lags now
+  allocator: 1 swap sales last 2h (695 SUSQies freed)
+  election night: ON, 1 called races where the Cup lags now
   biggest states: RI 11,999, LA 8,035, WY 8,000, AR 7,978 (cap 15,000)
 
-Opportunities this run (754 priced cycles):
-  price gaps: 2 markets reached ≥0.03, 8 more reached ≥0.015 (near misses), of 17 with a fair value
-  best gaps: CO-03 House race [Republican] +0.045, CO-03 House race [Democratic] +0.042, ME-02 House race [Democratic] +0.027
-  arb: 5 races reached ≥0.02; best: NH-01 House race +0.120, VA-05 House race +0.075, Montana Senate +0.045
+Opportunities this run (600 priced cycles):
+  price gaps: 8 markets reached ≥0.03, 16 more reached ≥0.015 (near misses), of 28 with a fair value
+  best gaps: Alaska Senate [Republican] +0.105, CO-03 House race [Republican] +0.074, CO-03 House race [Democratic] +0.061
+  arb: 12 races reached ≥0.02; best: Alaska Governor +0.160, Iowa Governor +0.145, NH-01 House race +0.135
 
 Other opportunities (not traded, for review):
-  wide spreads ≥0.08 (99 markets; resting quotes could earn the spread): KY-04 House race [Republican] 0.915, Tennessee Senate [Republican] 0.905, Kentucky Senate [Democratic] 0.900, Pennsylvania Governor [Democra 0.895
-  one-sided/empty books: 118 markets (first quote sets the price): Tennessee Governor [Republican, Vermont Governor [Republican], FL-07 House race [Democratic], FL-07 House race [Republican]
-  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): New Hampshire Governor +0.040, MN-01 House race +0.030, CO-03 House race +0.030, FL-09 House race +0.015
-  reference moved ≥3 pts this run (news?): Mississippi Senate [Republican ref -0.125, Cup -0.110; Mississippi Senate [Democratic ref +0.125, Cup +0.115; CO-03 House race [Democratic] ref +0.058, Cup +0.045; CO-03 House race [Republican] ref -0.058, Cup -0.075
+  wide spreads ≥0.08 (102 markets; resting quotes could earn the spread): Tennessee Senate [Republican] 0.895, FL-20 House race [Republican] 0.895, Montana Senate [Democratic] 0.890, KY-04 House race [Republican] 0.890
+  one-sided/empty books: 114 markets (first quote sets the price): Tennessee Governor [Republican, Vermont Governor [Republican], Wyoming Governor [Republican], FL-07 House race [Democratic]
+  two-party races with Σ YES asks < 1 (pays 1 unless a third party wins): FL-16 House race +0.160, MN-01 House race +0.025, FL-09 House race +0.020, CO-03 House race +0.015
+  reference moved ≥3 pts this run (news?): Alaska Senate [Democratic] ref +0.044, Cup +0.010; Alaska Senate [Republican] ref -0.044, Cup -0.022
   45 Cup markets have no Kalshi/Polymarket mapping (gap trades can't see them)
 
 Largest gaps now (edge = fair − price to buy):
-  CO-03 House race [Republican]            buy YES edge +0.026
-  WA-03 House race [Democratic]            buy YES edge +0.019
-  Alaska Senate [Republican]               buy NO  edge +0.017
-  MI-10 House race [Democratic]            buy YES edge +0.014
-  ME-02 House race [Democratic]            buy NO  edge +0.011
+  CO-03 House race [Democratic]            buy NO  edge +0.026
+  AZ-06 House race [Democratic]            buy YES edge +0.024
+  Alaska Senate [Republican]               buy NO  edge +0.024
+  FL-13 House race [Republican]            buy YES edge +0.019
+  NY-17 House race [Republican]            buy NO  edge +0.016
 
-Alerts/errors last 2h (300):
-  13:14 ALERT New entries paused: daily loss stop hit (-13,595 today)
-  13:14 ALERT New entries paused: daily loss stop hit (-13,580 today)
-  13:14 ALERT New entries paused: daily loss stop hit (-13,594 today)
-  13:14 ALERT New entries paused: daily loss stop hit (-13,564 today)
-  13:14 ALERT New entries paused: daily loss stop hit (-13,530 today)
-  13:15 ALERT New entries paused: daily loss stop hit (-13,246 today)
-  13:15 ALERT New entries paused: daily loss stop hit (-13,539 today)
-  13:15 ALERT New entries paused: daily loss stop hit (-13,331 today)
-  13:16 ALERT New entries paused: daily loss stop hit (-13,373 today)
-  13:16 ALERT New entries paused: daily loss stop hit (-13,407 today)
+Alerts/errors last 2h (309):
+  15:13 ALERT New entries paused: daily loss stop hit (-10,749 today)
+  15:14 ALERT New entries paused: daily loss stop hit (-10,718 today)
+  15:14 ALERT New entries paused: daily loss stop hit (-10,715 today)
+  15:14 ALERT New entries paused: daily loss stop hit (-10,711 today)
+  15:15 ALERT New entries paused: daily loss stop hit (-10,680 today)
+  15:15 ALERT New entries paused: daily loss stop hit (-10,647 today)
+  15:15 ALERT New entries paused: daily loss stop hit (-10,657 today)
+  15:15 ALERT New entries paused: daily loss stop hit (-10,654 today)
+  15:15 ALERT New entries paused: daily loss stop hit (-10,644 today)
+  15:16 ALERT New entries paused: daily loss stop hit (-10,627 today)
