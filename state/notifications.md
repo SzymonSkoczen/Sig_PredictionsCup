@@ -1260,3 +1260,12 @@ Trades: 15 (0 gap trades, 4 stop-outs, 3 swap sales, 8 election-night buys, 0 ne
 💡 Improve (needs your OK): stops fired on one-sided/thin bids on election night; require stop price to persist N cycles or compare against the reference fair value (OK Gov fair 0.99 vs sale 0.47).
 🔎 Opportunities: Louisiana Sen D gap +0.317 / R +0.291 (fair missing/unfilled); arb Nebraska Gov +0.115, MN-01 +0.085 reached unfilled; YES basket FL-16 +0.190 (risk: third party); 147 wide spreads (market-making); 45 unmapped.
 🔧 Fixed: nothing (pytest env lacks httpx for its interpreter; not a code bug).
+
+## 2026-11-04T05:17Z run
+LIVE (election night) · health OK · P&L run +25 / all-time -4,644 · open MTM -5,656 (acct 96,359)
+Trades: 5 (0 gap trades, 2 arb take-profit, 1 swap sale, 2 election-night buys) · best: WA-03 Dem swap +23 · worst: Idaho Gov R arb leg -11
+✅ Went well: 530 cycles, 0 SIG errors, 0 tracebacks; no stop-outs (vs 4 stops, -1,899 last run); realized +25.
+❌ Went wrong: Virginia Senate R NO 5362 @0.932 marks 0.05 (spread 0.94, ~-4,700 MTM, likely thin-book mark); 62 gaps ≥0.03 reached, 0 gap fills.
+💡 Improve (needs your OK): too early to tell on stops; last run's stop-on-thin-bid issue didn't recur this run.
+🔎 Opportunities: arb Virginia Sen +0.225, Montana Sen +0.090, NH Sen +0.090 reached unfilled; YES baskets ID Sen +0.055, SD Gov +0.050 (risk: third party); MI-07 D gap +0.245; 104 wide spreads (market-making); 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
