@@ -1243,3 +1243,11 @@ Trades: 8 (0 gap trades, 2 swap sales, 6 election-night buys) · best: Georgia S
 💡 Improve (needs your OK): election-night buys worked (+325 realized); consider letting them size larger/earlier while 28 called races still lag. Median depth now 1,587 shares so DEPTH_FRACTION is probably not the limit.
 🔎 Opportunities: arb LA Sen +0.080, RI Gov +0.080, MI Sen +0.055 reached, unfilled; YES baskets ID Sen +0.080, SD Gov +0.075 (risk: third-party win); AK Gov R spread 0.445 (market-making); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04 01:20Z run
+LIVE (election night) · health OK · run interrupted by container restart at 01:19Z (~103/110 min traded; no final report written)
+Trades: ~20 fills (election-night buys 6, swaps 4, arb take-profit 1) · best: WA-03 Dem swap +8 · worst: Oklahoma Gov R swap -95
+✅ Went well: 0 errors, 0 stuck orders; election-night buys on called races (US House D @0.90-0.91, refs bid 0.97-0.98).
+❌ Went wrong: 3 losing exits (-114 total, mostly Oklahoma Gov swap -95); 4 partial sells (e.g. Mississippi Senate 251/6120) — thin books. Container restart killed bot before report.
+💡 Improve: too early to tell.
+🔎 Opportunities: Louisiana Senate D buy NO edge +0.157; Arkansas Senate D buy NO +0.059.
