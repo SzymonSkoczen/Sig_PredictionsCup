@@ -1269,3 +1269,12 @@ Trades: 5 (0 gap trades, 2 arb take-profit, 1 swap sale, 2 election-night buys) 
 💡 Improve (needs your OK): too early to tell on stops; last run's stop-on-thin-bid issue didn't recur this run.
 🔎 Opportunities: arb Virginia Sen +0.225, Montana Sen +0.090, NH Sen +0.090 reached unfilled; YES baskets ID Sen +0.055, SD Gov +0.050 (risk: third party); MI-07 D gap +0.245; 104 wide spreads (market-making); 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T07:30Z run
+LIVE · health OK (612 cycles, 0 tracebacks, SIG errors 0, kalshi 37 failures/429) · P&L run +0 / all-time -4,644 · open MTM -12,090 (acct 96,968)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, no crashes; acct +609 vs run start (96,359 → 96,968) as marks recovered.
+❌ Went wrong: daily loss stop hit (-11,237) from ~07:09, entries paused all run end; MA Gov R NO 1628 mark 0.07, VA Sen R NO 5362 mark 0.065, FL Gov R YES 2217 mark 0.61, RI Sen D YES 6660 mark 0.50 (election results being priced in).
+💡 Improve (needs your OK): 28 gaps ≥0.03 (Mississippi Sen D +0.125, CO-03 D +0.092) but 0 fills with entries paused/stop on MTM — consider whether daily-loss stop should count unrealized MTM on called races; too early to tell.
+🔎 Opportunities: NH-01 House arb +0.165, PA Gov +0.125 (21 races ≥0.02) unfilled; U.S. House YES basket Σasks +0.160 (risk: third-party); 100 wide-spread markets for market-making; 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
