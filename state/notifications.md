@@ -1278,3 +1278,12 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): 28 gaps ≥0.03 (Mississippi Sen D +0.125, CO-03 D +0.092) but 0 fills with entries paused/stop on MTM — consider whether daily-loss stop should count unrealized MTM on called races; too early to tell.
 🔎 Opportunities: NH-01 House arb +0.165, PA Gov +0.125 (21 races ≥0.02) unfilled; U.S. House YES basket Σasks +0.160 (risk: third-party); 100 wide-spread markets for market-making; 45 unmapped.
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T09:17Z run
+LIVE · health OK (651 cycles, 0 tracebacks, SIG errors 0, kalshi 39 failures/429) · P&L run +0 / all-time -4,644 · open MTM -9,534 (acct 95,980, -989 vs run start)
+Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
+✅ Went well: full 100 min, no crashes; Virginia Sen R NO recovered 0.065→0.745 (+~3,640 MTM), MA Gov R NO 0.07→0.90.
+❌ Went wrong: entries paused all run (daily loss stop -8,681); Wyoming Sen R YES 5959 @0.923 now 0.155 (~-4,580), Oklahoma Gov R YES 501 @0.83 now 0.075, Kansas Sen R NO 0.95→0.695 (election results priced in).
+💡 Improve (needs your OK): daily-loss stop has blocked entries for 2 straight runs on unrealized MTM; 11 gaps ≥0.03 (CO-03 D +0.090) unfilled — consider whether stop should use realized P&L only; too early to tell otherwise.
+🔎 Opportunities: arb Maine Senate +0.270, Montana +0.080 unfilled; YES basket Hawaii Gov Σasks +0.115 (risk: third party); 92 wide-spread markets for market-making; 45 unmapped.
+🔧 Fixed: nothing (no bugs found).
