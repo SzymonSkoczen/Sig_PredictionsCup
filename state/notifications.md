@@ -1323,3 +1323,6 @@ Trades: 0 (0 gap trades, 0 arb baskets) · best: n/a · worst: n/a
 💡 Improve (needs your OK): daily-loss stop counted unrealized MTM and blocked entries 6 runs straight; only 7 gaps ≥0.03 (ME-02 +0.095) unfilled — consider realized-only P&L for the stop; too early to tell otherwise.
 🔎 Opportunities: arb Alaska Gov +0.050, VA-05 +0.030 unfilled; YES basket Alaska Sen +0.045 (risk: third party); 104 wide-spread markets (market-making); Alaska Sen Cup lagged ref (-0.10 vs -0.04).
 🔧 Fixed: nothing (no bugs found).
+
+## 2026-11-04T17:40Z run
+Bot not run: the "Midterm Elections" tournament is status=ended (endDate 2026-11-04T17:00Z). Final balance 2,694.81 cash; all-time P&L as of last run -4,544, acct ~91.1k. Disable the "SIG Predictions Cup bot" scheduled task.
